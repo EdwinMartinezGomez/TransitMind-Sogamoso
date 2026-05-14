@@ -82,7 +82,7 @@ class TimeGANTrainer:
 
         # Loss functions
         self.mse_loss = nn.MSELoss()
-        self.bce_loss = nn.BCELoss()
+        self.bce_loss = nn.BCEWithLogitsLoss()
 
         # Optimizers (initialized per phase)
         self._setup_optimizers()

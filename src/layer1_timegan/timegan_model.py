@@ -291,7 +291,6 @@ class Discriminator(nn.Module):
         )
         # Bidirectional doubles the output dim
         self.linear = nn.Linear(hidden_dim * 2, 1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, h: torch.Tensor) -> torch.Tensor:
         """
@@ -301,14 +300,13 @@ class Discriminator(nn.Module):
             h: Latent tensor of shape (batch, seq_len, hidden_dim).
 
         Returns:
-            Probability tensor of shape (batch, 1).
+            Logit tensor of shape (batch, 1). Raw logits (no sigmoid).
         """
         out, _ = self.gru(h)
         # Use the last timestep output
         last_output = out[:, -1, :]
         logit = self.linear(last_output)
-        prob = self.sigmoid(logit)
-        return prob
+        return logit
 
 
 def count_parameters(model: nn.Module) -> int:

@@ -1,4 +1,14 @@
-.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api
+.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api run-all run-setup run-services
+
+# === Ejecucion unificada (PowerShell) ===
+run-all:
+	powershell -ExecutionPolicy Bypass -File ./run.ps1
+
+run-setup:
+	powershell -ExecutionPolicy Bypass -File ./run.ps1 -Setup
+
+run-services:
+	powershell -ExecutionPolicy Bypass -File ./run.ps1 -ServicesOnly
 
 install:
 	pip install -r requirements.txt
