@@ -3,8 +3,8 @@
     TransitMind-Sogamoso - Script unificado de ejecucion.
 
 .DESCRIPTION
-    Ejecuta todo el pipeline (generacion, entrenamiento, evaluacion, pipeline completo)
-    y levanta los servicios (MLflow UI + API) con un solo comando.
+    Ejecuta el pipeline completo con control de estado y levanta los servicios
+    (MLflow UI + API) con un solo comando.
 
 .PARAMETER Setup
     Instala dependencias (requirements.txt). Solo necesario la primera vez
@@ -23,7 +23,7 @@
     Limpia artefactos generados (datos, modelos, experimentos).
 
 .EXAMPLE
-    .\run.ps1                    # Ejecuta pipelines + levanta servicios
+    .\run.ps1                    # Ejecuta pipeline completo + levanta servicios
     .\run.ps1 -Setup             # Instala dependencias primero, luego ejecuta todo
     .\run.ps1 -PipelineOnly      # Solo ejecuta los pipelines
     .\run.ps1 -ServicesOnly      # Solo levanta MLflow UI + API
@@ -95,34 +95,22 @@ if ($Setup) {
 
 # -- Pipelines --------------------------------------------------------
 if (-not $ServicesOnly -and -not $SkipPipeline) {
-    $pipelines = @(
-        @{ Name = "Generacion de datos";   Script = "pipelines/pipeline_generate_data.py" },
-        @{ Name = "Entrenamiento TimeGAN"; Script = "pipelines/pipeline_train_timegan.py" },
-        @{ Name = "Evaluacion TSTR";       Script = "pipelines/pipeline_evaluate_tstr.py" },
-        @{ Name = "Pipeline completo";     Script = "pipelines/pipeline_full.py" }
-    )
+    $pipeline = @{ Name = "Pipeline completo"; Script = "pipelines/pipeline_full.py" }
 
-    $totalSteps = $pipelines.Count
-    $currentStep = 0
+    Write-Step $pipeline.Name
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
+    python $pipeline.Script
+    $sw.Stop()
 
-    foreach ($p in $pipelines) {
-        $currentStep++
-        Write-Step "[$currentStep/$totalSteps] $($p.Name)..."
-        
-        $sw = [System.Diagnostics.Stopwatch]::StartNew()
-        python $p.Script
-        $sw.Stop()
-
-        if ($LASTEXITCODE -ne 0) {
-            Write-Err "Fallo: $($p.Name)"
-            Write-Err "Script: $($p.Script)"
-            exit 1
-        }
-        Write-Ok "$($p.Name) completado en $([math]::Round($sw.Elapsed.TotalSeconds, 1))s"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Err "Fallo: $($pipeline.Name)"
+        Write-Err "Script: $($pipeline.Script)"
+        exit 1
     }
+    Write-Ok "$($pipeline.Name) completado en $([math]::Round($sw.Elapsed.TotalSeconds, 1))s"
 
     Write-Host "`n========================================" -ForegroundColor Green
-    Write-Host "  Todos los pipelines ejecutados con exito" -ForegroundColor Green
+    Write-Host "  Pipeline completo ejecutado con exito" -ForegroundColor Green
     Write-Host "========================================" -ForegroundColor Green
 }
 
