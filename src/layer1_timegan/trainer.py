@@ -148,6 +148,7 @@ class TimeGANTrainer:
         self,
         dataloader: DataLoader,
         n_epochs: int = 200,
+        start_epoch: int = 0,
     ) -> Dict[str, float]:
         """
         Phase A: Train the Autoencoder (Embedder + Recovery).
@@ -157,18 +158,19 @@ class TimeGANTrainer:
 
         Args:
             dataloader: DataLoader providing real sequences.
-            n_epochs: Number of training epochs.
+            n_epochs: Number of training epochs to run.
+            start_epoch: Epoch offset for resumed training.
 
         Returns:
             Dictionary with final metrics.
         """
-        logger.info("phase_a_start", n_epochs=n_epochs)
+        logger.info("phase_a_start", n_epochs=n_epochs, start_epoch=start_epoch)
         start_time = time.time()
 
         self.embedder.train()
         self.recovery.train()
 
-        for epoch in range(1, n_epochs + 1):
+        for epoch in range(start_epoch + 1, start_epoch + n_epochs + 1):
             epoch_loss = 0.0
             n_batches = 0
 
@@ -218,6 +220,7 @@ class TimeGANTrainer:
         self,
         dataloader: DataLoader,
         n_epochs: int = 200,
+        start_epoch: int = 0,
     ) -> Dict[str, float]:
         """
         Phase B: Train the Supervisor in latent space.
@@ -228,19 +231,20 @@ class TimeGANTrainer:
 
         Args:
             dataloader: DataLoader providing real sequences.
-            n_epochs: Number of training epochs.
+            n_epochs: Number of training epochs to run.
+            start_epoch: Epoch offset for resumed training.
 
         Returns:
             Dictionary with final metrics.
         """
-        logger.info("phase_b_start", n_epochs=n_epochs)
+        logger.info("phase_b_start", n_epochs=n_epochs, start_epoch=start_epoch)
         start_time = time.time()
 
         self.embedder.eval()  # Freeze embedder weights (use trained embedder)
         self.generator.train()
         self.supervisor.train()
 
-        for epoch in range(1, n_epochs + 1):
+        for epoch in range(start_epoch + 1, start_epoch + n_epochs + 1):
             epoch_loss = 0.0
             n_batches = 0
 
@@ -296,6 +300,7 @@ class TimeGANTrainer:
         self,
         dataloader: DataLoader,
         n_epochs: int = 500,
+        start_epoch: int = 0,
     ) -> Dict[str, float]:
         """
         Phase C: Joint adversarial training of all components.
@@ -309,12 +314,13 @@ class TimeGANTrainer:
 
         Args:
             dataloader: DataLoader providing real sequences.
-            n_epochs: Number of training epochs.
+            n_epochs: Number of training epochs to run.
+            start_epoch: Epoch offset for resumed training.
 
         Returns:
             Dictionary with final metrics.
         """
-        logger.info("phase_c_start", n_epochs=n_epochs, gamma=self.gamma)
+        logger.info("phase_c_start", n_epochs=n_epochs, start_epoch=start_epoch, gamma=self.gamma)
         start_time = time.time()
 
         # Set all to training mode
@@ -324,7 +330,7 @@ class TimeGANTrainer:
         self.supervisor.train()
         self.discriminator.train()
 
-        for epoch in range(1, n_epochs + 1):
+        for epoch in range(start_epoch + 1, start_epoch + n_epochs + 1):
             d_losses, g_losses, r_losses = [], [], []
 
             for (batch,) in dataloader:
@@ -448,6 +454,37 @@ class TimeGANTrainer:
 
         return final_metrics
 
+    def find_latest_checkpoint(self) -> Optional[Dict[str, Any]]:
+        """
+        Scan the checkpoint directory for the most recent checkpoint.
+
+        Returns:
+            Dictionary with 'path', 'phase', 'epoch' of the latest
+            checkpoint, or None if no checkpoints exist.
+        """
+        import re
+
+        pattern = re.compile(r"checkpoint_(phase_[abc])_epoch(\d+)\.pt$")
+        phase_order = {"phase_a": 0, "phase_b": 1, "phase_c": 2}
+
+        best = None
+        for f in self.checkpoint_dir.glob("checkpoint_phase_*.pt"):
+            m = pattern.search(f.name)
+            if not m:
+                continue
+            phase, epoch = m.group(1), int(m.group(2))
+            rank = (phase_order.get(phase, -1), epoch)
+            if best is None or rank > best["rank"]:
+                best = {"path": str(f), "phase": phase, "epoch": epoch, "rank": rank}
+
+        if best:
+            best.pop("rank")
+            logger.info("latest_checkpoint_found", **best)
+        else:
+            logger.info("no_checkpoints_found")
+
+        return best
+
     def train(
         self,
         dataloader: DataLoader,
@@ -455,9 +492,13 @@ class TimeGANTrainer:
         epochs_b: Optional[int] = None,
         epochs_c: Optional[int] = None,
         use_mlflow: bool = True,
+        resume: bool = False,
     ) -> Dict[str, Any]:
         """
         Execute the full 3-phase training protocol: A → B → C.
+
+        When resume=True, automatically finds the latest checkpoint and
+        skips completed phases / resumes mid-phase.
 
         Args:
             dataloader: DataLoader providing real sequences.
@@ -465,6 +506,7 @@ class TimeGANTrainer:
             epochs_b: Override epochs for Phase B.
             epochs_c: Override epochs for Phase C.
             use_mlflow: Whether to log to MLflow.
+            resume: If True, resume from the latest checkpoint.
 
         Returns:
             Dictionary with metrics from all phases.
@@ -474,17 +516,38 @@ class TimeGANTrainer:
         eb = epochs_b or train_cfg.get("epochs_supervisor", 200)
         ec = epochs_c or train_cfg.get("epochs_joint", 500)
 
+        # --- Resume logic ---
+        resume_phase = None
+        resume_epoch = 0
+
+        if resume:
+            ckpt_info = self.find_latest_checkpoint()
+            if ckpt_info is not None:
+                self.load_checkpoint(ckpt_info["path"])
+                resume_phase = ckpt_info["phase"]
+                resume_epoch = ckpt_info["epoch"]
+                logger.info(
+                    "resuming_training",
+                    from_phase=resume_phase,
+                    from_epoch=resume_epoch,
+                )
+
+        phase_order = {"phase_a": 0, "phase_b": 1, "phase_c": 2}
+        resumed_idx = phase_order.get(resume_phase, -1) if resume_phase else -1
+
         logger.info(
             "training_start",
             epochs_a=ea,
             epochs_b=eb,
             epochs_c=ec,
+            resume=resume,
+            resume_phase=resume_phase,
+            resume_epoch=resume_epoch,
         )
 
         total_start = time.time()
         all_metrics: Dict[str, Any] = {}
 
-        # === Phase A ===
         if use_mlflow:
             mlflow.set_experiment(
                 self.config.get("mlflow", {}).get(
@@ -492,34 +555,56 @@ class TimeGANTrainer:
                 )
             )
 
-        phase_a_metrics = self._run_phase_with_mlflow(
-            "phase_a_autoencoder",
-            self.phase_a_autoencoder,
-            dataloader,
-            ea,
-            use_mlflow,
-        )
-        all_metrics["phase_a"] = phase_a_metrics
+        # === Phase A ===
+        if resumed_idx < 0 or (resumed_idx == 0 and resume_epoch < ea):
+            start_ep = resume_epoch if resumed_idx == 0 else 0
+            remaining = ea - start_ep
+            if remaining > 0:
+                logger.info("phase_a_schedule", start_epoch=start_ep, remaining=remaining)
+                phase_a_metrics = self._run_phase_with_mlflow(
+                    "phase_a_autoencoder",
+                    lambda dl, n: self.phase_a_autoencoder(dl, n, start_epoch=start_ep),
+                    dataloader, remaining, use_mlflow,
+                )
+                all_metrics["phase_a"] = phase_a_metrics
+            else:
+                all_metrics["phase_a"] = {"status": "already_complete"}
+        else:
+            logger.info("phase_a_skipped", reason="checkpoint_ahead")
+            all_metrics["phase_a"] = {"status": "skipped"}
 
         # === Phase B ===
-        phase_b_metrics = self._run_phase_with_mlflow(
-            "phase_b_supervisor",
-            self.phase_b_supervisor,
-            dataloader,
-            eb,
-            use_mlflow,
-        )
-        all_metrics["phase_b"] = phase_b_metrics
+        if resumed_idx < 1 or (resumed_idx == 1 and resume_epoch < eb):
+            start_ep = resume_epoch if resumed_idx == 1 else 0
+            remaining = eb - start_ep
+            if remaining > 0:
+                logger.info("phase_b_schedule", start_epoch=start_ep, remaining=remaining)
+                phase_b_metrics = self._run_phase_with_mlflow(
+                    "phase_b_supervisor",
+                    lambda dl, n: self.phase_b_supervisor(dl, n, start_epoch=start_ep),
+                    dataloader, remaining, use_mlflow,
+                )
+                all_metrics["phase_b"] = phase_b_metrics
+            else:
+                all_metrics["phase_b"] = {"status": "already_complete"}
+        else:
+            logger.info("phase_b_skipped", reason="checkpoint_ahead")
+            all_metrics["phase_b"] = {"status": "skipped"}
 
         # === Phase C ===
-        phase_c_metrics = self._run_phase_with_mlflow(
-            "phase_c_joint_training",
-            self.phase_c_joint,
-            dataloader,
-            ec,
-            use_mlflow,
-        )
-        all_metrics["phase_c"] = phase_c_metrics
+        if resumed_idx <= 2:
+            start_ep = resume_epoch if resumed_idx == 2 else 0
+            remaining = ec - start_ep
+            if remaining > 0:
+                logger.info("phase_c_schedule", start_epoch=start_ep, remaining=remaining)
+                phase_c_metrics = self._run_phase_with_mlflow(
+                    "phase_c_joint_training",
+                    lambda dl, n: self.phase_c_joint(dl, n, start_epoch=start_ep),
+                    dataloader, remaining, use_mlflow,
+                )
+                all_metrics["phase_c"] = phase_c_metrics
+            else:
+                all_metrics["phase_c"] = {"status": "already_complete"}
 
         # Save best model
         self._save_best_model()
@@ -680,4 +765,4 @@ def create_dataloader(
     """
     tensor = torch.FloatTensor(sequences)
     dataset = TensorDataset(tensor)
-    return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)
+    return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=True)

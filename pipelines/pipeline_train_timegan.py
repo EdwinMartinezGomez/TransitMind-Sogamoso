@@ -35,7 +35,7 @@ def main():
     # Build model and train
     components = build_timegan(config)
     trainer = TimeGANTrainer(components, config, device=device)
-    metrics = trainer.train(train_loader, use_mlflow=True)
+    metrics = trainer.train(train_loader, use_mlflow=True, resume=True)
 
     logger.info("pipeline_train_complete", metrics=metrics)
 

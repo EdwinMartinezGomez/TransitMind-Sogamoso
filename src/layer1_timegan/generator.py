@@ -263,6 +263,9 @@ class TrafficDataGenerator:
 
     def _postprocess(self, df: pd.DataFrame, intersection_id: str) -> pd.DataFrame:
         """Post-process generated data to ensure valid ranges."""
+        # Guard against NaN/inf from partially-trained models
+        df = df.replace([np.inf, -np.inf], np.nan).fillna(0.0)
+
         df["hour"] = df["hour"].round().clip(0, 23).astype(int)
         df["day_of_week"] = df["day_of_week"].round().clip(0, 6).astype(int)
         df["is_peak_hour"] = (df["is_peak_hour"] > 0.5).astype(bool)
