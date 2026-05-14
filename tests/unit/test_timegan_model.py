@@ -51,7 +51,8 @@ class TestDiscriminator:
         model = Discriminator(hidden_dim=32, num_layers=2)
         h = torch.randn(4, 24, 32)
         out = model(h)
-        assert (out >= 0).all() and (out <= 1).all()
+        probs = torch.sigmoid(out)
+        assert (probs >= 0).all() and (probs <= 1).all()
 
 
 class TestBuildTimeGAN:
