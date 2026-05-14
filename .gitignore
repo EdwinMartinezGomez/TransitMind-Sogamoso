@@ -216,3 +216,28 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ============================================
+# TransitMind Sogamoso — Project-specific
+# ============================================
+
+# MLflow
+experiments/mlruns/
+mlruns/
+
+# Model artifacts
+models/timegan/checkpoints/*.pt
+models/timegan/best_model/*.pt
+models/timegan/scaler.pkl
+
+# Generated data (reproducible via pipeline)
+data/processed/train_seed.csv
+data/processed/feature_metadata.json
+data/synthetic/generated_flows/*.csv
+data/synthetic/augmented_dataset.csv
+
+# Pipeline state
+experiments/pipeline_state.json
+
+# Visualization outputs
+experiments/notebooks/outputs/

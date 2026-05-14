@@ -1,0 +1,40 @@
+name: Data Drift Monitor
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # Every Monday at 6 AM
+  workflow_dispatch:
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check data drift
+        run: |
+          python -c "
+          import json, sys
+          from src.layer1_timegan.evaluator import compute_fidelity_metrics
+          from src.layer1_timegan.data_loader import generate_seed_data
+          import pandas as pd
+
+          baseline = generate_seed_data(n_days=7, seed=42, intersections=['carrera_11_norte'])
+          current = generate_seed_data(n_days=7, seed=99, intersections=['carrera_11_norte'])
+          metrics = compute_fidelity_metrics(current, baseline)
+          js = metrics['js_divergence_avg']
+          print(f'JS Divergence: {js}')
+          if js > 0.15:
+              print('⚠️ DRIFT DETECTED')
+              sys.exit(1)
+          print('✅ No significant drift')
+          "

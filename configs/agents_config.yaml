@@ -1,0 +1,63 @@
+# ============================================
+# TransitMind Sogamoso — Agents Configuration
+# ============================================
+# Reserved for Layer 3: Multi-Agent LangGraph orchestration.
+# This file will be populated when implementing Layers 2-3.
+
+# Agent definitions (placeholder)
+agents:
+  sensor:
+    name: "Agente Sensor"
+    description: "Recopila datos de sensores y flujo vehicular"
+    enabled: false
+
+  predictor:
+    name: "Agente Predictor"
+    description: "Predice flujo vehicular usando modelos ML"
+    enabled: false
+
+  gan_simulator:
+    name: "Agente GAN Simulator"
+    description: "Genera escenarios sintéticos via TimeGAN (Capa 1)"
+    enabled: false
+    # This agent calls layer1_timegan.generator.TrafficDataGenerator
+    layer1_endpoint: "http://localhost:8000/generate"
+
+  causal_analyst:
+    name: "Agente Analista Causal"
+    description: "Análisis causal con LLM y RAG"
+    enabled: false
+
+  route_planner:
+    name: "Agente Planificador de Rutas"
+    description: "Optimiza rutas según condiciones de tráfico"
+    enabled: false
+
+  traffic_coordinator:
+    name: "Coordinador de Semáforos"
+    description: "Optimiza ciclos semafóricos"
+    enabled: false
+
+  monitor:
+    name: "Agente Monitor"
+    description: "Monitorea drift y anomalías en tiempo real"
+    enabled: false
+
+# LangGraph orchestration (placeholder)
+orchestration:
+  graph_type: "StateGraph"
+  max_iterations: 10
+  timeout_seconds: 300
+
+# Data exchange format between agents
+data_format:
+  type: "json"
+  schema_version: "1.0"
+  fields:
+    - "intersection_id"
+    - "timestamp"
+    - "vehicle_flow"
+    - "congestion_level"
+    - "avg_speed_kmh"
+    - "weather_code"
+    - "scenario_metadata"

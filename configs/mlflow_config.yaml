@@ -1,0 +1,46 @@
+# ============================================
+# TransitMind Sogamoso — MLflow Configuration
+# ============================================
+# Configuration for experiment tracking and model registry.
+
+tracking:
+  # MLflow tracking server URI
+  # Use "file:./experiments/mlruns" for local file-based tracking
+  # Use "http://localhost:5000" when running MLflow server (Docker)
+  uri: "file:./experiments/mlruns"
+  
+  # Experiment name for Layer 1 (TimeGAN)
+  experiment_name: "transitmind-timegan-layer1"
+
+artifacts:
+  # Local artifact storage location
+  artifact_location: "experiments/mlruns"
+
+runs:
+  # Run naming convention
+  phase_a_name: "phase_a_autoencoder"
+  phase_b_name: "phase_b_supervisor"
+  phase_c_name: "phase_c_joint_training"
+  evaluation_name: "tstr_evaluation"
+  generation_name: "synthetic_generation"
+
+registry:
+  # Model registry name
+  model_name: "transitmind-timegan"
+  
+  # Stage transitions
+  stages:
+    - "None"
+    - "Staging"
+    - "Production"
+    - "Archived"
+  
+  # Auto-promote to production if TSTR >= threshold
+  auto_promote_threshold: 0.85
+
+logging:
+  # What to log per training run
+  log_params: true
+  log_metrics: true
+  log_artifacts: true
+  log_model: true

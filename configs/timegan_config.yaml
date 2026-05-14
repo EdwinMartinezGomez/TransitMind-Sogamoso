@@ -1,0 +1,103 @@
+# ============================================
+# TransitMind Sogamoso — TimeGAN Configuration
+# ============================================
+# Hyperparameters for the TimeGAN model and training pipeline.
+# Reference: Yoon et al. (2019) "Time-series Generative Adversarial Networks"
+
+model:
+  # Number of input features (from data_schema.yaml, excluding timestamp and intersection_id)
+  # Features: hour, day_of_week, is_peak_hour, vehicle_flow, heavy_vehicle_ratio,
+  #           motorcycle_ratio, avg_speed_kmh, congestion_level, weather_code,
+  #           event_impact, is_market_day
+  n_features: 11
+  
+  # Sequence length: 24 windows × 15 min = 6 hours of observation
+  seq_len: 24
+  
+  # Hidden dimension of GRU layers in the latent space
+  hidden_dim: 64
+  
+  # Noise dimension for the Generator input
+  noise_dim: 64
+  
+  # Number of GRU layers in Embedder/Recovery/Generator
+  num_layers: 3
+  
+  # Dropout rate for regularization
+  dropout: 0.1
+
+training:
+  # Mini-batch size (keep small for CPU training)
+  batch_size: 32
+  
+  # Learning rate for Generator, Supervisor, Embedder, Recovery
+  lr_generator: 0.001
+  
+  # Learning rate for Discriminator
+  lr_discriminator: 0.001
+  
+  # Weight of the supervised loss in joint training (Phase C)
+  gamma: 1.0
+  
+  # Phase A: Autoencoder pre-training epochs
+  epochs_autoencoder: 200
+  
+  # Phase B: Supervisor pre-training epochs
+  epochs_supervisor: 200
+  
+  # Phase C: Joint adversarial training epochs
+  epochs_joint: 500
+  
+  # Checkpoint save frequency (epochs)
+  checkpoint_every: 50
+  
+  # Log frequency per phase (epochs)
+  log_every_phase_ab: 10
+  log_every_phase_c: 25
+
+data:
+  # Random seed for reproducibility
+  seed: 42
+  
+  # Number of days to generate as seed data
+  n_days: 90
+  
+  # Train/validation split ratio
+  train_ratio: 0.8
+  
+  # Intersections to generate data for
+  intersections:
+    - "carrera_11_norte"
+    - "carrera_11_sur"
+    - "av_castellana_entrada"
+    - "av_castellana_salida"
+    - "calle_14_centro_historico"
+    - "acceso_morca"
+
+evaluation:
+  # TSTR acceptance thresholds
+  tstr_score_min: 0.80          # Minimum acceptable
+  tstr_score_ideal: 0.90        # Target for production
+  
+  # Discriminative score thresholds (lower = better)
+  discriminative_acc_max: 0.60  # Maximum acceptable
+  discriminative_acc_ideal: 0.52
+  
+  # Jensen-Shannon divergence thresholds
+  js_divergence_max: 0.15
+  js_divergence_ideal: 0.08
+  
+  # Correlation matrix difference thresholds
+  correlation_diff_max: 0.10
+  correlation_diff_ideal: 0.05
+
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  data_synthetic: "data/synthetic"
+  data_validation: "data/validation"
+  model_dir: "models/timegan"
+  checkpoints: "models/timegan/checkpoints"
+  best_model: "models/timegan/best_model"
+  scaler: "models/timegan/scaler.pkl"
+  experiments: "experiments"

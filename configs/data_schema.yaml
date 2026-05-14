@@ -1,0 +1,85 @@
+# ============================================
+# TransitMind Sogamoso — Traffic Data Schema
+# ============================================
+# Defines all traffic variables used across the system.
+# Reference for data generation, validation, and model I/O.
+
+traffic_schema:
+  temporal:
+    - name: timestamp
+      type: datetime
+      format: "%Y-%m-%d %H:%M:%S"
+      description: "Marca temporal de la observación"
+
+    - name: hour
+      type: int
+      range: [0, 23]
+      description: "Hora del día"
+
+    - name: day_of_week
+      type: int
+      range: [0, 6]
+      description: "Día de la semana (0=Lunes)"
+
+    - name: is_peak_hour
+      type: bool
+      description: "True si está en hora pico (6-9am, 12-2pm, 5-8pm)"
+
+  vehicular:
+    - name: vehicle_flow
+      type: float
+      unit: "veh/15min"
+      range: [0, 300]
+      description: "Flujo vehicular en ventana de 15 minutos"
+
+    - name: heavy_vehicle_ratio
+      type: float
+      range: [0.0, 1.0]
+      description: "Proporción de vehículos pesados (camiones, buses)"
+
+    - name: motorcycle_ratio
+      type: float
+      range: [0.0, 1.0]
+      description: "Proporción de motocicletas"
+
+    - name: avg_speed_kmh
+      type: float
+      unit: "km/h"
+      range: [0, 80]
+      description: "Velocidad promedio estimada"
+
+    - name: congestion_level
+      type: float
+      range: [0.0, 1.0]
+      description: "Nivel de congestión normalizado (TARGET variable)"
+
+  contextual:
+    - name: weather_code
+      type: int
+      categories: [0, 1, 2, 3]  # 0=despejado, 1=nublado, 2=lluvia, 3=niebla
+      description: "Condición climática (niebla típica del Chicamocha)"
+
+    - name: event_impact
+      type: float
+      range: [0.0, 1.0]
+      description: "Impacto de eventos locales (mercado, feria, evento Coliseo)"
+
+    - name: is_market_day
+      type: bool
+      description: "True si es día de mercado campesino"
+
+  spatial:
+    - name: intersection_id
+      type: str
+      categories:
+        - "carrera_11_norte"
+        - "carrera_11_sur"
+        - "av_castellana_entrada"
+        - "av_castellana_salida"
+        - "calle_14_centro_historico"
+        - "acceso_morca"
+      description: "Identificador de intersección piloto"
+
+# Sequence configuration for TimeGAN
+sequence_length: 24        # 24 ventanas de 15min = 6 horas de observación
+prediction_horizon: 4      # Predice 1 hora hacia adelante

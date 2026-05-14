@@ -1,0 +1,52 @@
+name: CI - Train & Validate
+
+on:
+  push:
+    branches: ["layer1/*", "main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m pytest tests/unit/ -v --tb=short
+
+      - name: Generate seed data (Fase 0)
+        run: python pipelines/pipeline_generate_data.py
+
+      - name: Validate data schema
+        run: |
+          python -c "
+          import pandas as pd
+          from src.shared.constants import ALL_COLUMNS
+          df = pd.read_csv('data/processed/train_seed.csv')
+          for col in ALL_COLUMNS:
+              assert col in df.columns, f'Missing: {col}'
+          print(f'Schema OK: {len(df)} rows, {len(df.columns)} columns')
+          "
+
+      - name: Report metrics
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const meta = JSON.parse(fs.readFileSync('data/processed/feature_metadata.json'));
+            let body = '## 📊 Seed Data Metrics\n\n| Variable | Mean | Std | Min | Max |\n|---|---|---|---|---|\n';
+            for (const [k, v] of Object.entries(meta)) {
+              body += `| ${k} | ${v.mean.toFixed(2)} | ${v.std.toFixed(2)} | ${v.min.toFixed(2)} | ${v.max.toFixed(2)} |\n`;
+            }
+            github.rest.issues.createComment({issue_number: context.issue.number, owner: context.repo.owner, repo: context.repo.repo, body});

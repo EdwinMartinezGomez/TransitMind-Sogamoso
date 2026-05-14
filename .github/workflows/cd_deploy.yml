@@ -1,0 +1,23 @@
+name: CD - Deploy Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t transitmind-sogamoso:latest .
+
+      - name: Run full pipeline in container
+        run: |
+          docker run --rm \
+            -v $(pwd)/data:/app/data \
+            -v $(pwd)/models:/app/models \
+            transitmind-sogamoso:latest \
+            python pipelines/pipeline_full.py
