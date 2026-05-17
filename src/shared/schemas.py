@@ -9,6 +9,7 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field, field_validator
+from typing import Literal
 
 
 # ============================================
@@ -154,3 +155,122 @@ class EvaluationMetrics(BaseModel):
     r2_synthetic: float
     r2_real: float
     passed: bool = Field(..., description="Whether all acceptance thresholds are met")
+
+
+# ============================================
+# Layer 2: Causal Analysis Schemas
+# ============================================
+
+class CausalContext(BaseModel):
+    """Contextual causal information about traffic congestion."""
+
+    primary_cause: str = Field(..., description="Primary cause of congestion")
+    secondary_causes: List[str] = Field(default_factory=list, description="Secondary factors")
+    causal_explanation: str = Field(default="", description="How factors interact")
+    severity: Literal["baja", "media", "alta", "critica"] = Field(
+        ..., description="Severity level"
+    )
+    confidence: float = Field(..., ge=0.0, le=1.0, description="Analysis confidence")
+
+
+class TrafficForecast(BaseModel):
+    """Adjusted traffic forecast with causal context."""
+
+    congestion_level_adjusted: float = Field(..., ge=0.0, le=1.0)
+    peak_window: str = Field(..., description="Expected peak window (HH:MM - HH:MM)")
+    expected_delay_minutes: int = Field(..., ge=0, le=120)
+    affected_intersections: List[str] = Field(default_factory=list)
+
+
+class TrafficLightAdjustment(BaseModel):
+    """Recommended traffic light timing adjustment."""
+
+    intersection_id: str
+    green_phase_extension_seconds: int = Field(..., ge=0, le=60)
+    priority_direction: Literal["norte_sur", "este_oeste", "rotacional"] = Field(
+        ..., description="Priority direction for green phase"
+    )
+    rationale: str = Field(default="", description="Reason for this adjustment")
+
+
+class Recommendations(BaseModel):
+    """Actionable recommendations for traffic management."""
+
+    traffic_light_adjustment: TrafficLightAdjustment
+    alternative_routes: List[str] = Field(default_factory=list)
+    citizen_alert: str = Field(
+        ..., max_length=280, description="Public alert message (max WhatsApp/Telegram)"
+    )
+
+
+class CausalAnalysisResult(BaseModel):
+    """Complete causal analysis result from Layer 2."""
+
+    intersection_id: str
+    analysis_timestamp: datetime
+    causal_context: CausalContext
+    traffic_forecast: TrafficForecast
+    recommendations: Recommendations
+    rag_sources_used: List[str] = Field(default_factory=list)
+    llm_reasoning_trace: str = Field(default="")
+    processing_time_ms: int = Field(default=0, ge=0)
+    model_used: str = Field(default="fallback")
+    is_fallback: bool = Field(default=False)
+
+
+# ============================================
+# Layer 2: API Request / Response Schemas
+# ============================================
+
+class AnalyzeRequest(BaseModel):
+    """Request for POST /analyze — receives full Layer 1 response."""
+
+    intersection_id: str = Field(default="carrera_11_norte")
+    scenario: Optional[str] = Field(default=None)
+    generated_at: Optional[str] = Field(default=None)
+    n_samples: int = Field(default=100, ge=1)
+    synthetic_data: List[Dict[str, Any]] = Field(default_factory=list)
+    metadata: Optional[Dict[str, Any]] = Field(default=None)
+
+
+class AnalyzeScenarioRequest(BaseModel):
+    """Request for POST /analyze-scenario — orchestrates Layer 1 + Layer 2."""
+
+    intersection_id: str = Field(
+        ...,
+        description="Target intersection ID",
+        examples=["carrera_11_norte"],
+    )
+    scenario: str = Field(
+        ...,
+        description="Scenario name (e.g., 'market_day', 'morning_fog')",
+        examples=["market_day"],
+    )
+    n_samples: int = Field(default=50, ge=1, le=10000)
+
+
+class AnalyzeAllRequest(BaseModel):
+    """Request for POST /analyze-all — all intersections for a scenario."""
+
+    scenario: str = Field(..., description="Scenario name")
+    n_samples: int = Field(default=50, ge=1, le=10000)
+
+
+class Layer2HealthResponse(BaseModel):
+    """Response for GET /health on Layer 2."""
+
+    status: Literal["ok", "degraded", "error"]
+    llm_available: bool = Field(default=False)
+    chroma_docs_count: int = Field(default=0)
+    last_analysis_timestamp: Optional[str] = Field(default=None)
+    layer1_api_reachable: bool = Field(default=False)
+
+
+class KnowledgeBaseStatus(BaseModel):
+    """Response for GET /knowledge-base/status."""
+
+    documents_indexed: int = Field(default=0)
+    collections: List[str] = Field(default_factory=list)
+    last_ingestion: Optional[str] = Field(default=None)
+    embedding_model: str = Field(default="nomic-embed-text")
+

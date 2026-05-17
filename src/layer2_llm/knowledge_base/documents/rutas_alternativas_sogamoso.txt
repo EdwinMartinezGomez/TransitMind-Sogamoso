@@ -1,0 +1,136 @@
+========================================
+RUTAS ALTERNATIVAS DE SOGAMOSO
+Por Intersección Piloto del Sistema TransitMind
+========================================
+
+NOTA: Las rutas alternativas se activan cuando la intersección
+principal presenta congestión nivel "alta" o "critica"
+(congestion_level > 0.75).
+
+========================================
+1. INTERSECCIÓN: carrera_11_norte
+   Ruta Principal: Carrera 11 sentido norte-sur, ingreso al centro
+========================================
+
+Alternativa A — Carrera 9 vía Morca:
+  Descripción: Desvío por Carrera 9, bordeando zona oriental.
+  Tiempo adicional: +5 a +8 minutos respecto a Carrera 11.
+  Tipo de vía: Vía urbana secundaria, 2 carriles.
+  Capacidad: Moderada. No apta para vehículos pesados grandes.
+  Mejor para: Vehículos particulares y motos.
+
+Alternativa B — Avenida Industrial (vía norte):
+  Descripción: Rodear por la zona industrial al norte de la ciudad.
+  Tiempo adicional: +10 a +15 minutos.
+  Tipo de vía: Vía semiurbana, buen estado, 2 carriles amplios.
+  Capacidad: Alta. Apta para vehículos pesados.
+  Mejor para: Camiones y vehículos de carga que no necesitan
+  llegar al centro urbano.
+
+========================================
+2. INTERSECCIÓN: carrera_11_sur
+   Ruta Principal: Carrera 11 sentido sur-norte, salida terminal
+========================================
+
+Alternativa A — Carrera 13 vía Hospital Regional:
+  Descripción: Desvío por Carrera 13, paralela a la 11 por el este.
+  Tiempo adicional: +3 a +5 minutos.
+  Tipo de vía: Vía urbana, 2 carriles, semáforos cada 2 cuadras.
+  Capacidad: Media. Puede saturarse en hora pico.
+  Mejor para: Vehículos livianos hacia el centro.
+
+Alternativa B — Anillo vial sur vía Pantano de Vargas:
+  Descripción: Rodear por el sur hacia la variante a Duitama.
+  Tiempo adicional: +12 a +18 minutos.
+  Tipo de vía: Vía interurbana, buen estado.
+  Capacidad: Alta.
+  Mejor para: Quienes se dirigen hacia Duitama o zona norte
+  sin necesidad de cruzar el centro.
+
+========================================
+3. INTERSECCIÓN: av_castellana_entrada
+   Ruta Principal: Avenida Castellana, ingreso desde el norte
+========================================
+
+Alternativa A — Variante Morca:
+  Descripción: Ingreso por la vía alterna de la vereda Morca.
+  Tiempo adicional: +7 a +10 minutos.
+  Tipo de vía: Vía rural pavimentada, 1.5 carriles.
+  Capacidad: Baja-media. No recomendada en temporada de lluvias.
+  Mejor para: Residentes de zonas rurales norte.
+
+Alternativa B — Vía Nobsa-Sogamoso por variante:
+  Descripción: Tomar la variante Nobsa antes de entrar a Sogamoso.
+  Tiempo adicional: +8 a +12 minutos.
+  Tipo de vía: Vía nacional pavimentada, buen estado.
+  Capacidad: Alta.
+  Mejor para: Buses intermunicipales y vehículos pesados.
+
+========================================
+4. INTERSECCIÓN: av_castellana_salida
+   Ruta Principal: Avenida Castellana, salida hacia el norte
+========================================
+
+Alternativa A — Salida por Carrera 11 norte:
+  Descripción: Continuar por Carrera 11 y tomar la vía a Duitama.
+  Tiempo adicional: +5 a +8 minutos.
+  Tipo de vía: Vía urbana a interurbana.
+  Capacidad: Media-alta.
+
+Alternativa B — Conexión Duitama por vía alterna (Tibasosa):
+  Descripción: Salir por la vía a Tibasosa y conectar con Duitama.
+  Tiempo adicional: +15 a +20 minutos.
+  Tipo de vía: Vía departamental, estado regular.
+  Capacidad: Media.
+  Mejor para: Evitar congestión total en Castellana.
+
+========================================
+5. INTERSECCIÓN: calle_14_centro_historico
+   Ruta Principal: Calle 14, corredor centro histórico
+========================================
+
+Alternativa A — Calle 11 (paralela sur):
+  Descripción: Usar Calle 11 como corredor paralelo.
+  Tiempo adicional: +3 a +5 minutos.
+  Tipo de vía: Vía urbana angosta, zona residencial.
+  Capacidad: Baja. Solo vehículos livianos.
+  Mejor para: Motos y automóviles pequeños.
+
+Alternativa B — Calle 16 (paralela norte):
+  Descripción: Desvío por Calle 16, más alejada del centro.
+  Tiempo adicional: +5 a +7 minutos.
+  Tipo de vía: Vía urbana, 2 carriles.
+  Capacidad: Media.
+  Mejor para: Tránsito que no necesita pasar por el centro.
+
+========================================
+6. INTERSECCIÓN: acceso_morca
+   Ruta Principal: Vía de acceso desde vereda Morca
+========================================
+
+Alternativa A — Acceso por Avenida Castellana:
+  Descripción: Rodear por la Castellana para entrar a la ciudad.
+  Tiempo adicional: +8 a +12 minutos.
+  Tipo de vía: Vía principal, buen estado.
+  Capacidad: Alta.
+  Mejor para: Todos los vehículos, especialmente con niebla.
+
+Alternativa B — Vía veredal Morca-Monguí:
+  Descripción: Desvío por camino veredal hacia Monguí y luego Sogamoso.
+  Tiempo adicional: +20 a +30 minutos.
+  Tipo de vía: Vía sin pavimentar, solo en seco.
+  Capacidad: Muy baja.
+  Mejor para: Solo emergencias cuando acceso Morca está bloqueado.
+
+========================================
+RESUMEN DE RUTAS ALTERNATIVAS POR PRIORIDAD
+========================================
+
+Para congestión ALTA (congestion_level 0.75-0.85):
+→ Usar Alternativa A de cada intersección.
+→ Tiempo extra promedio: +5 a +10 minutos.
+
+Para congestión CRÍTICA (congestion_level > 0.85):
+→ Usar Alternativa B o combinar rutas.
+→ Considerar cierre temporal de intersección.
+→ Tiempo extra promedio: +10 a +20 minutos.

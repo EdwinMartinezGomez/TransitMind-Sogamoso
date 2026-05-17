@@ -1,0 +1,66 @@
+# ============================================
+# TransitMind Sogamoso — Capa 2: LLM + RAG Config
+# ============================================
+
+llm:
+  provider: "ollama"              # "ollama" (local) | "groq" | "openai"
+  model: "llama3:8b"              # Modelo base. Alternativa: "mistral:7b"
+  temperature: 0.1                # Baja temperatura: respuestas deterministas
+  max_tokens: 1500
+  timeout_seconds: 30
+
+  # Si provider = "groq" (gratuito, más rápido):
+  # model: "llama-3.1-8b-instant"
+  # api_key: "${GROQ_API_KEY}"
+
+rag:
+  embedding_model: "nomic-embed-text"   # Modelo de embeddings (vía Ollama)
+  vector_store: "chromadb"
+  chroma_persist_dir: "src/layer2_llm/knowledge_base/chroma_db"
+  collection_name: "sogamoso_mobility"
+  chunk_size: 500                        # Caracteres por chunk de documento
+  chunk_overlap: 50
+  top_k_retrieval: 4                     # Documentos recuperados por query
+  similarity_threshold: 0.65
+
+causal_analysis:
+  confidence_threshold: 0.70     # Mínimo para emitir recomendación
+  severity_levels: ["baja", "media", "alta", "critica"]
+  max_affected_intersections: 4
+  output_language: "es"          # Siempre en español
+
+layer1_api:
+  base_url: "http://localhost:8000"
+  generate_endpoint: "/generate"
+  timeout_seconds: 15
+
+layer2_api:
+  host: "0.0.0.0"
+  port: 8001
+  reload: false
+
+intersections:
+  - id: "carrera_11_norte"
+    name: "Carrera 11 Norte"
+    lat: 5.7150
+    lng: -72.9234
+  - id: "carrera_11_sur"
+    name: "Carrera 11 Sur"
+    lat: 5.7090
+    lng: -72.9240
+  - id: "av_castellana_entrada"
+    name: "Avenida Castellana Entrada"
+    lat: 5.7180
+    lng: -72.9190
+  - id: "av_castellana_salida"
+    name: "Avenida Castellana Salida"
+    lat: 5.7160
+    lng: -72.9170
+  - id: "calle_14_centro_historico"
+    name: "Calle 14 Centro Histórico"
+    lat: 5.7130
+    lng: -72.9260
+  - id: "acceso_morca"
+    name: "Acceso Morca"
+    lat: 5.7200
+    lng: -72.9100

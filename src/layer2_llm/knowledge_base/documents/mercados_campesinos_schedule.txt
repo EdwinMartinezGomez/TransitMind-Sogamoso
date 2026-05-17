@@ -1,0 +1,79 @@
+========================================
+MERCADOS CAMPESINOS DE SOGAMOSO
+Calendario, Horarios e Impacto en Movilidad
+========================================
+
+DÍAS DE MERCADO:
+- Miércoles: Mercado campesino principal en Plaza Central de Sogamoso.
+- Sábado: Mercado campesino en Plaza de Mercado Cubierta y alrededores.
+
+HORARIOS:
+- Llegada de carga rural: desde las 4:00 AM. Camiones, camionetas y
+  vehículos de tracción animal ingresan por la Avenida Castellana (entrada)
+  y la vía desde Morca.
+- Apertura de mercado: 5:00 AM.
+- Hora pico de compradores: 6:30 AM a 9:00 AM.
+- Cierre gradual: 1:00 PM a 2:00 PM.
+- Retiro de carga y limpieza: 2:00 PM a 4:00 PM.
+
+UBICACIONES PRINCIPALES:
+1. Plaza Central de Sogamoso (Calle 11 con Carrera 11):
+   - Mercado principal los miércoles.
+   - Ocupa parcialmente la calzada de la Carrera 11.
+   - Bloqueo parcial de carriles en sentido norte-sur.
+
+2. Plaza de Mercado Cubierta (Carrera 12 entre Calles 14 y 15):
+   - Mercado de los sábados, extensión hacia la calle.
+   - Afecta directamente la Calle 14 del Centro Histórico.
+
+INTERSECCIONES MÁS AFECTADAS POR DÍA DE MERCADO:
+
+1. carrera_11_norte — IMPACTO ALTO:
+   Causa: Es la vía principal de entrada al centro desde el norte.
+   Los vehículos de carga rural que vienen de Duitama y zonas rurales
+   del norte deben pasar por esta intersección. En día de mercado
+   el flujo vehicular aumenta un 45-60% entre las 5:00 AM y 8:00 AM.
+   Las motos de compradores representan hasta el 40% del tráfico.
+
+2. carrera_11_sur — IMPACTO ALTO:
+   Causa: Punto de entrada desde el sur de la ciudad y desde
+   la terminal de transporte. Buses intermunicipales dejan pasajeros
+   que se dirigen al mercado. Congestión amplificada en hora pico
+   matutina (6:30-8:30 AM).
+
+3. calle_14_centro_historico — IMPACTO MEDIO-ALTO:
+   Causa: La extensión del mercado hacia la Plaza de Mercado Cubierta
+   genera carga peatonal cruzando la Calle 14. Vehículos de carga
+   estacionados en doble fila reducen la capacidad vial. Efecto
+   especialmente notorio los sábados.
+
+4. av_castellana_entrada — IMPACTO MEDIO:
+   Causa: Ruta de ingreso de camiones con productos agrícolas desde
+   municipios vecinos (Iza, Firavitoba, Tibasosa). Mayor impacto
+   entre 4:00 AM y 6:00 AM cuando llegan los primeros cargamentos.
+
+5. acceso_morca — IMPACTO BAJO-MEDIO:
+   Causa: Vehículos de productores rurales de la vereda Morca y zonas
+   aledañas ingresan por esta vía. Aumento moderado del flujo de
+   vehículos pesados (camionetas cargadas) desde las 4:00 AM.
+
+FLUJO DE VEHÍCULOS DE CARGA RURAL:
+- Desde las 3:30 AM comienzan a llegar los primeros camiones.
+- Pico de llegada de carga: 4:00 AM a 5:30 AM.
+- Tipos de vehículo: camiones pequeños (C2), camionetas, motos con
+  remolque, vehículos de tracción animal (esporádicos).
+- Proporción de vehículos pesados sube de 15% base a 25-30% en
+  la ventana de 4:00-6:00 AM los días de mercado.
+- El estacionamiento de vehículos de carga en calles aledañas al
+  mercado reduce la capacidad vial efectiva hasta un 40%.
+
+IMPACTO EN VELOCIDAD PROMEDIO:
+- Días normales en zona centro: 35 km/h promedio.
+- Días de mercado zona centro: 15-22 km/h promedio (reducción 37-57%).
+- Hora más crítica: 7:00 AM a 8:00 AM (coincide con hora pico laboral).
+
+RECOMENDACIONES HISTÓRICAS:
+- Los semáforos de Carrera 11 deben priorizar el sentido norte-sur
+  en la ventana 5:00-8:00 AM los días de mercado.
+- Desviar tránsito pesado por la Carrera 9 vía Morca reduce la
+  congestión en Carrera 11 en aproximadamente un 25%.

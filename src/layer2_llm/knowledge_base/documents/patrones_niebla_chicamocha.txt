@@ -1,0 +1,86 @@
+========================================
+PATRONES DE NIEBLA EN LA CUENCA DEL RÍO CHICAMOCHA
+Impacto en Movilidad Urbana de Sogamoso
+========================================
+
+DESCRIPCIÓN GENERAL:
+Sogamoso se encuentra a 2,569 metros sobre el nivel del mar en el
+valle del río Chicamocha. La cuenca genera un fenómeno de niebla
+matutina recurrente, especialmente durante la temporada de lluvias
+y transición climática. La niebla reduce drásticamente la visibilidad
+y la velocidad del tráfico vehicular.
+
+FRECUENCIA:
+- Temporada alta de niebla: octubre a febrero.
+- Probabilidad de niebla matutina en días hábiles: ~40%.
+- Temporada baja: junio a septiembre (vientos secos).
+- Probabilidad en temporada baja: ~10%.
+- Niebla persistente (todo el día): <5% de los casos.
+
+HORARIOS TÍPICOS:
+- Inicio de formación de niebla: 4:30 AM a 5:00 AM.
+- Densidad máxima: 5:30 AM a 7:00 AM.
+- Disipación gradual: 7:00 AM a 9:00 AM.
+- En días muy fríos (temperatura <5°C): puede extenderse hasta 10:00 AM.
+- Niebla vespertina: rara (menos del 3% de los casos).
+
+CLASIFICACIÓN POR DENSIDAD:
+1. Niebla leve (visibilidad 500m-1km):
+   - Reducción de velocidad: -10% a -15%.
+   - No requiere alerta especial.
+
+2. Niebla moderada (visibilidad 200m-500m):
+   - Reducción de velocidad: -20% a -25%.
+   - Activar luces antiniebla recomendado.
+
+3. Niebla densa (visibilidad <200m):
+   - Reducción de velocidad: -30% a -35%.
+   - Código weather_code=3 en el sistema.
+   - Requiere alerta a conductores.
+
+INTERSECCIONES MÁS AFECTADAS:
+
+1. acceso_morca — IMPACTO MUY ALTO:
+   Ubicación en zona más baja de la cuenca. La niebla se acumula
+   con mayor densidad por la cercanía al río Chicamocha. Visibilidad
+   frecuentemente <150m entre 5:00-7:00 AM en temporada alta.
+   Vía de acceso desde veredas rurales con poco alumbrado.
+   Riesgo de accidente elevado.
+
+2. av_castellana_entrada — IMPACTO ALTO:
+   Vía recta y amplia donde los conductores tienden a mantener
+   velocidad alta. La niebla en esta zona reduce visibilidad a
+   200-300m. Combinado con el flujo de buses intermunicipales
+   en la mañana, genera condiciones peligrosas.
+
+3. av_castellana_salida — IMPACTO MEDIO-ALTO:
+   Menos afectada que la entrada pero la niebla puede generar
+   retención vehicular en sentido sur-norte.
+
+4. carrera_11_norte — IMPACTO MEDIO:
+   Zona urbana con edificaciones que mitigan parcialmente la niebla.
+   Sin embargo, la combinación niebla + hora pico matutina + día de
+   mercado genera un "efecto cascada" de congestión severa.
+
+REDUCCIÓN DE VELOCIDAD ESPERADA POR WEATHER_CODE:
+- weather_code=0 (despejado): sin reducción (factor 1.00)
+- weather_code=1 (nublado): -5% (factor 0.95)
+- weather_code=2 (lluvia): -20% (factor 0.80)
+- weather_code=3 (niebla densa): -20% a -35% (factor 0.65-0.80)
+
+INTERACCIÓN CON OTROS FACTORES:
+- Niebla + Día de mercado: Efecto multiplicador. Los vehículos de carga
+  rural viajan más lento y la congestión en zona centro se amplifica.
+  Severidad esperada: ALTA.
+- Niebla + Evento en Coliseo: Menor impacto directo (eventos son
+  generalmente vespertinos/nocturnos cuando la niebla ya se disipó).
+- Niebla + Hora pico matutina: Reduce capacidad vial efectiva en 25-40%.
+
+PROTOCOLO DE ALERTA PARA CONDUCTORES:
+1. Nivel AMARILLO (niebla leve): "Precaución: niebla en sectores de
+   Sogamoso. Encienda luces bajas."
+2. Nivel NARANJA (niebla moderada): "Niebla moderada en la cuenca del
+   Chicamocha. Reduzca velocidad y use luces antiniebla."
+3. Nivel ROJO (niebla densa): "Niebla densa en Sogamoso. Visibilidad
+   menor a 200m. Evite acceso Morca y Avenida Castellana si es posible.
+   Conduzca a velocidad máxima de 20 km/h."

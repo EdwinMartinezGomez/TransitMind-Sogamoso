@@ -1,0 +1,44 @@
+========================================
+EVENTOS EN EL COLISEO OLÍMPICO DE SOGAMOSO
+Patrones de Congestión e Impacto en Movilidad
+========================================
+
+UBICACIÓN:
+El Coliseo Olímpico de Sogamoso está ubicado en el sector nororiental,
+entre la Carrera 11 y la Calle 14. Capacidad: ~5,000 espectadores.
+
+RADIO DE IMPACTO:
+- Impacto directo (0-250m): Carrera 11 Norte, Carrera 11 Sur.
+- Impacto indirecto (250-500m): Calle 14 Centro Histórico.
+
+INTERSECCIONES AFECTADAS:
+1. carrera_11_norte — IMPACTO DIRECTO (~200m)
+2. carrera_11_sur — IMPACTO DIRECTO (~300m)
+3. calle_14_centro_historico — IMPACTO INDIRECTO (~400m)
+
+TIPOS DE EVENTO Y NIVEL DE IMPACTO:
+
+1. CONCIERTO (event_impact: 0.80-1.00):
+   Asistencia: 3,000-5,000. Flujo: +80%. Duración impacto: 2h antes, 1.5h después.
+   Frecuencia: 1-2/mes.
+
+2. PARTIDO (event_impact: 0.50-0.70):
+   Asistencia: 1,500-3,000. Flujo: +50%. Duración: 1.5h antes, 1h después.
+   Frecuencia: 2-4/mes.
+
+3. FERIA (event_impact: 0.60-0.80):
+   Multiday (3-5 días). Flujo: +60% sostenido. Horario: 9AM-8PM.
+   Frecuencia: 3-5/año.
+
+4. EVENTO CÍVICO (event_impact: 0.30-0.50):
+   Asistencia: 500-1,500. Flujo: +30%. Duración: 1h antes, 30min después.
+
+COMBINACIÓN CON OTROS FACTORES:
+- Evento + Día de mercado: IMPACTO CRÍTICO. Carrera 11 congestión >0.90.
+  Recomendar cierre tramo Calle 12-16, desviar por Carrera 9.
+- Evento + Hora pico vespertina: Delay 15-25 min adicionales en Carrera 11.
+
+AJUSTE DE SEMÁFOROS RECOMENDADO:
+- Calle 14: Extender fase verde este-oeste +20s.
+- Carrera 11 Norte: Priorizar norte-sur +15s.
+- Activar 2h antes del evento, mantener 1.5h después.

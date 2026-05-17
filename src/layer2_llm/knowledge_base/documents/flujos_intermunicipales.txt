@@ -1,0 +1,70 @@
+========================================
+FLUJOS DE BUSES INTERMUNICIPALES EN SOGAMOSO
+Patrones de Tránsito y Terminales
+========================================
+
+TERMINAL DE TRANSPORTE DE SOGAMOSO:
+Ubicación: Sector sur de la ciudad, sobre la Carrera 11.
+Conecta con: Duitama, Tunja, Bogotá, Yopal, Iza, Monguí,
+Firavitoba, Tibasosa, Nobsa, Paipa.
+
+RUTAS PRINCIPALES Y FRECUENCIAS:
+
+1. SOGAMOSO ↔ DUITAMA:
+   Frecuencia: cada 10-15 min (hora pico), cada 20-30 min (valle).
+   Horario: 5:00 AM a 9:00 PM.
+   Tipo de vehículo: Busetas, microbuses.
+   Ruta urbana: Avenida Castellana (entrada/salida principal).
+   Pico de arribo a Sogamoso: 6:00-8:00 AM, 5:00-7:00 PM.
+
+2. SOGAMOSO ↔ TUNJA / BOGOTÁ:
+   Frecuencia: cada 30-60 min.
+   Horario: 4:00 AM a 8:00 PM.
+   Tipo: Buses interdepartamentales grandes (C3).
+   Ruta: Carrera 11 Sur → Terminal.
+   Pico de arribo: 5:00-7:00 AM (llegadas nocturnas desde Bogotá).
+
+3. SOGAMOSO ↔ YOPAL (LLANOS):
+   Frecuencia: 4-6 buses diarios.
+   Horario: salidas 5:00 AM, 7:00 AM, 10:00 AM, 2:00 PM.
+   Tipo: Buses grandes, algunos con carga.
+   Ruta: Avenida Castellana → vía a Yopal por Pajarito.
+
+4. SOGAMOSO ↔ IZA / FIRAVITOBA / TIBASOSA:
+   Frecuencia: cada 20-30 min.
+   Horario: 5:30 AM a 7:00 PM.
+   Tipo: Busetas pequeñas, colectivos.
+   Ruta: Avenida Castellana y acceso Morca.
+
+INTERSECCIONES IMPACTADAS:
+
+1. av_castellana_entrada — IMPACTO MUY ALTO:
+   Principal vía de ingreso de buses desde Duitama y municipios norte.
+   En hora pico matutina (6:00-8:00 AM) pasan 15-25 buses/hora.
+   Combinado con tráfico regular: congestión frecuente.
+   Vehículos pesados reducen velocidad promedio en -15%.
+
+2. av_castellana_salida — IMPACTO ALTO:
+   Salida de buses hacia Duitama y norte. Pico vespertino 5:00-7:00 PM.
+   Buses esperando pasajeros generan retención temporal.
+
+3. carrera_11_sur — IMPACTO MEDIO-ALTO:
+   Corredor hacia/desde la Terminal de Transporte.
+   Buses grandes circulan lento por esta vía.
+
+4. acceso_morca — IMPACTO MEDIO:
+   Colectivos hacia Iza y Firavitoba usan esta vía como alternativa.
+
+TEMPORADA ALTA:
+- Semana Santa: +60% de frecuencia de buses. Flujo masivo viernes
+  y lunes festivo. Congestión en Castellana puede durar 3-4 horas.
+- Temporada navideña (dic 15 - ene 10): +40% frecuencia.
+- Puentes festivos: +30% frecuencia.
+- Festival del Sol y del Acero (julio): +50% frecuencia, buses
+  especiales desde Bogotá y Bucaramanga.
+
+IMPACTO EN VEHÍCULOS PESADOS:
+- Proporción base de vehículos pesados: 15%.
+- En hora pico con buses: sube a 22-28%.
+- Los buses intermunicipales son clasificados como vehículos pesados
+  en el sensor de heavy_vehicle_ratio del sistema.
