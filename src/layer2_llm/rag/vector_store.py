@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Optional
 
 import chromadb
 from chromadb.config import Settings as ChromaSettings
+from chromadb.utils import embedding_functions
 
 from src.shared.logger import get_logger
 from src.shared.utils import get_project_root, load_yaml_config
@@ -40,6 +41,13 @@ class VectorStoreManager:
             )
         )
         self._collection_name = config.get("collection_name", "sogamoso_mobility")
+        
+        # Define the embedding function here so ChromaDB uses it directly
+        model_name = config.get("embedding_model", "nomic-embed-text")
+        self._embedding_function = embedding_functions.OllamaEmbeddingFunction(
+            url="http://localhost:11434/api/embeddings",
+            model_name=model_name,
+        )
 
         # Ensure persist directory exists
         Path(self._persist_dir).mkdir(parents=True, exist_ok=True)
@@ -61,6 +69,7 @@ class VectorStoreManager:
         if self._collection is None:
             self._collection = self._client.get_or_create_collection(
                 name=self._collection_name,
+                embedding_function=self._embedding_function,
                 metadata={"hnsw:space": "cosine"},
             )
             logger.info(

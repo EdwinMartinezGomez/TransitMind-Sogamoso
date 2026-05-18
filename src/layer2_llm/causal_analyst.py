@@ -1,7 +1,9 @@
 """
 TransitMind Sogamoso — Causal Analyst
 =====================================
-Rule-based causal analysis with optional LLM prompt construction.
+LLM-powered causal analysis with rule-based fallback.
+Uses Ollama (llama3:8b) for primary analysis, falls back to
+deterministic rules when the LLM is unavailable.
 """
 
 from __future__ import annotations
@@ -26,6 +28,13 @@ from src.shared.schemas import (
 from src.shared.utils import load_yaml_config
 from src.layer2_llm.context_builder import ContextBuilder
 from src.layer2_llm.rag_pipeline import RagPipeline
+from src.layer2_llm.causal.output_parser import OutputParser
+from src.layer2_llm.causal.prompt_templates import (
+	SYSTEM_PROMPT,
+	USER_PROMPT_TEMPLATE,
+	FEW_SHOT_EXAMPLES,
+	REPAIR_PROMPT,
+)
 
 logger = get_logger("layer2.causal_analyst")
 
@@ -40,15 +49,28 @@ class CausalAnalyst:
 		self._config = config
 		self._rag = RagPipeline(config)
 		self._context_builder = ContextBuilder()
+		self._output_parser = OutputParser()
 		self._intersection_names = {
 			item.get("id"): item.get("name")
 			for item in config.get("intersections", [])
 			if isinstance(item, dict)
 		}
 
+		# LLM config
+		llm_cfg = config.get("llm", {})
+		self._provider = llm_cfg.get("provider", "ollama")
+		self._model = llm_cfg.get("model", "llama3:8b")
+		self._temperature = float(llm_cfg.get("temperature", 0.1))
+		self._max_tokens = int(llm_cfg.get("max_tokens", 1500))
+		self._timeout = int(llm_cfg.get("timeout_seconds", 30))
+
+		# Cache LLM availability
+		self._llm_available: Optional[bool] = None
+
 	def analyze(self, payload: Dict[str, Any]) -> CausalAnalysisResult:
 		"""
 		Analyze Layer 1 payload and return structured causal analysis.
+		Tries LLM first, falls back to rule-based if LLM fails.
 
 		Args:
 			payload: Layer 1 response or a single synthetic record.
@@ -67,17 +89,287 @@ class CausalAnalyst:
 		if intersection_id not in INTERSECTIONS:
 			intersection_id = INTERSECTIONS[0]
 
+		# Build RAG context
 		rag_result = self._rag.build_context(payload, intersection_id=intersection_id)
 		rag_context = rag_result.get("context", "")
 		rag_sources = rag_result.get("sources", [])
 
-		_ = self._context_builder.build_prompt(payload, rag_context)
+		# Try LLM analysis first
+		llm_result = self._analyze_with_llm(avg, intersection_id, rag_context)
+
+		if llm_result is not None:
+			# LLM succeeded — build result from LLM response
+			result = self._build_result_from_llm(
+				llm_result, intersection_id, rag_sources, start
+			)
+			logger.info(
+				"analysis_complete",
+				intersection_id=intersection_id,
+				severity=result.causal_context.severity,
+				is_fallback=False,
+				model=self._model,
+			)
+			return result
+
+		# Fallback to rule-based
+		logger.info("using_fallback", intersection_id=intersection_id)
+		return self._fallback_analysis(avg, intersection_id, rag_sources, start)
+
+	# ============================================
+	# LLM Analysis
+	# ============================================
+
+	def _check_llm_available(self) -> bool:
+		"""Check if Ollama is running and the model is available."""
+		if self._llm_available is not None:
+			return self._llm_available
+
+		try:
+			import ollama as ollama_client
+
+			models = ollama_client.list()
+			model_names = []
+			if hasattr(models, "models"):
+				model_names = [m.model for m in models.models]
+			elif isinstance(models, dict):
+				model_names = [m.get("name", "") for m in models.get("models", [])]
+
+			# Check if our model is available (with or without tag)
+			base_model = self._model.split(":")[0]
+			available = any(
+				base_model in name for name in model_names
+			)
+
+			if not available:
+				logger.info("model_not_found_pulling", model=self._model)
+				try:
+					ollama_client.pull(self._model)
+					available = True
+				except Exception as pull_err:
+					logger.warning("model_pull_failed", error=str(pull_err))
+					available = False
+
+			self._llm_available = available
+			return available
+
+		except ImportError:
+			logger.warning("ollama_package_not_installed")
+			self._llm_available = False
+			return False
+		except Exception as e:
+			logger.warning("ollama_not_available", error=str(e))
+			self._llm_available = False
+			return False
+
+	def _analyze_with_llm(
+		self, avg: Dict[str, Any], intersection_id: str, rag_context: str
+	) -> Optional[Dict[str, Any]]:
+		"""
+		Perform causal analysis using Ollama LLM.
+
+		Returns:
+			Parsed and validated dict from LLM, or None on failure.
+		"""
+		if not self._check_llm_available():
+			return None
+
+		try:
+			import ollama as ollama_client
+
+			# Build the user prompt
+			weather_code = int(avg.get("weather_code", 0))
+			weather_desc = WEATHER_CODES.get(weather_code, "desconocido")
+
+			user_prompt = USER_PROMPT_TEMPLATE.format(
+				intersection_id=intersection_id,
+				intersection_name=self._intersection_names.get(
+					intersection_id, intersection_id
+				),
+				hour=int(avg.get("hour", 12)),
+				is_peak_hour=bool(avg.get("is_peak_hour", False)),
+				is_market_day=bool(avg.get("is_market_day", False)),
+				weather_description=weather_desc,
+				weather_code=weather_code,
+				vehicle_flow=float(avg.get("vehicle_flow", 0)),
+				avg_speed_kmh=float(avg.get("avg_speed_kmh", 0)),
+				congestion_level=float(avg.get("congestion_level", 0)),
+				heavy_vehicle_ratio=float(avg.get("heavy_vehicle_ratio", 0)),
+				motorcycle_ratio=float(avg.get("motorcycle_ratio", 0)),
+				event_impact=float(avg.get("event_impact", 0)),
+				rag_context=rag_context or "No hay contexto local disponible.",
+			)
+
+			# Build messages with few-shot examples
+			messages = [
+				{"role": "system", "content": SYSTEM_PROMPT},
+			]
+			messages.extend(FEW_SHOT_EXAMPLES)
+			messages.append({"role": "user", "content": user_prompt})
+
+			# Call Ollama
+			logger.info(
+				"llm_call_starting",
+				model=self._model,
+				intersection=intersection_id,
+			)
+
+			response = ollama_client.chat(
+				model=self._model,
+				messages=messages,
+				options={
+					"temperature": self._temperature,
+					"num_predict": self._max_tokens,
+				},
+			)
+
+			# Extract response text
+			response_text = ""
+			if hasattr(response, "message"):
+				response_text = response.message.content
+			elif isinstance(response, dict):
+				response_text = response.get("message", {}).get("content", "")
+
+			if not response_text:
+				logger.warning("empty_llm_response")
+				return None
+
+			logger.debug(
+				"llm_response_received",
+				length=len(response_text),
+				preview=response_text[:200],
+			)
+
+			# Parse JSON from response
+			parsed = self._output_parser.parse(response_text)
+			if parsed is None:
+				# Try repair with LLM
+				parsed = self._try_repair_json(response_text)
+
+			if parsed is None:
+				logger.warning("json_parse_failed", response_preview=response_text[:300])
+				return None
+
+			# Validate and fill defaults
+			validated = self._output_parser.validate_schema(parsed)
+
+			# Ensure intersection_id is set
+			if validated.get("recommendations", {}).get("traffic_light_adjustment", {}).get("intersection_id") == "":
+				validated["recommendations"]["traffic_light_adjustment"]["intersection_id"] = intersection_id
+
+			return validated
+
+		except Exception as e:
+			logger.error("llm_analysis_failed", error=str(e))
+			return None
+
+	def _try_repair_json(self, broken_text: str) -> Optional[Dict[str, Any]]:
+		"""Last resort: ask the LLM to repair its own broken JSON."""
+		try:
+			import ollama as ollama_client
+
+			repair_prompt = REPAIR_PROMPT.format(broken_json=broken_text[:2000])
+
+			response = ollama_client.chat(
+				model=self._model,
+				messages=[{"role": "user", "content": repair_prompt}],
+				options={"temperature": 0.0, "num_predict": self._max_tokens},
+			)
+
+			response_text = ""
+			if hasattr(response, "message"):
+				response_text = response.message.content
+			elif isinstance(response, dict):
+				response_text = response.get("message", {}).get("content", "")
+
+			if response_text:
+				return self._output_parser.parse(response_text)
+
+		except Exception as e:
+			logger.warning("json_repair_failed", error=str(e))
+
+		return None
+
+	def _build_result_from_llm(
+		self,
+		llm_data: Dict[str, Any],
+		intersection_id: str,
+		rag_sources: List[str],
+		start_time: float,
+	) -> CausalAnalysisResult:
+		"""Build CausalAnalysisResult from validated LLM output."""
+		ctx_data = llm_data.get("causal_context", {})
+		fc_data = llm_data.get("traffic_forecast", {})
+		rec_data = llm_data.get("recommendations", {})
+		adj_data = rec_data.get("traffic_light_adjustment", {})
+
+		causal_context = CausalContext(
+			primary_cause=ctx_data.get("primary_cause", "flujo vehicular habitual"),
+			secondary_causes=ctx_data.get("secondary_causes", []),
+			causal_explanation=ctx_data.get("causal_explanation", ""),
+			severity=ctx_data.get("severity", "media"),
+			confidence=ctx_data.get("confidence", 0.5),
+		)
+
+		forecast = TrafficForecast(
+			congestion_level_adjusted=fc_data.get("congestion_level_adjusted", 0.5),
+			peak_window=fc_data.get("peak_window", "07:00 - 08:00"),
+			expected_delay_minutes=fc_data.get("expected_delay_minutes", 10),
+			affected_intersections=fc_data.get("affected_intersections", [intersection_id]),
+		)
+
+		adjustment = TrafficLightAdjustment(
+			intersection_id=adj_data.get("intersection_id", intersection_id),
+			green_phase_extension_seconds=adj_data.get("green_phase_extension_seconds", 10),
+			priority_direction=adj_data.get("priority_direction", "rotacional"),
+			rationale=adj_data.get("rationale", "Ajuste sugerido por LLM."),
+		)
+
+		citizen_alert = rec_data.get("citizen_alert", "Revise condiciones de tráfico.")
+		if len(citizen_alert) > 280:
+			citizen_alert = citizen_alert[:277].rstrip() + "..."
+
+		recommendations = Recommendations(
+			traffic_light_adjustment=adjustment,
+			alternative_routes=rec_data.get("alternative_routes", []),
+			citizen_alert=citizen_alert,
+		)
+
+		processing_time_ms = int((time.time() - start_time) * 1000)
+
+		return CausalAnalysisResult(
+			intersection_id=intersection_id,
+			analysis_timestamp=datetime.utcnow(),
+			causal_context=causal_context,
+			traffic_forecast=forecast,
+			recommendations=recommendations,
+			rag_sources_used=rag_sources,
+			llm_reasoning_trace="llm_analysis",
+			processing_time_ms=processing_time_ms,
+			model_used=self._model,
+			is_fallback=False,
+		)
+
+	# ============================================
+	# Fallback (rule-based) — preserved from original
+	# ============================================
+
+	def _fallback_analysis(
+		self,
+		avg: Dict[str, Any],
+		intersection_id: str,
+		rag_sources: List[str],
+		start_time: float,
+	) -> CausalAnalysisResult:
+		"""Rule-based fallback when LLM is unavailable."""
+		_ = self._context_builder.build_prompt(
+			{"synthetic_data": [avg]}, ""
+		)
 
 		causal_context = self._build_causal_context(avg)
 		forecast = self._build_forecast(avg, intersection_id)
 		recommendations = self._build_recommendations(avg, intersection_id)
 
-		processing_time_ms = int((time.time() - start) * 1000)
+		processing_time_ms = int((time.time() - start_time) * 1000)
 
 		result = CausalAnalysisResult(
 			intersection_id=intersection_id,
@@ -99,6 +391,10 @@ class CausalAnalyst:
 			is_fallback=True,
 		)
 		return result
+
+	# ============================================
+	# Helpers (unchanged from original)
+	# ============================================
 
 	def _extract_records(self, payload: Dict[str, Any]) -> List[Dict[str, Any]]:
 		if not isinstance(payload, dict):

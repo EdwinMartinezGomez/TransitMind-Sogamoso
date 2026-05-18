@@ -1,4 +1,4 @@
-.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api run-all run-setup run-services
+.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api run-all run-setup run-services layer2-ingest layer2-api layer2-test
 
 # === Ejecucion unificada (PowerShell) ===
 run-all:
@@ -30,6 +30,15 @@ mlflow-ui:
 
 api:
 	uvicorn src.layer1_timegan.api:app --host 0.0.0.0 --port 8000 --reload
+
+layer2-ingest:
+	python -c "from src.layer2_llm.rag.document_ingestion import DocumentIngestion; from src.shared.utils import load_yaml_config; d = DocumentIngestion(load_yaml_config('llm_config.yaml')); print(d.ingest_all(force_reingest=True))"
+
+layer2-api:
+	uvicorn src.layer2_llm.api:app --host 0.0.0.0 --port 8001 --reload
+
+layer2-test:
+	python pipelines/pipeline_layer2.py
 
 test:
 	python -m pytest tests/ -v --tb=short

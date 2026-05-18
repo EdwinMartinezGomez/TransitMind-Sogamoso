@@ -289,19 +289,10 @@ class DocumentIngestion:
         documents = [c.text for c in chunks]
         metadatas = [c.metadata for c in chunks]
 
-        # Try to generate embeddings with Ollama
-        embeddings = self._generate_embeddings_ollama(documents)
-
-        if embeddings is not None:
-            count = self._vector_store.add_documents(
-                ids=ids, documents=documents, metadatas=metadatas, embeddings=embeddings
-            )
-        else:
-            # Fallback: let ChromaDB handle embeddings with its default model
-            logger.info("using_chromadb_default_embeddings")
-            count = self._vector_store.add_documents(
-                ids=ids, documents=documents, metadatas=metadatas
-            )
+        # Pass embeddings=None so ChromaDB uses the built-in OllamaEmbeddingFunction
+        count = self._vector_store.add_documents(
+            ids=ids, documents=documents, metadatas=metadatas, embeddings=None
+        )
 
         elapsed = time.time() - start
         logger.info(

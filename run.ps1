@@ -35,7 +35,8 @@ param(
     [switch]$PipelineOnly,
     [switch]$ServicesOnly,
     [switch]$SkipPipeline,
-    [switch]$Clean
+    [switch]$Clean,
+    [switch]$Layer2Only
 )
 
 $ErrorActionPreference = "Stop"
@@ -152,25 +153,47 @@ $mlflowJob = Start-Job -ScriptBlock {
 }
 Write-Ok "MLflow UI iniciado (Job ID: $($mlflowJob.Id))"
 
-# Lanzar API con uvicorn en foreground (para ver logs en tiempo real)
-Write-Step "Iniciando API en puerto 8000..."
+# Lanzar Layer 2 API en background
+Write-Step "Iniciando Layer 2 API (LLM+RAG) en puerto 8001..."
+$layer2Job = Start-Job -ScriptBlock {
+    Set-Location $using:projectRoot
+    uvicorn src.layer2_llm.api:app --host 0.0.0.0 --port 8001 --reload
+}
+Write-Ok "Layer 2 API iniciado (Job ID: $($layer2Job.Id))"
+
+# Lanzar API Layer 1 con uvicorn en foreground (para ver logs en tiempo real)
+if (-not $Layer2Only) {
+    Write-Step "Iniciando API Layer 1 en puerto 8000..."
+} else {
+    Write-Step "Modo Layer2Only: solo Layer 2 API..."
+}
 Write-Host ""
 Write-Host "  +---------------------------------------------+" -ForegroundColor Magenta
-Write-Host "  |  MLflow UI:  http://localhost:5000          |" -ForegroundColor Magenta
-Write-Host "  |  API:        http://localhost:8000          |" -ForegroundColor Magenta
-Write-Host "  |  API Docs:   http://localhost:8000/docs     |" -ForegroundColor Magenta
+Write-Host "  |  MLflow UI:    http://localhost:5000        |" -ForegroundColor Magenta
+Write-Host "  |  Layer 1 API:  http://localhost:8000        |" -ForegroundColor Magenta
+Write-Host "  |  Layer 1 Docs: http://localhost:8000/docs   |" -ForegroundColor Magenta
+Write-Host "  |  Layer 2 API:  http://localhost:8001        |" -ForegroundColor Magenta
+Write-Host "  |  Layer 2 Docs: http://localhost:8001/docs   |" -ForegroundColor Magenta
 Write-Host "  |                                             |" -ForegroundColor Magenta
 Write-Host "  |  Presiona Ctrl+C para detener todo          |" -ForegroundColor Magenta
 Write-Host "  +---------------------------------------------+" -ForegroundColor Magenta
 Write-Host ""
 
 try {
-    uvicorn src.layer1_timegan.api:app --host 0.0.0.0 --port 8000 --reload
+    if ($Layer2Only) {
+        # Solo esperar a que Layer 2 se detenga
+        Write-Host "  Layer 2 API corriendo. Presiona Ctrl+C para detener." -ForegroundColor Cyan
+        Wait-Job -Job $layer2Job
+    } else {
+        uvicorn src.layer1_timegan.api:app --host 0.0.0.0 --port 8000 --reload
+    }
 }
 finally {
-    # Cuando se detiene la API, tambien detener MLflow
+    # Cuando se detiene la API, tambien detener los demás
     Write-Step "Deteniendo servicios..."
     Stop-Job -Job $mlflowJob -ErrorAction SilentlyContinue
     Remove-Job -Job $mlflowJob -Force -ErrorAction SilentlyContinue
+    Stop-Job -Job $layer2Job -ErrorAction SilentlyContinue
+    Remove-Job -Job $layer2Job -Force -ErrorAction SilentlyContinue
     Write-Ok "Todos los servicios detenidos."
 }

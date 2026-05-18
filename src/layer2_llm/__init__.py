@@ -6,6 +6,7 @@ from src.layer2_llm.context_builder import ContextBuilder
 from src.layer2_llm.rag_pipeline import RagPipeline
 from src.layer2_llm.rag import DocumentIngestion, VectorStoreManager, QueryBuilder
 from src.layer2_llm.rag.retriever import ContextRetriever
+from src.layer2_llm.causal.output_parser import OutputParser
 
 __all__ = [
 	"CausalAnalyst",
@@ -15,4 +16,5 @@ __all__ = [
 	"VectorStoreManager",
 	"QueryBuilder",
 	"ContextRetriever",
+	"OutputParser",
 ]
