@@ -111,7 +111,7 @@ if (-not $ServicesOnly -and -not $SkipPipeline) {
         Write-Step "[$currentStep/$totalSteps] $($p.Name)..."
         
         $sw = [System.Diagnostics.Stopwatch]::StartNew()
-        python $p.Script
+        & "..\.venv\Scripts\python.exe" $p.Script
         $sw.Stop()
 
         if ($LASTEXITCODE -ne 0) {
@@ -149,7 +149,7 @@ if ($port8000) {
 Write-Step "Iniciando MLflow UI en puerto 5000..."
 $mlflowJob = Start-Job -ScriptBlock {
     Set-Location $using:projectRoot
-    mlflow ui --backend-store-uri file:./experiments/mlruns --port 5000
+    & "..\.venv\Scripts\mlflow.exe" ui --backend-store-uri file:./experiments/mlruns --port 5000
 }
 Write-Ok "MLflow UI iniciado (Job ID: $($mlflowJob.Id))"
 
@@ -157,7 +157,7 @@ Write-Ok "MLflow UI iniciado (Job ID: $($mlflowJob.Id))"
 Write-Step "Iniciando Layer 2 API (LLM+RAG) en puerto 8001..."
 $layer2Job = Start-Job -ScriptBlock {
     Set-Location $using:projectRoot
-    uvicorn src.layer2_llm.api:app --host 0.0.0.0 --port 8001 --reload
+    & "..\.venv\Scripts\python.exe" -m uvicorn src.layer2_llm.api:app --host 0.0.0.0 --port 8001 --reload
 }
 Write-Ok "Layer 2 API iniciado (Job ID: $($layer2Job.Id))"
 
@@ -185,7 +185,7 @@ try {
         Write-Host "  Layer 2 API corriendo. Presiona Ctrl+C para detener." -ForegroundColor Cyan
         Wait-Job -Job $layer2Job
     } else {
-        uvicorn src.layer1_timegan.api:app --host 0.0.0.0 --port 8000 --reload
+        & "..\.venv\Scripts\python.exe" -m uvicorn src.layer1_timegan.api:app --host 0.0.0.0 --port 8000 --reload
     }
 }
 finally {
