@@ -1,63 +1,96 @@
 # ============================================
 # TransitMind Sogamoso — Agents Configuration
 # ============================================
-# Reserved for Layer 3: Multi-Agent LangGraph orchestration.
-# This file will be populated when implementing Layers 2-3.
+# Layer 3: Multi-Agent LangGraph orchestration.
 
-# Agent definitions (placeholder)
+orchestration:
+  graph_type: "StateGraph"
+  max_iterations: 3           # Máximo de re-evaluaciones por ciclo
+  timeout_seconds: 120        # Timeout total del ciclo completo
+  cycle_interval_seconds: 30  # Intervalo entre ciclos automáticos
+  parallel_intersections: true
+
+layer1_api:
+  base_url: "http://localhost:8000"
+  timeout_seconds: 15
+  n_samples_per_agent: 50
+
+layer2_api:
+  base_url: "http://localhost:8001"
+  timeout_seconds: 40         # Ollama puede tardar hasta 35s
+
+layer3_api:
+  host: "0.0.0.0"
+  port: 8002
+
 agents:
   sensor:
     name: "Agente Sensor"
-    description: "Recopila datos de sensores y flujo vehicular"
-    enabled: false
+    enabled: true
+    retry_attempts: 2
+    intersections: all         # Consulta todas las intersecciones
 
   predictor:
     name: "Agente Predictor"
-    description: "Predice flujo vehicular usando modelos ML"
-    enabled: false
+    enabled: true
+    window_size: 4             # Ventanas de 15min a analizar (= 1 hora)
+    congestion_threshold: 0.6  # Umbral para activar análisis profundo
 
   gan_simulator:
     name: "Agente GAN Simulator"
-    description: "Genera escenarios sintéticos via TimeGAN (Capa 1)"
-    enabled: false
-    # This agent calls layer1_timegan.generator.TrafficDataGenerator
-    layer1_endpoint: "http://localhost:8000/generate"
+    enabled: true
+    api_url: "http://localhost:8000"
+    default_n_samples: 50
 
   causal_analyst:
     name: "Agente Analista Causal"
-    description: "Análisis causal con LLM y RAG"
-    enabled: false
+    enabled: true
+    api_url: "http://localhost:8001"
+    skip_if_low_congestion: true   # No llamar Capa 2 si congestion < 0.4
 
   route_planner:
     name: "Agente Planificador de Rutas"
-    description: "Optimiza rutas según condiciones de tráfico"
-    enabled: false
+    enabled: true
+    max_alternative_routes: 3
+    min_severity_for_reroute: "media"
 
   traffic_coordinator:
     name: "Coordinador de Semáforos"
-    description: "Optimiza ciclos semafóricos"
-    enabled: false
+    enabled: true
+    max_green_extension_seconds: 45
+    min_green_extension_seconds: 5
+    cooldown_seconds: 120      # Tiempo mínimo entre ajustes en la misma intersección
 
   monitor:
     name: "Agente Monitor"
-    description: "Monitorea drift y anomalías en tiempo real"
-    enabled: false
+    enabled: true
+    anomaly_threshold: 0.25    # Diferencia máxima entre predicción y análisis
+    max_fallback_rate: 0.10    # Si >10% de análisis son fallback: alerta
+    block_on_anomaly: false    # Si true: detiene el ciclo ante anomalía grave
 
-# LangGraph orchestration (placeholder)
-orchestration:
-  graph_type: "StateGraph"
-  max_iterations: 10
-  timeout_seconds: 300
+thresholds:
+  low_congestion: 0.4
+  medium_congestion: 0.6
+  high_congestion: 0.75
+  critical_congestion: 0.85
+  tmc_reduction_target: 0.30  # Meta: 30% de reducción TMC
 
-# Data exchange format between agents
-data_format:
-  type: "json"
-  schema_version: "1.0"
-  fields:
-    - "intersection_id"
-    - "timestamp"
-    - "vehicle_flow"
-    - "congestion_level"
-    - "avg_speed_kmh"
-    - "weather_code"
-    - "scenario_metadata"
+intersections:
+  - id: "carrera_11_norte"
+    name: "Carrera 11 Norte"
+    priority: 1
+  - id: "carrera_11_sur"
+    name: "Carrera 11 Sur"
+    priority: 2
+  - id: "av_castellana_entrada"
+    name: "Avenida Castellana Entrada"
+    priority: 1
+  - id: "av_castellana_salida"
+    name: "Avenida Castellana Salida"
+    priority: 2
+  - id: "calle_14_centro_historico"
+    name: "Calle 14 Centro Histórico"
+    priority: 3
+  - id: "acceso_morca"
+    name: "Acceso Morca"
+    priority: 3

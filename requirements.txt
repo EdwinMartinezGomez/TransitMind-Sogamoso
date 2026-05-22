@@ -57,8 +57,14 @@ python-dateutil>=2.9.0
 groq>=0.5.0
 
 # ============================================
-# Future (Layers 3-4, uncomment when needed)
+# Capa 3 — LangGraph Multi-Agentes
 # ============================================
-# langgraph>=0.1.0
+langgraph>=0.2.0
+langchain-core>=0.2.0
+typing-extensions>=4.9.0
+
+# ============================================
+# Future (Layer 4, uncomment when needed)
+# ============================================
 # python-telegram-bot>=21.0
 # streamlit>=1.32.0
