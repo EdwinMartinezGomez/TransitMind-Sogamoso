@@ -1,0 +1,16 @@
+{
+  "cycle_id": "912e399a-611e-4014-85e9-41c61e20e0de",
+  "cycle_duration_ms": 7965,
+  "agents_healthy": 7,
+  "anomalies_detected": [],
+  "hallucinations_blocked": 0,
+  "fallback_rate": 1.0,
+  "invalid_commands_corrected": [],
+  "tmc_reduction_estimate": 0.0,
+  "tmc_target_met": false,
+  "cycle_approved": true,
+  "warnings": [
+    "Tasa de fallback alta: 100.0% > 10.0%",
+    "Reducción TMC (0.0%) por debajo de meta (30.0%)"
+  ]
+}

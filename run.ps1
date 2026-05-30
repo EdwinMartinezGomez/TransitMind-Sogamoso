@@ -161,6 +161,14 @@ $layer2Job = Start-Job -ScriptBlock {
 }
 Write-Ok "Layer 2 API iniciado (Job ID: $($layer2Job.Id))"
 
+# Lanzar Layer 3 API en background
+Write-Step "Iniciando Layer 3 API (Agentes) en puerto 8002..."
+$layer3Job = Start-Job -ScriptBlock {
+    Set-Location $using:projectRoot
+    & "..\.venv\Scripts\python.exe" -m uvicorn src.layer3_agents.api:app --host 0.0.0.0 --port 8002 --reload
+}
+Write-Ok "Layer 3 API iniciado (Job ID: $($layer3Job.Id))"
+
 # Lanzar API Layer 1 con uvicorn en foreground (para ver logs en tiempo real)
 if (-not $Layer2Only) {
     Write-Step "Iniciando API Layer 1 en puerto 8000..."
@@ -174,6 +182,8 @@ Write-Host "  |  Layer 1 API:  http://localhost:8000        |" -ForegroundColor 
 Write-Host "  |  Layer 1 Docs: http://localhost:8000/docs   |" -ForegroundColor Magenta
 Write-Host "  |  Layer 2 API:  http://localhost:8001        |" -ForegroundColor Magenta
 Write-Host "  |  Layer 2 Docs: http://localhost:8001/docs   |" -ForegroundColor Magenta
+Write-Host "  |  Layer 3 API:  http://localhost:8002        |" -ForegroundColor Magenta
+Write-Host "  |  Layer 3 Docs: http://localhost:8002/docs   |" -ForegroundColor Magenta
 Write-Host "  |                                             |" -ForegroundColor Magenta
 Write-Host "  |  Presiona Ctrl+C para detener todo          |" -ForegroundColor Magenta
 Write-Host "  +---------------------------------------------+" -ForegroundColor Magenta
@@ -195,5 +205,7 @@ finally {
     Remove-Job -Job $mlflowJob -Force -ErrorAction SilentlyContinue
     Stop-Job -Job $layer2Job -ErrorAction SilentlyContinue
     Remove-Job -Job $layer2Job -Force -ErrorAction SilentlyContinue
+    Stop-Job -Job $layer3Job -ErrorAction SilentlyContinue
+    Remove-Job -Job $layer3Job -Force -ErrorAction SilentlyContinue
     Write-Ok "Todos los servicios detenidos."
 }
