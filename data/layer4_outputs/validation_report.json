@@ -1,0 +1,202 @@
+{
+  "suites": {
+    "message_formatter": {
+      "passed": 20,
+      "failed": 0,
+      "details": [
+        {
+          "intersection": "carrera_11_norte",
+          "channel": "whatsapp",
+          "length": 106,
+          "elapsed_ms": 2,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 Trancón fuerte en Carrera 11 Norte. Rutas alternas: Avenida Industrial, Calle "
+        },
+        {
+          "intersection": "carrera_11_norte",
+          "channel": "telegram_citizen",
+          "length": 160,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 *Carrera 11 Norte — Trancón fuerte*\nEvite si puede, calcule 15-20 min extra.\nR"
+        },
+        {
+          "intersection": "carrera_11_norte",
+          "channel": "dashboard",
+          "length": 200,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 ALTA — Carrera 11 Norte\nNivel de congestión: 78% | Demora: ~22 min\nSemáforos: "
+        },
+        {
+          "intersection": "av_castellana_entrada",
+          "channel": "whatsapp",
+          "length": 109,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🚨 Trancón crítico en Av. Castellana (entrada). Rutas alternas: Calle 14, Acceso "
+        },
+        {
+          "intersection": "av_castellana_entrada",
+          "channel": "telegram_citizen",
+          "length": 166,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🚨 *Av. Castellana (entrada) — Trancón crítico*\nEvite completamente, hay congesti"
+        },
+        {
+          "intersection": "av_castellana_entrada",
+          "channel": "dashboard",
+          "length": 206,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🚨 CRITICA — Av. Castellana (entrada)\nNivel de congestión: 92% | Demora: ~35 min\n"
+        },
+        {
+          "intersection": "calle_14_centro_historico",
+          "channel": "whatsapp",
+          "length": 71,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 Algo de tráfico en Calle 14 / Centro Histórico. Calcule ~7 min extra."
+        },
+        {
+          "intersection": "calle_14_centro_historico",
+          "channel": "telegram_citizen",
+          "length": 144,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 *Calle 14 / Centro Histórico — Algo de tráfico*\nCalcule 5-10 minutos extra.\nRu"
+        },
+        {
+          "intersection": "calle_14_centro_historico",
+          "channel": "dashboard",
+          "length": 197,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 MEDIA — Calle 14 / Centro Histórico\nNivel de congestión: 55% | Demora: ~7 min\n"
+        },
+        {
+          "intersection": "carrera_11_sur",
+          "channel": "whatsapp",
+          "length": 58,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 Algo de tráfico en Carrera 11 Sur. Calcule ~7 min extra."
+        },
+        {
+          "intersection": "carrera_11_sur",
+          "channel": "telegram_citizen",
+          "length": 95,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 *Carrera 11 Sur — Algo de tráfico*\nCalcule 5-10 minutos extra.\n⏱ Demora estima"
+        },
+        {
+          "intersection": "carrera_11_sur",
+          "channel": "dashboard",
+          "length": 148,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟡 MEDIA — Carrera 11 Sur\nNivel de congestión: 48% | Demora: ~7 min\nSemáforos: Fa"
+        },
+        {
+          "intersection": "acceso_morca",
+          "channel": "whatsapp",
+          "length": 62,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟢 Tráfico normal en Acceso Morca. Puede circular sin problema."
+        },
+        {
+          "intersection": "acceso_morca",
+          "channel": "telegram_citizen",
+          "length": 62,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟢 *Acceso Morca — Tráfico normal*\nPuede circular sin problema."
+        },
+        {
+          "intersection": "acceso_morca",
+          "channel": "dashboard",
+          "length": 77,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🟢 BAJA — Acceso Morca\nNivel de congestión: 25%\nÚltima actualización: 12:31 am"
+        },
+        {
+          "intersection": "av_castellana_salida",
+          "channel": "whatsapp",
+          "length": 111,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 Trancón fuerte en Av. Castellana (salida). Rutas alternas: Calle 14, Carrera 1"
+        },
+        {
+          "intersection": "av_castellana_salida",
+          "channel": "telegram_citizen",
+          "length": 165,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 *Av. Castellana (salida) — Trancón fuerte*\nEvite si puede, calcule 15-20 min e"
+        },
+        {
+          "intersection": "av_castellana_salida",
+          "channel": "dashboard",
+          "length": 206,
+          "elapsed_ms": 0,
+          "issues": [],
+          "passed": true,
+          "message_preview": "🔴 ALTA — Av. Castellana (salida)\nNivel de congestión: 80% | Demora: ~22 min\nSemá"
+        },
+        {
+          "test": "batch_filter",
+          "passed": true
+        }
+      ],
+      "elapsed_ms": 9
+    },
+    "social_graph": {
+      "passed": 7,
+      "failed": 0,
+      "details": [
+        {
+          "test": "compute_centrality",
+          "passed": true,
+          "elapsed_ms": 14
+        },
+        {
+          "test": "sir_coverage",
+          "coverage": 0.3679999999999998
+        }
+      ],
+      "elapsed_ms": 3060
+    },
+    "alert_engine": {
+      "passed": 5,
+      "failed": 0,
+      "details": [],
+      "elapsed_ms": 203
+    }
+  },
+  "total_passed": 32,
+  "total_failed": 0,
+  "all_passed": true
+}

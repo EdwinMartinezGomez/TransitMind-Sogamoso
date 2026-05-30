@@ -1,0 +1,83 @@
+# ============================================
+# TransitMind Sogamoso — Capa 4 Configuration
+# Bots Ciudadanos + Dashboard + Grafo Social
+# ============================================
+
+layer3_api:
+  base_url: "http://localhost:8002"
+  timeout_seconds: 130          # Ciclo Capa 3 puede tardar hasta 120s
+  poll_interval_seconds: 30     # Frecuencia de consulta /latest-decision
+
+layer4_api:
+  host: "0.0.0.0"
+  port: 8003
+
+llm:
+  provider: "ollama"
+  model: "llama3:8b"            # Ya instalado en el sistema
+  temperature: 0.3              # Algo de variación para mensajes naturales
+  max_tokens: 300               # Los mensajes deben ser concisos
+  timeout_seconds: 25
+
+telegram:
+  token: "${TELEGRAM_BOT_TOKEN}"
+  operator_chat_ids: []         # IDs de chats de operadores SecMov
+  enabled: true
+  # Canales por severidad:
+  # baja → solo si el usuario lo pidió
+  # media → suscriptores del corredor afectado
+  # alta/critica → broadcast a todos los activos
+
+whatsapp:
+  phone_number_id: "${WHATSAPP_PHONE_NUMBER_ID}"
+  access_token: "${WHATSAPP_ACCESS_TOKEN}"
+  verify_token: "${WHATSAPP_VERIFY_TOKEN}"
+  enabled: true
+  api_url: "https://graph.facebook.com/v18.0"
+
+social_graph:
+  enabled: true
+  # Pesos de aristas comportamentales (paper: w1+w2+w3=1)
+  w1_corridor: 0.5              # Similitud de corredor vial
+  w2_temporal: 0.3              # Similitud horaria de consultas
+  w3_coconsult: 0.2             # Co-consulta en ventana de 10 min
+  edge_threshold: 0.30          # θW: mínimo para crear arista
+  alpha: 0.6                    # α: peso betweenness vs k-shell
+  first_wave_k: 5               # Propagadores de primera ola
+  broadcast_delay_minutes: 2    # Delay antes del broadcast general
+  sir_simulations: 500          # Simulaciones Monte Carlo EoN
+  sir_beta: 0.3                 # Tasa de transmisión SIR
+  sir_gamma: 0.1                # Tasa de recuperación SIR
+  coverage_target: 0.80         # Meta: alcanzar 80% del subgrafo
+  # Nodos semilla (arranque en frío): cargados desde seed_nodes.json
+  seed_nodes_file: "data/layer4_outputs/social_graph/seed_nodes.json"
+  # Frecuencias de actualización (paper Sección IV.B)
+  edge_update_hours: 24         # Recalcular aristas cada 24h
+  centrality_update_hours: 6    # Recalcular ranking cada 6h
+
+alert:
+  min_severity_to_alert: "media"  # No alertar por severidad "baja"
+  max_alerts_per_hour: 10
+  dedup_window_minutes: 15      # No repetir misma intersección en 15 min
+  operator_always_notified: true # Operadores reciben TODO, sin filtro
+
+message:
+  language: "es"
+  city: "Sogamoso"
+  max_length_whatsapp: 280      # Límite para mensajes push
+  max_length_telegram: 400
+  max_length_dashboard: 600     # Panel puede mostrar más detalle
+
+severity_emoji:
+  baja: "🟢"
+  media: "🟡"
+  alta: "🔴"
+  critica: "🚨"
+
+intersection_display_names:
+  carrera_11_norte: "Carrera 11 Norte"
+  carrera_11_sur: "Carrera 11 Sur"
+  av_castellana_entrada: "Av. Castellana (entrada)"
+  av_castellana_salida: "Av. Castellana (salida)"
+  calle_14_centro_historico: "Calle 14 / Centro Histórico"
+  acceso_morca: "Acceso Morca"

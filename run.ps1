@@ -169,6 +169,22 @@ $layer3Job = Start-Job -ScriptBlock {
 }
 Write-Ok "Layer 3 API iniciado (Job ID: $($layer3Job.Id))"
 
+# Lanzar Layer 4 API en background
+Write-Step "Iniciando Layer 4 API (Bots) en puerto 8003..."
+$layer4Job = Start-Job -ScriptBlock {
+    Set-Location $using:projectRoot
+    & "..\.venv\Scripts\python.exe" -m uvicorn src.layer4_bots.api:app --host 0.0.0.0 --port 8003 --reload
+}
+Write-Ok "Layer 4 API iniciado (Job ID: $($layer4Job.Id))"
+
+# Lanzar Dashboard Streamlit en background
+Write-Step "Iniciando Dashboard Streamlit en puerto 8501..."
+$dashboardJob = Start-Job -ScriptBlock {
+    Set-Location $using:projectRoot
+    & "..\.venv\Scripts\streamlit.exe" run src/layer4_bots/dashboard.py --server.port 8501 --server.headless true
+}
+Write-Ok "Dashboard iniciado (Job ID: $($dashboardJob.Id))"
+
 # Lanzar API Layer 1 con uvicorn en foreground (para ver logs en tiempo real)
 if (-not $Layer2Only) {
     Write-Step "Iniciando API Layer 1 en puerto 8000..."
@@ -184,6 +200,9 @@ Write-Host "  |  Layer 2 API:  http://localhost:8001        |" -ForegroundColor 
 Write-Host "  |  Layer 2 Docs: http://localhost:8001/docs   |" -ForegroundColor Magenta
 Write-Host "  |  Layer 3 API:  http://localhost:8002        |" -ForegroundColor Magenta
 Write-Host "  |  Layer 3 Docs: http://localhost:8002/docs   |" -ForegroundColor Magenta
+Write-Host "  |  Layer 4 API:  http://localhost:8003        |" -ForegroundColor Magenta
+Write-Host "  |  Layer 4 Docs: http://localhost:8003/docs   |" -ForegroundColor Magenta
+Write-Host "  |  Dashboard:    http://localhost:8501        |" -ForegroundColor Magenta
 Write-Host "  |                                             |" -ForegroundColor Magenta
 Write-Host "  |  Presiona Ctrl+C para detener todo          |" -ForegroundColor Magenta
 Write-Host "  +---------------------------------------------+" -ForegroundColor Magenta
@@ -207,5 +226,9 @@ finally {
     Remove-Job -Job $layer2Job -Force -ErrorAction SilentlyContinue
     Stop-Job -Job $layer3Job -ErrorAction SilentlyContinue
     Remove-Job -Job $layer3Job -Force -ErrorAction SilentlyContinue
+    Stop-Job -Job $layer4Job -ErrorAction SilentlyContinue
+    Remove-Job -Job $layer4Job -Force -ErrorAction SilentlyContinue
+    Stop-Job -Job $dashboardJob -ErrorAction SilentlyContinue
+    Remove-Job -Job $dashboardJob -Force -ErrorAction SilentlyContinue
     Write-Ok "Todos los servicios detenidos."
 }

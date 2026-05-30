@@ -1,4 +1,4 @@
-.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api run-all run-setup run-services layer2-ingest layer2-api layer2-test
+.PHONY: generate-data train evaluate full-pipeline mlflow-ui test clean install api run-all run-setup run-services layer2-ingest layer2-api layer2-test layer4-api layer4-dashboard layer4-telegram layer4-test
 
 # === Ejecucion unificada (PowerShell) ===
 run-all:
@@ -39,6 +39,19 @@ layer2-api:
 
 layer2-test:
 	python pipelines/pipeline_layer2.py
+
+# === Capa 4 ===
+layer4-api:
+	uvicorn src.layer4_bots.api:app --host 0.0.0.0 --port 8003 --reload
+
+layer4-dashboard:
+	streamlit run src/layer4_bots/dashboard.py --server.port 8501
+
+layer4-telegram:
+	python -m src.layer4_bots.telegram_bot
+
+layer4-test:
+	python pipelines/pipeline_layer4.py
 
 test:
 	python -m pytest tests/ -v --tb=short

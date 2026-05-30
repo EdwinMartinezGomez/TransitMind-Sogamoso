@@ -1,0 +1,52 @@
+[
+  {
+    "user_id": "seed_001",
+    "role": "despachador",
+    "corridors": ["av_castellana_entrada", "av_castellana_salida"],
+    "peak_hours": [5, 6, 7, 8, 16, 17, 18],
+    "query_count": 0,
+    "is_seed": true,
+    "registered_at": "2024-01-01T00:00:00Z",
+    "last_active": "2024-01-01T00:00:00Z"
+  },
+  {
+    "user_id": "seed_002",
+    "role": "despachador",
+    "corridors": ["carrera_11_norte", "carrera_11_sur", "calle_14_centro_historico"],
+    "peak_hours": [6, 7, 8, 9, 17, 18, 19],
+    "query_count": 0,
+    "is_seed": true,
+    "registered_at": "2024-01-01T00:00:00Z",
+    "last_active": "2024-01-01T00:00:00Z"
+  },
+  {
+    "user_id": "seed_003",
+    "role": "conductor",
+    "corridors": ["carrera_11_norte", "av_castellana_entrada"],
+    "peak_hours": [6, 7, 8, 17, 18],
+    "query_count": 0,
+    "is_seed": true,
+    "registered_at": "2024-01-01T00:00:00Z",
+    "last_active": "2024-01-01T00:00:00Z"
+  },
+  {
+    "user_id": "seed_004",
+    "role": "conductor",
+    "corridors": ["acceso_morca", "calle_14_centro_historico"],
+    "peak_hours": [5, 6, 7, 12, 13, 17, 18],
+    "query_count": 0,
+    "is_seed": true,
+    "registered_at": "2024-01-01T00:00:00Z",
+    "last_active": "2024-01-01T00:00:00Z"
+  },
+  {
+    "user_id": "seed_005",
+    "role": "lider_barrio",
+    "corridors": ["carrera_11_sur", "calle_14_centro_historico", "carrera_11_norte"],
+    "peak_hours": [7, 8, 12, 17, 18, 19],
+    "query_count": 0,
+    "is_seed": true,
+    "registered_at": "2024-01-01T00:00:00Z",
+    "last_active": "2024-01-01T00:00:00Z"
+  }
+]

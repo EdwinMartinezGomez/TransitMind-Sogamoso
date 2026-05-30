@@ -64,7 +64,11 @@ langchain-core>=0.2.0
 typing-extensions>=4.9.0
 
 # ============================================
-# Future (Layer 4, uncomment when needed)
+# Capa 4 — Bots, Dashboard y Grafo Social
 # ============================================
-# python-telegram-bot>=21.0
-# streamlit>=1.32.0
+python-telegram-bot>=21.0       # Bot Telegram
+streamlit>=1.32.0               # Dashboard SecMov
+networkx>=3.2.0                 # Grafo social en memoria
+EoN>=1.1.0                      # Simulación SIR epidémica
+python-louvain>=0.16            # Detección de comunidades (Louvain)
+# neo4j>=5.0.0                  # Opcional: persistencia producción

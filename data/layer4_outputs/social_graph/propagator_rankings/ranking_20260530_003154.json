@@ -1,0 +1,229 @@
+[
+  {
+    "user_id": "seed_002",
+    "score": 0.452174,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "seed_003",
+    "score": 0.434783,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "test_user_008",
+    "score": 0.419928,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "test_user_018",
+    "score": 0.419928,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "test_user_009",
+    "score": 0.41721,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "test_user_019",
+    "score": 0.41721,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "test_user_001",
+    "score": 0.41558,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "test_user_011",
+    "score": 0.41558,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "seed_005",
+    "score": 0.415217,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "test_user_002",
+    "score": 0.415036,
+    "role": "lider_barrio",
+    "corridors": [
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "test_user_012",
+    "score": 0.415036,
+    "role": "lider_barrio",
+    "corridors": [
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "test_user_004",
+    "score": 0.410688,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "test_user_014",
+    "score": 0.410688,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "test_user_005",
+    "score": 0.410507,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "test_user_015",
+    "score": 0.410507,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "test_user_006",
+    "score": 0.407971,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "test_user_016",
+    "score": 0.407971,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "test_user_007",
+    "score": 0.405797,
+    "role": "lider_barrio",
+    "corridors": [
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "test_user_017",
+    "score": 0.405797,
+    "role": "lider_barrio",
+    "corridors": [
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "test_user_003",
+    "score": 0.40308,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "test_user_013",
+    "score": 0.40308,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "test_user_000",
+    "score": 0.400725,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "test_user_010",
+    "score": 0.400725,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "seed_004",
+    "score": 0.327273,
+    "role": "conductor",
+    "corridors": [
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "seed_001",
+    "score": 0.263241,
+    "role": "despachador",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  }
+]
