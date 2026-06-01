@@ -8,7 +8,9 @@ Orchestrates alert engine, social graph, and bot communication.
 from __future__ import annotations
 
 import asyncio
+import os
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import httpx
@@ -21,6 +23,7 @@ from src.shared.utils import load_yaml_config
 from src.layer4_bots.alert_engine import AlertEngine
 from src.layer4_bots.social_graph import SocialGraphModule
 from src.layer4_bots.whatsapp_handler import WhatsAppHandler
+from src.layer4_bots.telegram_bot import TransitMindTelegramBot
 
 logger = get_logger("layer4.api")
 
@@ -84,14 +87,34 @@ _config: Optional[dict] = None
 _alert_engine: Optional[AlertEngine] = None
 _graph: Optional[SocialGraphModule] = None
 _wa_handler: Optional[WhatsAppHandler] = None
+_tg_bot: Optional[TransitMindTelegramBot] = None
 _engine_task: Optional[asyncio.Task] = None
 
 
 def _get_config() -> dict:
     global _config
     if _config is None:
+        # Load .env file into os.environ
+        _load_dotenv()
         _config = load_yaml_config("layer4_config.yaml")
     return _config
+
+
+def _load_dotenv():
+    """Load .env file from project root into os.environ."""
+    env_path = Path(__file__).resolve().parent.parent.parent / ".env"
+    if not env_path.exists():
+        return
+    with open(env_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in os.environ:
+                os.environ[key] = value
 
 
 def _get_engine() -> AlertEngine:
@@ -122,8 +145,8 @@ def _get_wa() -> WhatsAppHandler:
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize all components and start AlertEngine in background."""
-    global _engine_task
+    """Initialize all components and start AlertEngine + Telegram Bot in background."""
+    global _engine_task, _tg_bot
 
     config = _get_config()
     engine = _get_engine()
@@ -137,22 +160,43 @@ async def startup_event():
 
     # Start alert engine in background
     async def _send_callback(plan: dict):
-        """Callback: log alert plans. Bots handle their own sending."""
+        """Callback: send alerts via Telegram bot if available."""
         n = len(plan.get("alerts_to_send", []))
         logger.info("alert_callback", alerts=n, cycle_id=plan.get("cycle_id"))
+        # Forward alerts to Telegram bot
+        if _tg_bot and _tg_bot._enabled:
+            for alert in plan.get("alerts_to_send", []):
+                try:
+                    await _tg_bot.send_alert(alert)
+                except Exception as e:
+                    logger.warning("telegram_alert_forward_failed", error=str(e))
 
     _engine_task = asyncio.create_task(engine.run_forever(_send_callback))
+
+    # Start Telegram bot in background
+    _tg_bot = TransitMindTelegramBot(config)
+    if _tg_bot._enabled:
+        try:
+            await _tg_bot.run_async()
+            logger.info("telegram_bot_started_with_api")
+        except Exception as e:
+            logger.warning("telegram_bot_startup_failed", error=str(e))
+    else:
+        logger.info("telegram_bot_not_enabled")
+
     logger.info("layer4_startup_complete", port=config.get("layer4_api", {}).get("port", 8003))
 
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    """Stop alert engine on shutdown."""
-    global _engine_task
+    """Stop alert engine and Telegram bot on shutdown."""
+    global _engine_task, _tg_bot
     engine = _get_engine()
     engine.stop()
     if _engine_task:
         _engine_task.cancel()
+    if _tg_bot:
+        await _tg_bot.stop_async()
     logger.info("layer4_shutdown")
 
 
@@ -248,7 +292,7 @@ async def health_check():
     except Exception:
         pass
 
-    tg_enabled = config.get("telegram", {}).get("enabled", False)
+    tg_connected = bool(_tg_bot and _tg_bot._enabled and _tg_bot._app)
     wa_enabled = config.get("whatsapp", {}).get("enabled", False)
 
     status = "ok" if layer3_ok else "degraded"
@@ -256,7 +300,7 @@ async def health_check():
     return HealthResponse(
         status=status,
         alert_engine_running=engine._running,
-        telegram_connected=tg_enabled,
+        telegram_connected=tg_connected,
         whatsapp_connected=wa_enabled,
         graph_nodes=graph._graph.number_of_nodes(),
         layer3_reachable=layer3_ok,

@@ -185,6 +185,9 @@ $dashboardJob = Start-Job -ScriptBlock {
 }
 Write-Ok "Dashboard iniciado (Job ID: $($dashboardJob.Id))"
 
+# Nota: El bot de Telegram se inicia automaticamente dentro del Layer 4 API (api.py startup)
+# No se necesita un job separado.
+
 # Lanzar API Layer 1 con uvicorn en foreground (para ver logs en tiempo real)
 if (-not $Layer2Only) {
     Write-Step "Iniciando API Layer 1 en puerto 8000..."
@@ -203,6 +206,7 @@ Write-Host "  |  Layer 3 Docs: http://localhost:8002/docs   |" -ForegroundColor 
 Write-Host "  |  Layer 4 API:  http://localhost:8003        |" -ForegroundColor Magenta
 Write-Host "  |  Layer 4 Docs: http://localhost:8003/docs   |" -ForegroundColor Magenta
 Write-Host "  |  Dashboard:    http://localhost:8501        |" -ForegroundColor Magenta
+Write-Host "  |  Telegram Bot: polling activo               |" -ForegroundColor Magenta
 Write-Host "  |                                             |" -ForegroundColor Magenta
 Write-Host "  |  Presiona Ctrl+C para detener todo          |" -ForegroundColor Magenta
 Write-Host "  +---------------------------------------------+" -ForegroundColor Magenta

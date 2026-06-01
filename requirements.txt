@@ -66,7 +66,8 @@ typing-extensions>=4.9.0
 # ============================================
 # Capa 4 — Bots, Dashboard y Grafo Social
 # ============================================
-python-telegram-bot>=21.0       # Bot Telegram
+python-telegram-bot>=22.7       # Bot Telegram (Actualizado)
+nest-asyncio>=1.6.0             # Soporte loop asíncrono anidado para Telegram bot y FastAPI
 streamlit>=1.32.0               # Dashboard SecMov
 networkx>=3.2.0                 # Grafo social en memoria
 EoN>=1.1.0                      # Simulación SIR epidémica

@@ -9,7 +9,6 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 import yaml
-import torch
 
 
 def get_project_root() -> Path:
@@ -80,6 +79,7 @@ def get_device() -> str:
     Returns:
         'cuda' if GPU is available, otherwise 'cpu'.
     """
+    import torch
     if torch.cuda.is_available():
         return "cuda"
     return "cpu"
@@ -94,6 +94,7 @@ def set_seed(seed: int = 42) -> None:
     """
     import numpy as np
     import random
+    import torch
 
     random.seed(seed)
     np.random.seed(seed)

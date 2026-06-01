@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import asyncio
 import os
+import traceback
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Set
 
@@ -274,6 +275,104 @@ class TransitMindTelegramBot:
             "Si cambias de opinión, escribe /start para volver."
         )
 
+    async def _ayuda_handler(self, update, ctx):
+        """Show all available commands."""
+        is_op = self._is_operator(update.effective_chat.id)
+        msg = (
+            "📖 *Comandos disponibles*\n\n"
+            "👤 *Ciudadanos:*\n"
+            "/start — Registrarse y elegir corredor\n"
+            "/estado — Ver estado del tráfico\n"
+            "/rutas — Rutas alternativas activas\n"
+            "/suscribir — Suscribirse a un corredor\n"
+            "/mizona — Ver mis suscripciones\n"
+            "/cancelar — Dejar de recibir alertas\n"
+            "/ayuda — Mostrar esta ayuda\n"
+        )
+        if is_op:
+            msg += (
+                "\n🔧 *Operadores:*\n"
+                "/ciclo — Ejecutar ciclo de decisión\n"
+                "/sistema — Estado de todos los servicios\n"
+                "/reporte — Resumen ejecutivo del último ciclo\n"
+            )
+        await update.message.reply_text(msg, parse_mode="Markdown")
+
+    async def _mizona_handler(self, update, ctx):
+        """Show user's current corridor subscriptions."""
+        chat_id = update.effective_chat.id
+        if chat_id not in self._user_subs or not self._user_subs[chat_id].get("corridors"):
+            await update.message.reply_text(
+                "📍 No estás suscrito a ningún corredor.\n"
+                "Usa /suscribir para elegir uno."
+            )
+            return
+
+        corrs = self._user_subs[chat_id]["corridors"]
+        names_map = dict(INTERSECTION_OPTIONS)
+        lines = [f"  • {names_map.get(c, c)}" for c in corrs]
+        msg = "📍 *Mis corredores suscritos:*\n\n" + "\n".join(lines)
+        msg += "\n\nUsa /suscribir para agregar más o /cancelar para dejar de recibir alertas."
+        await update.message.reply_text(msg, parse_mode="Markdown")
+
+    async def _reporte_handler(self, update, ctx):
+        """OPERATORS ONLY: Show executive summary of latest cycle."""
+        chat_id = update.effective_chat.id
+        if not self._is_operator(chat_id):
+            await update.message.reply_text("⛔ Este comando es solo para operadores.")
+            return
+
+        try:
+            async with httpx.AsyncClient(timeout=10) as client:
+                resp = await client.get(f"{self._layer3_url}/latest-decision")
+                if resp.status_code != 200:
+                    await update.message.reply_text("⚠️ No hay datos del último ciclo.")
+                    return
+                data = resp.json()
+        except Exception as e:
+            await update.message.reply_text("⚠️ No pude conectarme al sistema.")
+            logger.error("reporte_fetch_failed", error=str(e))
+            return
+
+        decisions = data.get("decisions", [])
+        monitor = data.get("monitor_report", {})
+        tmc = data.get("global_tmc_reduction_percent", 0)
+        n_total = len(decisions)
+        n_crit = sum(1 for d in decisions if d.get("severity") in ("alta", "critica"))
+        n_media = sum(1 for d in decisions if d.get("severity") == "media")
+        n_baja = sum(1 for d in decisions if d.get("severity") == "baja")
+        agents = monitor.get("agents_healthy", 0)
+        anomalies = monitor.get("anomalies_detected", 0)
+        cycle_ms = monitor.get("cycle_duration_ms", 0)
+        cycle_id = str(data.get("cycle_id", "—"))[:8]
+        ts = data.get("timestamp", "—")
+
+        msg = (
+            f"📊 *Reporte Ejecutivo TransitMind*\n\n"
+            f"🆔 Ciclo: `{cycle_id}`\n"
+            f"🕐 Timestamp: {ts}\n\n"
+            f"📍 Intersecciones: {n_total}\n"
+            f"  🚨 Críticas/Altas: {n_crit}\n"
+            f"  🟡 Medias: {n_media}\n"
+            f"  🟢 Bajas: {n_baja}\n\n"
+            f"📉 Reducción TMC: {tmc:.1f}%\n"
+            f"🤖 Agentes: {agents}/7\n"
+        )
+        if anomalies > 0:
+            msg += f"⚠️ Anomalías: {anomalies}\n"
+        msg += f"⏱ Duración ciclo: {cycle_ms}ms\n"
+
+        # Graph stats
+        graph_summary = self._graph.get_graph_summary()
+        msg += (
+            f"\n🕸️ *Grafo Social:*\n"
+            f"  Usuarios: {graph_summary.get('total_users', 0)}\n"
+            f"  Aristas: {graph_summary.get('edges', 0)}\n"
+            f"  Comunidades: {graph_summary.get('communities_detected', 0)}"
+        )
+
+        await update.message.reply_text(msg, parse_mode="Markdown")
+
     async def _ciclo_handler(self, update, ctx):
         """OPERATORS ONLY: Execute POST /run-cycle."""
         chat_id = update.effective_chat.id
@@ -318,6 +417,7 @@ class TransitMindTelegramBot:
             "Capa 1 (TimeGAN)": "http://localhost:8000",
             "Capa 2 (LLM+RAG)": "http://localhost:8001",
             "Capa 3 (Agentes)": "http://localhost:8002",
+            "Capa 4 (Bots)": "http://localhost:8003",
         }
 
         msg = "📊 *Sistema TransitMind Sogamoso*\n\n"
@@ -391,6 +491,21 @@ class TransitMindTelegramBot:
                 return cid
         return None
 
+    async def _error_handler(self, update, ctx):
+        """Global error handler for unhandled exceptions."""
+        logger.error(
+            "telegram_unhandled_error",
+            error=str(ctx.error),
+            update=str(update) if update else "N/A",
+        )
+        if update and update.effective_message:
+            try:
+                await update.effective_message.reply_text(
+                    "⚠️ Ocurrió un error procesando tu solicitud. Intenta de nuevo."
+                )
+            except Exception:
+                pass
+
     def setup_handlers(self):
         """Register all handlers in self._app."""
         from telegram.ext import CommandHandler, CallbackQueryHandler
@@ -400,25 +515,89 @@ class TransitMindTelegramBot:
         self._app.add_handler(CommandHandler("rutas", self._rutas_handler))
         self._app.add_handler(CommandHandler("suscribir", self._suscribir_handler))
         self._app.add_handler(CommandHandler("cancelar", self._cancelar_handler))
+        self._app.add_handler(CommandHandler("ayuda", self._ayuda_handler))
+        self._app.add_handler(CommandHandler("help", self._ayuda_handler))
+        self._app.add_handler(CommandHandler("mizona", self._mizona_handler))
+        self._app.add_handler(CommandHandler("reporte", self._reporte_handler))
         self._app.add_handler(CommandHandler("ciclo", self._ciclo_handler))
         self._app.add_handler(CommandHandler("sistema", self._sistema_handler))
         self._app.add_handler(CallbackQueryHandler(self._corridor_callback, pattern=r"^sub_"))
+        self._app.add_error_handler(self._error_handler)
 
     def run(self):
-        """Start the bot in polling mode."""
+        """Start the bot in polling mode (blocking)."""
         if not self._enabled:
             logger.warning("telegram_bot_disabled", reason="no token or disabled in config")
             return
 
         from telegram.ext import Application
 
-        self._app = Application.builder().token(self._token).build()
+        self._app = (
+            Application.builder()
+            .token(self._token)
+            .connect_timeout(30)
+            .read_timeout(30)
+            .write_timeout(30)
+            .pool_timeout(10)
+            .build()
+        )
         self.setup_handlers()
         logger.info("telegram_bot_starting")
         self._app.run_polling(drop_pending_updates=True)
 
+    async def run_async(self):
+        """Start the bot in polling mode (non-blocking, for embedding in asyncio loop)."""
+        if not self._enabled:
+            logger.warning("telegram_bot_disabled", reason="no token or disabled in config")
+            return
+
+        from telegram.ext import Application
+
+        self._app = (
+            Application.builder()
+            .token(self._token)
+            .connect_timeout(30)
+            .read_timeout(30)
+            .write_timeout(30)
+            .pool_timeout(10)
+            .build()
+        )
+        self.setup_handlers()
+        logger.info("telegram_bot_starting_async")
+
+        await self._app.initialize()
+        await self._app.start()
+        await self._app.updater.start_polling(drop_pending_updates=True)
+        logger.info("telegram_bot_polling_started")
+
+    async def stop_async(self):
+        """Stop the bot gracefully."""
+        if self._app:
+            try:
+                await self._app.updater.stop()
+                await self._app.stop()
+                await self._app.shutdown()
+                logger.info("telegram_bot_stopped")
+            except Exception as e:
+                logger.warning("telegram_bot_stop_error", error=str(e))
+
 
 if __name__ == "__main__":
+    import os
+    from pathlib import Path
+    # Load .env
+    env_path = Path(__file__).resolve().parent.parent.parent / ".env"
+    if env_path.exists():
+        with open(env_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, _, value = line.partition("=")
+                key = key.strip()
+                value = value.strip().strip('"').strip("'")
+                if key and key not in os.environ:
+                    os.environ[key] = value
     from src.shared.utils import load_yaml_config
     config = load_yaml_config("layer4_config.yaml")
     bot = TransitMindTelegramBot(config)
