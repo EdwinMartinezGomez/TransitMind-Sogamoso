@@ -77,11 +77,18 @@ def get_device() -> str:
     Detect the best available device for PyTorch.
 
     Returns:
-        'cuda' if GPU is available, otherwise 'cpu'.
+        One of: 'mps', 'cuda', or 'cpu'.
     """
     import torch
+
+    # Prefer Apple's MPS backend on macOS Apple Silicon
+    if getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
+        return "mps"
+
+    # Then CUDA if available
     if torch.cuda.is_available():
         return "cuda"
+
     return "cpu"
 
 
@@ -99,8 +106,18 @@ def set_seed(seed: int = 42) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
+
+    # CUDA: set all devices
+    try:
+        if torch.cuda.is_available():
+            torch.cuda.manual_seed_all(seed)
+    except Exception:
+        # Fail-safe: some builds/environments may not expose CUDA APIs
+        pass
+
+    # For reproducibility across backends, enable deterministic algorithms if requested
+    # (left commented — enable only if needed and after testing performance)
+    # torch.use_deterministic_algorithms(True)
 
 
 def get_config(section: Optional[str] = None) -> Dict[str, Any]:
@@ -140,3 +157,52 @@ def format_duration(seconds: float) -> str:
         parts.append(f"{minutes}m")
     parts.append(f"{secs}s")
     return " ".join(parts)
+
+
+def get_autocast(device: str):
+    """
+    Return an autocast context manager appropriate for the device.
+
+    Usage:
+        with get_autocast(device):
+            out = model(x)
+    """
+    try:
+        # torch.autocast accepts a device_type argument in newer PyTorch
+        import torch
+        return torch.autocast(device_type=device)
+    except Exception:
+        # Fallback: no-op context manager
+        from contextlib import nullcontext
+
+        return nullcontext()
+
+
+class _NoOpGradScaler:
+    """A thin no-op stand-in for torch.cuda.amp.GradScaler on unsupported devices."""
+
+    def scale(self, loss):
+        return loss
+
+    def step(self, optimizer):
+        optimizer.step()
+
+    def unscale_(self, optimizer):
+        return
+
+    def update(self):
+        return
+
+
+def get_grad_scaler(device: str):
+    """
+    Return a GradScaler instance when available for the device, otherwise a no-op scaler.
+    """
+    try:
+        import torch
+        if device == "cuda":
+            return torch.cuda.amp.GradScaler()
+    except Exception:
+        pass
+
+    return _NoOpGradScaler()

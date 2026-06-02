@@ -44,6 +44,37 @@ pip install -r requirements.txt
 .\run.ps1 -ServicesOnly
 ```
 
+## 💻 macOS Apple Silicon (M1/M2/M4) — instalación recomendada
+
+Si vas a entrenar en una Mac con chip Apple (M1/M2/M4), usa el backend MPS de PyTorch para aprovechar la GPU integrada.
+
+1. Instalar Miniforge (arm64) y crear entorno:
+
+```bash
+curl -L -o Miniforge3-MacOSX-arm64.sh https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh
+bash Miniforge3-MacOSX-arm64.sh
+conda create -n tm-m4 python=3.11
+conda activate tm-m4
+```
+
+2. Instalar PyTorch con soporte MPS (ver instrucciones oficiales si cambian):
+
+```bash
+conda install -c pytorch -c conda-forge pytorch torchvision torchaudio
+```
+
+3. (Opcional) Si usas TensorFlow en alguna parte del proyecto:
+
+```bash
+pip install tensorflow-macos
+pip install tensorflow-metal
+```
+
+Notas:
+- Evita instalar ruedas `x86` o ejecutar bajo Rosetta — usa arm64/conda-forge.
+- Los contenedores Docker Linux no exponen MPS; el entrenamiento en Mac Apple Silicon debe realizarse nativamente.
+- Para reproducibilidad en MPS, ejecuta pruebas de rendimiento y ajusta `DataLoader(num_workers=...)` y `torch.set_num_threads()`.
+
 ## 🤖 Bot de Telegram
 
 El bot permite a ciudadanos y operadores interactuar con el sistema:

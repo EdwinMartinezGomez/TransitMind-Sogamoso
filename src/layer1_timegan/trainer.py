@@ -24,7 +24,15 @@ from torch.utils.data import DataLoader, TensorDataset
 from tqdm import tqdm
 
 from src.shared.logger import setup_logger
-from src.shared.utils import ensure_dir, format_duration, get_config, resolve_path
+from src.shared.utils import (
+    ensure_dir,
+    format_duration,
+    get_config,
+    resolve_path,
+    get_device,
+    get_autocast,
+    get_grad_scaler,
+)
 
 logger = setup_logger("trainer")
 
@@ -41,7 +49,7 @@ class TimeGANTrainer:
         self,
         components: Dict[str, nn.Module],
         config: Optional[Dict] = None,
-        device: str = "cpu",
+        device: Optional[str] = None,
     ):
         """
         Initialize the TimeGAN trainer.
@@ -56,7 +64,16 @@ class TimeGANTrainer:
             config = get_config()
 
         self.config = config
+
+        # Select device: use passed value or auto-detect (mps -> cuda -> cpu)
+        if device is None:
+            device = get_device()
+
         self.device = torch.device(device)
+
+        # Mixed precision helpers (no-op on unsupported devices)
+        self.scaler = get_grad_scaler(device)
+        self._autocast = lambda: get_autocast(self.device.type)
 
         # Unpack components and move to device
         self.embedder = components["embedder"].to(self.device)
@@ -177,17 +194,17 @@ class TimeGANTrainer:
             for (batch,) in dataloader:
                 batch = batch.to(self.device)
 
-                # Forward pass
-                h = self.embedder(batch)
-                x_hat = self.recovery(h)
+                # Forward + backward with optional autocast / GradScaler
+                with self._autocast():
+                    h = self.embedder(batch)
+                    x_hat = self.recovery(h)
+                    loss = self.mse_loss(x_hat, batch)
 
-                # Reconstruction loss
-                loss = self.mse_loss(x_hat, batch)
-
-                # Backward pass
                 self.opt_autoencoder.zero_grad()
-                loss.backward()
-                self.opt_autoencoder.step()
+                scaled = self.scaler.scale(loss)
+                scaled.backward()
+                self.scaler.step(self.opt_autoencoder)
+                self.scaler.update()
 
                 epoch_loss += loss.item()
                 n_batches += 1
@@ -256,18 +273,18 @@ class TimeGANTrainer:
                     h_real = self.embedder(batch)
 
                 # Supervised prediction: predict h_{t+1} from h_{t}
-                h_supervised = self.supervisor(h_real)
+                with self._autocast():
+                    h_supervised = self.supervisor(h_real)
+                    loss = self.mse_loss(
+                        h_supervised[:, :-1, :],  # Predicted h_{t+1}
+                        h_real[:, 1:, :],         # Actual h_{t+1}
+                    )
 
-                # Supervised loss: compare shifted sequences
-                loss = self.mse_loss(
-                    h_supervised[:, :-1, :],  # Predicted h_{t+1}
-                    h_real[:, 1:, :],         # Actual h_{t+1}
-                )
-
-                # Backward pass
                 self.opt_supervisor.zero_grad()
-                loss.backward()
-                self.opt_supervisor.step()
+                scaled = self.scaler.scale(loss)
+                scaled.backward()
+                self.scaler.step(self.opt_supervisor)
+                self.scaler.update()
 
                 epoch_loss += loss.item()
                 n_batches += 1
@@ -338,74 +355,70 @@ class TimeGANTrainer:
                 batch_size = batch.size(0)
 
                 # === Generate fake data ===
-                z = torch.randn(
-                    batch_size, self.seq_len, self.noise_dim, device=self.device
-                )
+                    z = torch.randn(
+                        batch_size, self.seq_len, self.noise_dim, device=self.device
+                    )
 
-                # Real embeddings
-                h_real = self.embedder(batch)
+                    # === Discriminator step ===
+                    with self._autocast():
+                        h_real = self.embedder(batch)
+                        h_fake_raw = self.generator(z)
+                        h_fake = self.supervisor(h_fake_raw)
 
-                # Fake latent from generator + supervisor
-                h_fake_raw = self.generator(z)
-                h_fake = self.supervisor(h_fake_raw)
+                        real_labels = torch.ones(batch_size, 1, device=self.device)
+                        fake_labels = torch.zeros(batch_size, 1, device=self.device)
 
-                # Labels
-                real_labels = torch.ones(batch_size, 1, device=self.device)
-                fake_labels = torch.zeros(batch_size, 1, device=self.device)
+                        d_real = self.discriminator(h_real.detach())
+                        d_fake = self.discriminator(h_fake.detach())
 
-                # === Train Discriminator ===
-                d_real = self.discriminator(h_real.detach())
-                d_fake = self.discriminator(h_fake.detach())
+                        d_loss_real = self.bce_loss(d_real, real_labels)
+                        d_loss_fake = self.bce_loss(d_fake, fake_labels)
+                        d_loss = d_loss_real + d_loss_fake
 
-                d_loss_real = self.bce_loss(d_real, real_labels)
-                d_loss_fake = self.bce_loss(d_fake, fake_labels)
-                d_loss = d_loss_real + d_loss_fake
+                    self.opt_discriminator.zero_grad()
+                    scaled = self.scaler.scale(d_loss)
+                    scaled.backward()
+                    self.scaler.step(self.opt_discriminator)
+                    self.scaler.update()
 
-                self.opt_discriminator.zero_grad()
-                d_loss.backward()
-                self.opt_discriminator.step()
+                    # === Generator step ===
+                    with self._autocast():
+                        h_real = self.embedder(batch)
+                        h_fake_raw = self.generator(z)
+                        h_fake = self.supervisor(h_fake_raw)
 
-                # === Train Generator (+ Embedder + Recovery + Supervisor) ===
-                # Re-embed and regenerate (fresh computation graph)
-                h_real = self.embedder(batch)
-                h_fake_raw = self.generator(z)
-                h_fake = self.supervisor(h_fake_raw)
+                        d_fake_for_g = self.discriminator(h_fake)
+                        g_adversarial_loss = self.bce_loss(d_fake_for_g, real_labels)
 
-                # Adversarial loss: fool discriminator
-                d_fake_for_g = self.discriminator(h_fake)
-                g_adversarial_loss = self.bce_loss(d_fake_for_g, real_labels)
+                        h_supervised = self.supervisor(h_real)
+                        supervised_loss = self.mse_loss(
+                            h_supervised[:, :-1, :],
+                            h_real[:, 1:, :],
+                        )
 
-                # Supervised loss
-                h_supervised = self.supervisor(h_real)
-                supervised_loss = self.mse_loss(
-                    h_supervised[:, :-1, :],
-                    h_real[:, 1:, :],
-                )
+                        x_hat = self.recovery(h_real)
+                        reconstruction_loss = self.mse_loss(x_hat, batch)
 
-                # Reconstruction loss
-                x_hat = self.recovery(h_real)
-                reconstruction_loss = self.mse_loss(x_hat, batch)
+                        mean_loss = torch.mean(
+                            torch.abs(torch.mean(h_real, dim=0) - torch.mean(h_fake, dim=0))
+                        )
+                        var_loss = torch.mean(
+                            torch.abs(torch.var(h_real, dim=0) - torch.var(h_fake, dim=0))
+                        )
 
-                # Moment matching loss (mean + variance alignment)
-                mean_loss = torch.mean(
-                    torch.abs(torch.mean(h_real, dim=0) - torch.mean(h_fake, dim=0))
-                )
-                var_loss = torch.mean(
-                    torch.abs(torch.var(h_real, dim=0) - torch.var(h_fake, dim=0))
-                )
+                        g_loss = (
+                            g_adversarial_loss
+                            + self.gamma * supervised_loss
+                            + 10.0 * reconstruction_loss
+                            + mean_loss
+                            + var_loss
+                        )
 
-                # Combined generator loss
-                g_loss = (
-                    g_adversarial_loss
-                    + self.gamma * supervised_loss
-                    + 10.0 * reconstruction_loss
-                    + mean_loss
-                    + var_loss
-                )
-
-                self.opt_generator.zero_grad()
-                g_loss.backward()
-                self.opt_generator.step()
+                    self.opt_generator.zero_grad()
+                    scaled = self.scaler.scale(g_loss)
+                    scaled.backward()
+                    self.scaler.step(self.opt_generator)
+                    self.scaler.update()
 
                 d_losses.append(d_loss.item())
                 g_losses.append(g_loss.item())
@@ -763,6 +776,15 @@ def create_dataloader(
     Returns:
         PyTorch DataLoader.
     """
-    tensor = torch.FloatTensor(sequences)
+    tensor = torch.tensor(sequences, dtype=torch.float32)
     dataset = TensorDataset(tensor)
-    return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, drop_last=True)
+
+    # Default num_workers tuned for Apple Silicon/desktop: use small number (2)
+    # Users can override by constructing DataLoader manually if needed.
+    return DataLoader(
+        dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        drop_last=True,
+        num_workers=2,
+    )
