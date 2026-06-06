@@ -97,30 +97,134 @@ def render_intersection_card(decision: dict, message: str, config: dict):
         st.divider()
 
 
-def render_graph_section(graph_summary: dict):
-    """Visualize social graph stats and top propagators."""
-    st.subheader("🕸️ Grafo Social — Red de Usuarios")
+def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dict):
+    """Expanded Social Graph section with visualization tabs."""
+    from src.layer4_bots.graph_visualizer import (
+        build_graphviz_dot,
+        build_edge_explanation_table,
+        build_propagator_explanation_table,
+        build_community_subgraph_dot,
+    )
 
+    st.subheader("🕸️ Grafo Social — Red de Propagadores de Alertas")
+
+    # --- Metrics ---
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Usuarios", graph_summary.get("total_users", 0))
-    col2.metric("Aristas", graph_summary.get("edges", 0))
-    col3.metric("Comunidades", graph_summary.get("communities_detected", 0))
-    col4.metric("Activos 24h", graph_summary.get("active_last_24h", 0))
+    col1.metric("👥 Usuarios", graph_summary.get("total_users", 0))
+    col2.metric("🔗 Conexiones", graph_summary.get("edges", 0))
+    col3.metric("🏘️ Comunidades", graph_summary.get("communities_detected", 0))
+    col4.metric("⚡ Activos 24h", graph_summary.get("active_last_24h", 0))
 
-    # Top propagators table
-    top = graph_summary.get("top_propagators", [])
-    if top:
-        st.markdown("**Top 5 propagadores:**")
-        df = pd.DataFrame(top)
-        if "corridors" in df.columns:
-            df["corridors"] = df["corridors"].apply(lambda x: ", ".join(x) if isinstance(x, list) else str(x))
-        if "score" in df.columns:
-            df["score"] = df["score"].apply(lambda x: f"{x:.4f}")
-        st.dataframe(df, use_container_width=True, hide_index=True)
+    # --- Tabs ---
+    tab_viz, tab_edges, tab_props, tab_comm = st.tabs([
+        "🔵 Visualización",
+        "🔗 Por qué están conectados",
+        "🏆 Por qué son propagadores",
+        "🏘️ Comunidades de movilidad",
+    ])
+
+    with tab_viz:
+        st.markdown(
+            "**¿Qué muestra este grafo?**\n"
+            "Cada nodo es un usuario del bot. Las conexiones representan "
+            "similitud en corredores de movilidad, horarios de consulta "
+            "y co-consultas frecuentes. Los nodos más grandes tienen mayor "
+            "score como propagadores de alertas.\n\n"
+            "🔴 Despachadores · 🔵 Conductores · 🟢 Líderes de barrio · ⚫ Vecinos"
+        )
+        n_nodes = st.slider(
+            "Nodos a visualizar", 10, 60, 30, step=5,
+            help="Muestra los N usuarios con mayor score de propagador",
+        )
+        show_labels = st.checkbox(
+            "Mostrar razón de conexión en aristas", value=False,
+            help="Si hay muchas aristas puede saturar el grafo",
+        )
+        dot_code = build_graphviz_dot(
+            sg._graph, sg._propagator_ranking,
+            top_n_nodes=n_nodes, show_edge_labels=show_labels,
+        )
+        if dot_code:
+            st.graphviz_chart(dot_code, use_container_width=True)
+        else:
+            st.info(
+                "El grafo aún no tiene suficientes nodos para visualizar. "
+                "Ejecuta el script de ingesta masiva primero."
+            )
+
+        with st.expander("⚙️ Parámetros del modelo (paper Sección III)"):
+            sg_cfg = config.get("social_graph", {})
+            col_a, col_b, col_c = st.columns(3)
+            col_a.metric("w₁ Corredor", sg_cfg.get("w1_corridor", 0.5),
+                         help="Peso de similitud de corredor vial (Jaccard)")
+            col_b.metric("w₂ Horario", sg_cfg.get("w2_temporal", 0.3),
+                         help="Peso de similitud temporal (coseno)")
+            col_c.metric("w₃ Co-consulta", sg_cfg.get("w3_coconsult", 0.2),
+                         help="Peso de co-consultas simultáneas")
+            col_a.metric("α betweenness", sg_cfg.get("alpha", 0.6),
+                         help="Peso de centralidad de intermediación en el score")
+            col_b.metric("θW umbral", sg_cfg.get("edge_threshold", 0.3),
+                         help="Peso mínimo para crear arista")
+            col_c.metric("K primera ola", sg_cfg.get("first_wave_k", 5),
+                         help="Propagadores en la primera ola de alertas")
+
+    with tab_edges:
+        st.markdown(
+            "**¿Por qué están conectados estos usuarios?**\n"
+            "Cada fila explica la razón principal de una conexión: "
+            "si comparten corredor vial, horario de desplazamiento, "
+            "o consultan frecuentemente las mismas intersecciones."
+        )
+        if sg._graph.number_of_edges() > 0:
+            edge_df = build_edge_explanation_table(sg._graph, sg._propagator_ranking, top_n=20)
+            st.dataframe(edge_df, use_container_width=True, hide_index=True)
+            if not edge_df.empty and "Razón principal" in edge_df.columns:
+                reason_counts = edge_df["Razón principal"].value_counts()
+                st.bar_chart(reason_counts, color="#3b82f6", use_container_width=True)
+                st.caption("Distribución de razones de conexión entre usuarios")
+        else:
+            st.info("Sin aristas aún. Registra más usuarios o ejecuta el script de ingesta.")
+
+    with tab_props:
+        st.markdown(
+            "**¿Por qué son buenos propagadores?**\n"
+            "Un buen propagador tiene alta *centralidad de intermediación* "
+            "(es puente entre grupos) o está en capas *k-shell* altas "
+            "(rodeado de vecinos densamente conectados).\n\n"
+            "score(v) = 0.6 × BC_norm(v) + 0.4 × ks_norm(v)"
+        )
+        if sg._propagator_ranking:
+            prop_df = build_propagator_explanation_table(
+                sg._graph, sg._propagator_ranking, top_n=10,
+            )
+            st.dataframe(prop_df, use_container_width=True, hide_index=True)
+            scores = list(sg._propagator_ranking.values())
+            if scores:
+                score_df = pd.DataFrame({"Score": sorted(scores, reverse=True)})
+                st.line_chart(score_df, use_container_width=True)
+                st.caption("Distribución de scores de propagadores (mayor = mejor)")
+        else:
+            st.info("Ejecuta compute_centrality() primero (desde el script de ingesta).")
+
+    with tab_comm:
+        st.markdown(
+            "**Comunidades de movilidad detectadas**\n"
+            "Agrupaciones naturales de usuarios que comparten "
+            "corredores y horarios similares. Alertar a un nodo "
+            "de alta centralidad en cada comunidad maximiza la cobertura."
+        )
+        comm_dot = build_community_subgraph_dot(sg._graph, sg._propagator_ranking)
+        if comm_dot:
+            st.graphviz_chart(comm_dot, use_container_width=True)
+        else:
+            st.info(
+                "Instala python-louvain para detección de comunidades: "
+                "`pip install python-louvain`"
+            )
 
     last_update = graph_summary.get("last_centrality_update", "")
     if last_update:
-        st.caption(f"Última actualización de centralidad: {last_update}")
+        st.caption(f"📅 Última actualización de centralidad: {last_update}")
 
 
 # ============================================
@@ -232,15 +336,23 @@ def main():
 
     # ---- Section 3: Social Graph ----
     sg_enabled = config.get("social_graph", {}).get("enabled", False)
+    graph_summary = {"total_users": 0}
     if sg_enabled:
         try:
             graph_module = SocialGraphModule(config)
+            graph_module.maybe_update()
             graph_summary = graph_module.get_graph_summary()
-            render_graph_section(graph_summary)
+            render_graph_section(graph_summary, graph_module, config)
         except Exception as e:
             st.warning(f"⚠️ Error al cargar grafo social: {e}")
 
         st.divider()
+
+    # ---- Section 3B: Impact Charts ----
+    from src.layer4_bots.impact_charts import render_all_impact_charts
+    render_all_impact_charts(graph_summary, config)
+
+    st.divider()
 
     # ---- Section 4: System Health ----
     st.subheader("🏥 Estado del Sistema")

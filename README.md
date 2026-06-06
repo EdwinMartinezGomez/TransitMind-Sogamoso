@@ -1,128 +1,133 @@
-# 🧠 TransitMind Sogamoso
-
-> Sistema de IA para movilidad urbana con TimeGAN y Multi-Agentes  
-> Universidad Pedagógica y Tecnológica de Colombia — UPTC
+# TransitMind Sogamoso
 
 [![CI](https://github.com/EdwinMartinezGomez/TransitMind-Sogamoso/actions/workflows/ci_train.yml/badge.svg)](https://github.com/EdwinMartinezGomez/TransitMind-Sogamoso/actions/workflows/ci_train.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.2%2B-red.svg)](https://pytorch.org/)
 [![MLflow](https://img.shields.io/badge/MLflow-2.10%2B-blue.svg)](https://mlflow.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
----
+Sistema de inteligencia artificial para movilidad urbana orientado al análisis, simulación y comunicación de alertas de tráfico en Sogamoso, Colombia. El proyecto integra generación de datos sintéticos, análisis causal, coordinación multiagente y canales de notificación para usuarios ciudadanos y operadores.
 
-## 📋 Descripción
+## Resumen del proyecto
 
-TransitMind Sogamoso es un sistema de inteligencia artificial para la gestión del tráfico urbano en Sogamoso, Colombia (120,000 habitantes). El proyecto utiliza una arquitectura de 4 capas:
+TransitMind Sogamoso está diseñado como una plataforma modular de cuatro capas:
 
-| Capa | Descripción | Tecnología | Estado |
-|------|-------------|-----------|--------|
-| **Capa 1: TimeGAN** | Generación de datos sintéticos de tráfico | PyTorch, MLflow | ✅ Implementada |
-| **Capa 2: LLM + RAG** | Análisis causal con modelos de lenguaje | Ollama, ChromaDB, LangChain | ✅ Implementada |
-| **Capa 3: Multi-Agentes** | 7 agentes orquestados con LangGraph | LangGraph, LangChain | ✅ Implementada |
-| **Capa 4: Bots & Dashboard** | Telegram/WhatsApp + Streamlit + Grafo Social | python-telegram-bot, NetworkX, Streamlit | ✅ Implementada |
+| Capa | Propósito | Tecnologías principales |
+|---|---|---|
+| Capa 1: TimeGAN | Generación de datos sintéticos de tráfico para entrenamiento y experimentación | PyTorch, MLflow |
+| Capa 2: LLM + RAG | Análisis causal y asistencia basada en conocimiento | Ollama, ChromaDB, LangChain |
+| Capa 3: Multiagentes | Orquestación de agentes para evaluación y toma de decisiones | LangGraph, LangChain |
+| Capa 4: Bots y dashboard | Difusión de alertas, interacción con usuarios y visualización | Telegram, FastAPI, NetworkX, Streamlit |
 
-## 🏗️ Metodología
+## Objetivo funcional
 
-**TSTR (Train on Synthetic, Test on Real)**: Los modelos se entrenan con datos 100% sintéticos generados por TimeGAN y se validan con conteos reales de campo.
+El sistema busca apoyar la gestión de la movilidad urbana mediante:
 
-## 🚀 Inicio Rápido
+1. Generación de escenarios sintéticos consistentes con el comportamiento observado en campo.
+2. Evaluación de decisiones de tráfico con modelos de lenguaje y reglas de negocio.
+3. Coordinación de agentes especializados para monitoreo, predicción y recomendación.
+4. Difusión priorizada de alertas a usuarios registrados a través de Telegram.
+
+## Metodología
+
+El proyecto sigue el enfoque TSTR (Train on Synthetic, Test on Real), donde los modelos se entrenan con datos sintéticos y se contrastan con conteos reales de referencia para validar consistencia y utilidad operativa.
+
+## Componentes principales
+
+| Componente | Ruta | Función |
+|---|---|---|
+| API Capa 1 | `src/layer1_timegan/` | Carga de datos, entrenamiento, generación y evaluación |
+| API Capa 2 | `src/layer2_llm/` | Contexto, causalidad y recuperación de conocimiento |
+| API Capa 3 | `src/layer3_agents/` | Agentes, estado del grafo y orquestación |
+| API Capa 4 | `src/layer4_bots/` | Telegram, grafo social, alertas y dashboard |
+| Utilidades compartidas | `src/shared/` | Logger, constantes, esquemas y helpers |
+
+## Requisitos
+
+- Python 3.10 o superior
+- Dependencias instaladas desde `requirements.txt`
+- Variables de entorno definidas en `.env`
+- Token de Telegram para habilitar el bot
+
+## Instalación y ejecución
 
 ```bash
-# 1. Clonar y configurar
 git clone https://github.com/EdwinMartinezGomez/TransitMind-Sogamoso.git
 cd TransitMind-Sogamoso
-cp .env.example .env
-# Editar .env con TELEGRAM_BOT_TOKEN (obtener de @BotFather)
-
-# 2. Instalar dependencias
+copy .env.example .env
 pip install -r requirements.txt
+```
 
-# 3. Ejecutar todo (pipelines + servicios + bot)
+En Windows PowerShell:
+
+```powershell
 .\run.ps1
+```
 
-# 4. Solo servicios (sin pipelines)
+Para ejecutar únicamente los servicios sin lanzar pipelines:
+
+```powershell
 .\run.ps1 -ServicesOnly
 ```
 
-## 🤖 Bot de Telegram
+## Configuración mínima de Telegram
 
-El bot permite a ciudadanos y operadores interactuar con el sistema:
+1. Crear el bot en [@BotFather](https://t.me/BotFather).
+2. Guardar el token en `.env` como `TELEGRAM_BOT_TOKEN`.
+3. Definir los identificadores de operadores en `TELEGRAM_OPERATOR_CHAT_IDS`.
 
-### Comandos Ciudadanos
-| Comando | Descripción |
-|---------|-------------|
-| `/start` | Registrarse y elegir corredor |
-| `/estado` | Ver estado del tráfico en tiempo real |
-| `/rutas` | Rutas alternativas activas |
-| `/suscribir` | Suscribirse a un corredor |
-| `/mizona` | Ver mis suscripciones |
-| `/cancelar` | Dejar de recibir alertas |
-| `/ayuda` | Ver todos los comandos |
-
-### Comandos Operadores (Secretaría de Movilidad)
-| Comando | Descripción |
-|---------|-------------|
-| `/ciclo` | Ejecutar ciclo de decisión |
-| `/sistema` | Estado de todas las capas |
-| `/reporte` | Resumen ejecutivo del último ciclo |
-
-### Configuración
-1. Crear bot en [@BotFather](https://t.me/BotFather)
-2. Copiar el token en `.env` → `TELEGRAM_BOT_TOKEN`
-3. Agregar IDs de operadores en `TELEGRAM_OPERATOR_CHAT_IDS`
-
-## 🌐 Servicios
+## Servicios expuestos
 
 | Servicio | Puerto | URL |
-|----------|--------|-----|
+|---|---:|---|
 | MLflow UI | 5000 | http://localhost:5000 |
 | Capa 1 (TimeGAN) | 8000 | http://localhost:8000/docs |
-| Capa 2 (LLM+RAG) | 8001 | http://localhost:8001/docs |
+| Capa 2 (LLM + RAG) | 8001 | http://localhost:8001/docs |
 | Capa 3 (Agentes) | 8002 | http://localhost:8002/docs |
 | Capa 4 (Bots API) | 8003 | http://localhost:8003/docs |
 | Dashboard | 8501 | http://localhost:8501 |
-| Telegram Bot | — | Polling activo |
 
-## 📊 Intersecciones Piloto
+## Grafo social y notificaciones
+
+La Capa 4 construye un grafo social con NetworkX para priorizar la difusión de alertas. El módulo `src/layer4_bots/social_graph.py` registra usuarios, consultas y similitud entre corredores y horarios de actividad. Con esa información, `src/layer4_bots/alert_engine.py` calcula el orden de propagación y la API de Capa 4 coordina el envío de mensajes por Telegram.
+
+## Intersecciones piloto
 
 - Carrera 11 Norte / Sur
 - Avenida Castellana Entrada / Salida
 - Calle 14 Centro Histórico
 - Acceso Morca
 
-## 📁 Estructura del Proyecto
+## Estructura del repositorio
 
-```
+```text
 src/
-├── layer1_timegan/     # TimeGAN: data_loader, model, trainer, generator, evaluator, api
-├── layer2_llm/         # LLM + RAG: causal_analyst, rag_pipeline, context_builder, api
-├── layer3_agents/      # Multi-Agentes: 7 agentes LangGraph + orchestrator, api
-├── layer4_bots/        # Telegram Bot, WhatsApp, Dashboard Streamlit, Grafo Social
-│   ├── telegram_bot.py       # Bot Telegram (ciudadanos + operadores)
-│   ├── whatsapp_handler.py   # WhatsApp Business Cloud API
-│   ├── alert_engine.py       # Motor de alertas con dedup + rate-limit
-│   ├── social_graph.py       # Grafo G=(V,E,W) con betweenness + k-shell + SIR
-│   ├── message_formatter.py  # JSON técnico → mensajes ciudadanos (Ollama)
-│   ├── dashboard.py          # Dashboard Streamlit para SecMov
-│   └── api.py                # FastAPI puerto 8003
-└── shared/             # Logger, schemas, constants, utils
+├── layer1_timegan/     # Generación sintética, entrenamiento y evaluación
+├── layer2_llm/         # Análisis causal, RAG y contexto
+├── layer3_agents/      # Agentes, grafo de estado y orquestación
+├── layer4_bots/        # Telegram, alertas, dashboard y grafo social
+└── shared/             # Constantes, logging, utilidades y esquemas
+docs/                   # Arquitectura, runbook y documentación técnica
+configs/                # Configuración por capa
+data/                    # Datos crudos, procesados y salidas de cada capa
+experiments/            # Modelos, métricas y artefactos experimentales
+tests/                  # Pruebas unitarias e integración
 ```
 
-## 📚 Documentación
+## Pruebas
 
-- [Arquitectura del Sistema](docs/arquitectura.md)
-- [Variables de Tráfico](docs/variables_trafico.md)
+```bash
+make test
+make test-cov
+```
+
+## Documentación adicional
+
+- [Arquitectura del sistema](docs/arquitectura.md)
+- [Variables de tráfico](docs/variables_trafico.md)
 - [Protocolo TSTR](docs/tstr_protocol.md)
 - [MLOps Runbook](docs/mlops_runbook.md)
 
-## 🧪 Tests
+## Estado del proyecto
 
-```bash
-make test           # Unit + integration tests
-make test-cov       # With coverage report
-```
-
----
-
-*TransitMind Sogamoso v1.0 — 4 Capas Completas*  
-*UPTC — Inteligencia Computacional*
+El repositorio contiene implementaciones para las cuatro capas del sistema, pruebas automatizadas y documentación operativa. El foco principal es la simulación y priorización de alertas de movilidad urbana mediante datos sintéticos, análisis causal y mensajería ciudadana.
