@@ -79,13 +79,121 @@ class SocialGraphModule:
         self._coconsult_counts: Dict[Tuple[str, str], int] = defaultdict(int)
         self._max_coconsult: int = 1
 
-        # Initialize with seed nodes
-        self._load_seed_nodes()
+        # Initialize: try persisted graph first, then seed nodes
+        self._load_persisted_or_seeds()
+
+    # ---- Persistence ----
+
+    def _get_export_path(self) -> Path:
+        """Path to the persisted graph JSON."""
+        return get_project_root() / "data" / "layer4_outputs" / "social_graph" / "graph_export.json"
+
+    def _save_graph(self):
+        """Persist full graph (nodes + edges + rankings) to disk."""
+        try:
+            export_path = self._get_export_path()
+            export_path.parent.mkdir(parents=True, exist_ok=True)
+
+            nodes_list = []
+            for uid in self._graph.nodes:
+                at = self._graph.nodes[uid]
+                nodes_list.append({
+                    "user_id": uid,
+                    "role": at.get("role", "vecino"),
+                    "corridors": at.get("corridors", []),
+                    "peak_hours": at.get("peak_hours", []),
+                    "query_count": at.get("query_count", 0),
+                    "is_seed": at.get("is_seed", False),
+                    "registered_at": at.get("registered_at", ""),
+                    "last_active": at.get("last_active", ""),
+                    "score": self._propagator_ranking.get(uid, 0),
+                })
+
+            edges_list = []
+            for u, v, data in self._graph.edges(data=True):
+                edges_list.append({
+                    "source": u, "target": v,
+                    "weight": round(data.get("weight", 0), 4),
+                })
+
+            export = {
+                "metadata": {
+                    "timestamp": datetime.now(timezone.utc).isoformat(),
+                    "nodes": len(nodes_list),
+                    "edges": len(edges_list),
+                },
+                "nodes": nodes_list,
+                "edges": edges_list,
+            }
+
+            with open(export_path, "w", encoding="utf-8") as f:
+                json.dump(export, f, indent=2, ensure_ascii=False)
+
+            logger.info("graph_saved", nodes=len(nodes_list), edges=len(edges_list),
+                        path=str(export_path))
+        except Exception as e:
+            logger.warning("graph_save_failed", error=str(e))
+
+    def _load_persisted_graph(self) -> bool:
+        """Try loading graph_export.json. Returns True if successful."""
+        export_path = self._get_export_path()
+        if not export_path.exists():
+            return False
+
+        try:
+            with open(export_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            nodes = data.get("nodes", [])
+            edges = data.get("edges", [])
+            if not nodes:
+                return False
+
+            # Hydrate nodes
+            for node in nodes:
+                uid = node.get("user_id", "")
+                if not uid:
+                    continue
+                self._graph.add_node(uid, **{
+                    "corridors": node.get("corridors", []),
+                    "peak_hours": node.get("peak_hours", []),
+                    "query_count": node.get("query_count", 0),
+                    "is_seed": node.get("is_seed", False),
+                    "role": node.get("role", "vecino"),
+                    "registered_at": node.get("registered_at", ""),
+                    "last_active": node.get("last_active", ""),
+                })
+                self._propagator_ranking[uid] = node.get("score", 0)
+
+            # Hydrate edges
+            for edge in edges:
+                src = edge.get("source", "")
+                tgt = edge.get("target", "")
+                w = edge.get("weight", 0)
+                if src and tgt and self._graph.has_node(src) and self._graph.has_node(tgt):
+                    self._graph.add_edge(src, tgt, weight=w)
+
+            self._last_edge_update = time.time()
+            self._last_centrality_update = time.time()
+
+            meta = data.get("metadata", {})
+            logger.info("graph_loaded_from_disk",
+                        nodes=self._graph.number_of_nodes(),
+                        edges=self._graph.number_of_edges(),
+                        saved_at=meta.get("timestamp", "unknown"))
+            return True
+        except Exception as e:
+            logger.warning("graph_load_failed", error=str(e))
+            return False
 
     # ---- Graph Construction ----
 
-    def _load_seed_nodes(self):
-        """Load seed nodes from JSON or create 5 synthetic ones."""
+    def _load_persisted_or_seeds(self):
+        """Load persisted graph from disk; fall back to seed nodes."""
+        if self._load_persisted_graph():
+            return
+
+        # Fallback: seed nodes
         seed_path = None
         if self._seed_file:
             seed_path = get_project_root() / self._seed_file
@@ -100,14 +208,12 @@ class SocialGraphModule:
                 logger.warning("seed_nodes_load_failed", error=str(e))
 
         if not nodes:
-            # Create 5 synthetic seed nodes for cold start
             nodes = self._create_default_seeds()
             logger.info("seed_nodes_created_default", count=len(nodes))
 
         for node in nodes:
             self.register_user(node)
 
-        # Compute initial edges and centrality
         if self._graph.number_of_nodes() > 1:
             self.rebuild_edges()
             self.compute_centrality()
@@ -314,8 +420,9 @@ class SocialGraphModule:
 
         self._last_centrality_update = time.time()
 
-        # Persist rankings
+        # Persist rankings + full graph
         self._save_rankings()
+        self._save_graph()
 
         logger.info(
             "centrality_computed", nodes=n, edges=self._graph.number_of_edges(),

@@ -1,0 +1,60 @@
+{
+  "cycle_id": "demo_0001_market_day",
+  "timestamp": "2026-06-08T16:56:35.459682+00:00",
+  "decisions": [
+    {
+      "intersection_id": "carrera_11_norte",
+      "severity": "alta",
+      "congestion_level": 0.82,
+      "traffic_light_command": {
+        "green_extension_seconds": 30,
+        "priority_direction": "norte_sur",
+        "cycle_adjustment_percent": 18
+      },
+      "active_routes": [
+        "Avenida Industrial",
+        "Calle 14"
+      ],
+      "citizen_alert": "Congestión alta en Carrera 11 Norte por mercado campesino.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "calle_14_centro_historico",
+      "severity": "alta",
+      "congestion_level": 0.76,
+      "traffic_light_command": {
+        "green_extension_seconds": 22,
+        "priority_direction": "este_oeste",
+        "cycle_adjustment_percent": 12
+      },
+      "active_routes": [
+        "Carrera 9",
+        "Variante Morca"
+      ],
+      "citizen_alert": "Tráfico denso en Calle 14 Centro por flujo de mercado.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 34.1,
+  "monitor_report": {
+    "agents_healthy": 7,
+    "anomalies_detected": 0,
+    "cycle_duration_ms": 877
+  }
+}

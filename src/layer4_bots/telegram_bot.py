@@ -70,6 +70,24 @@ class TransitMindTelegramBot:
 
         # User subscriptions: {chat_id: {"corridors": [...], "user_id": str}}
         self._user_subs: Dict[int, dict] = {}
+        
+        # Restore Telegram user subscriptions from the persisted social graph
+        try:
+            for node_id in self._graph._graph.nodes:
+                if isinstance(node_id, str) and node_id.startswith("tg_"):
+                    try:
+                        chat_id = int(node_id[3:])
+                        node_data = self._graph._graph.nodes[node_id]
+                        self._user_subs[chat_id] = {
+                            "corridors": node_data.get("corridors", []),
+                            "user_id": node_id
+                        }
+                    except ValueError:
+                        pass
+            if self._user_subs:
+                logger.info("telegram_subs_loaded", count=len(self._user_subs))
+        except Exception as e:
+            logger.warning("telegram_subs_load_failed", error=str(e))
 
     def _is_operator(self, chat_id: int) -> bool:
         """True if chat_id is in the operator list."""
@@ -135,7 +153,7 @@ class TransitMindTelegramBot:
         # Update graph
         self._graph.register_user({
             "user_id": user_id,
-            "corridors": [iid],
+            "corridors": corrs,
             "peak_hours": [datetime.now().hour],
             "query_count": 0,
             "is_seed": False,
@@ -435,48 +453,62 @@ class TransitMindTelegramBot:
         await update.message.reply_text(msg.strip(), parse_mode="Markdown")
 
     async def send_alert(self, alert: dict):
-        """Send an alert from AlertEngine to Telegram users."""
+        """Send an alert from AlertEngine to Telegram users.
+
+        Delivery order:
+        1. Operators (always, unfiltered)
+        2. All subscribed TG users whose corridors match the intersection
+        3. Graph first_wave / broadcast propagators (if resolvable)
+        """
         if not self._enabled or not self._app:
             logger.info("telegram_not_enabled_skip_alert")
             return
 
         bot = self._app.bot
         severity = alert.get("severity", "media")
+        iid = alert.get("intersection_id", "")
         msg_citizen = alert.get("messages", {}).get("telegram_citizen", "")
-        first_wave = alert.get("first_wave_users", [])
-        broadcast = alert.get("broadcast_users", [])
-        delay_min = alert.get("broadcast_delay_minutes", 2)
-
-        # Send to operators first (always)
         msg_dashboard = alert.get("messages", {}).get("dashboard", msg_citizen)
+
+        if not msg_citizen:
+            logger.warning("send_alert_empty_msg", iid=iid)
+            return
+
+        sent_chat_ids: set = set()
+
+        # 1. Operators — always, no filter
         for op_id in self._operator_ids:
             try:
                 await bot.send_message(chat_id=op_id, text=f"🔧 OPERADOR\n{msg_dashboard}")
+                sent_chat_ids.add(op_id)
             except Exception as e:
                 logger.warning("telegram_send_operator_failed", op_id=op_id, error=str(e))
 
-        # First wave (propagators)
-        first_wave_msg = f"📢 Aviso prioritario — compartir con vecinos\n\n{msg_citizen}"
-        for uid in first_wave:
-            chat_id = self._resolve_chat_id(uid)
-            if chat_id:
-                try:
-                    await bot.send_message(chat_id=chat_id, text=first_wave_msg, parse_mode="Markdown")
-                except Exception as e:
-                    logger.warning("telegram_first_wave_failed", user=uid, error=str(e))
-
-        # Wait for broadcast delay
-        if broadcast and delay_min > 0:
-            await asyncio.sleep(delay_min * 60)
-
-        # Broadcast
-        for uid in broadcast:
-            chat_id = self._resolve_chat_id(uid)
-            if chat_id:
+        # 2. Direct corridor subscribers — instant, no delay
+        for chat_id, info in self._user_subs.items():
+            if chat_id in sent_chat_ids:
+                continue
+            user_corrs = info.get("corridors", [])
+            # Send if user subscribed to this corridor OR severity alta/critica (broadcast)
+            if iid in user_corrs or severity in ("alta", "critica"):
                 try:
                     await bot.send_message(chat_id=chat_id, text=msg_citizen, parse_mode="Markdown")
+                    sent_chat_ids.add(chat_id)
+                    logger.info("alert_sent_subscriber", chat_id=chat_id, iid=iid)
                 except Exception as e:
-                    logger.warning("telegram_broadcast_failed", user=uid, error=str(e))
+                    logger.warning("telegram_subscriber_send_failed", chat_id=chat_id, error=str(e))
+
+        # 3. Graph propagators (first_wave + broadcast) — resolve if possible
+        for uid in alert.get("first_wave_users", []) + alert.get("broadcast_users", []):
+            chat_id = self._resolve_chat_id(uid)
+            if chat_id and chat_id not in sent_chat_ids:
+                try:
+                    await bot.send_message(chat_id=chat_id, text=msg_citizen, parse_mode="Markdown")
+                    sent_chat_ids.add(chat_id)
+                except Exception as e:
+                    logger.warning("telegram_graph_send_failed", user=uid, error=str(e))
+
+        logger.info("alert_delivery_complete", iid=iid, severity=severity, total_sent=len(sent_chat_ids))
 
     def _resolve_chat_id(self, user_id: str) -> Optional[int]:
         """Resolve a user_id to a Telegram chat_id."""

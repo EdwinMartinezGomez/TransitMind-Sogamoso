@@ -1,0 +1,5009 @@
+[
+  {
+    "user_id": "sim_00205",
+    "score": 0.406753,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00169",
+    "score": 0.406744,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00049",
+    "score": 0.406523,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00043",
+    "score": 0.406303,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00029",
+    "score": 0.406172,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00456",
+    "score": 0.405265,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00060",
+    "score": 0.404978,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00017",
+    "score": 0.40448,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00183",
+    "score": 0.404458,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00011",
+    "score": 0.403754,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00015",
+    "score": 0.403677,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00092",
+    "score": 0.403579,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00180",
+    "score": 0.403515,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00485",
+    "score": 0.403383,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00430",
+    "score": 0.403347,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00376",
+    "score": 0.403117,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00499",
+    "score": 0.403011,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00004",
+    "score": 0.402992,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00046",
+    "score": 0.40299,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00048",
+    "score": 0.402949,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00224",
+    "score": 0.402833,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00416",
+    "score": 0.402784,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00027",
+    "score": 0.402698,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00264",
+    "score": 0.402618,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00449",
+    "score": 0.402589,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00495",
+    "score": 0.40254,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00014",
+    "score": 0.402361,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00304",
+    "score": 0.402244,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00470",
+    "score": 0.402138,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00148",
+    "score": 0.402101,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00227",
+    "score": 0.401937,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00072",
+    "score": 0.401917,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00386",
+    "score": 0.401833,
+    "role": "despachador",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00182",
+    "score": 0.401804,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00231",
+    "score": 0.401537,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00034",
+    "score": 0.401496,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00329",
+    "score": 0.401462,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00000",
+    "score": 0.401449,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00007",
+    "score": 0.401434,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00307",
+    "score": 0.401402,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00455",
+    "score": 0.401382,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "seed_003",
+    "score": 0.401295,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00117",
+    "score": 0.401279,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00039",
+    "score": 0.40122,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00244",
+    "score": 0.401216,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00481",
+    "score": 0.401212,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00195",
+    "score": 0.40119,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00019",
+    "score": 0.401169,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00129",
+    "score": 0.401168,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00482",
+    "score": 0.401163,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00396",
+    "score": 0.401119,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00242",
+    "score": 0.4011,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00094",
+    "score": 0.401092,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00025",
+    "score": 0.401089,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00379",
+    "score": 0.401078,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00109",
+    "score": 0.401051,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00354",
+    "score": 0.401048,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00262",
+    "score": 0.401045,
+    "role": "lider_barrio",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00032",
+    "score": 0.401017,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00010",
+    "score": 0.401013,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00064",
+    "score": 0.401012,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00295",
+    "score": 0.40097,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00351",
+    "score": 0.40097,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00139",
+    "score": 0.400969,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00047",
+    "score": 0.400962,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00005",
+    "score": 0.400949,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00080",
+    "score": 0.400902,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00251",
+    "score": 0.400899,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00023",
+    "score": 0.40087,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00265",
+    "score": 0.40087,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00419",
+    "score": 0.400864,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00150",
+    "score": 0.400851,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00042",
+    "score": 0.400836,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00200",
+    "score": 0.400831,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00056",
+    "score": 0.40083,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00417",
+    "score": 0.400825,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00328",
+    "score": 0.400824,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00253",
+    "score": 0.400819,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00147",
+    "score": 0.400815,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00031",
+    "score": 0.400791,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00118",
+    "score": 0.400776,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00438",
+    "score": 0.400765,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00303",
+    "score": 0.400743,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00316",
+    "score": 0.400741,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00190",
+    "score": 0.400737,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00381",
+    "score": 0.400735,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00349",
+    "score": 0.400728,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00352",
+    "score": 0.400718,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00044",
+    "score": 0.400716,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00006",
+    "score": 0.400715,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00003",
+    "score": 0.400703,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00037",
+    "score": 0.400702,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00062",
+    "score": 0.4007,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00440",
+    "score": 0.400693,
+    "role": "despachador",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00149",
+    "score": 0.40069,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00108",
+    "score": 0.400683,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00154",
+    "score": 0.400682,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00101",
+    "score": 0.400677,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00040",
+    "score": 0.400644,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00263",
+    "score": 0.400634,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00124",
+    "score": 0.40062,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00284",
+    "score": 0.400614,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00292",
+    "score": 0.400606,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00013",
+    "score": 0.400597,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00218",
+    "score": 0.400595,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00320",
+    "score": 0.400593,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00035",
+    "score": 0.400578,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00347",
+    "score": 0.400577,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00361",
+    "score": 0.400577,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00493",
+    "score": 0.400561,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00210",
+    "score": 0.400556,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00063",
+    "score": 0.400551,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00363",
+    "score": 0.40054,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00269",
+    "score": 0.400538,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00212",
+    "score": 0.400537,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00156",
+    "score": 0.400535,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00437",
+    "score": 0.400535,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00184",
+    "score": 0.400529,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00189",
+    "score": 0.400529,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00214",
+    "score": 0.400527,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00296",
+    "score": 0.400524,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00021",
+    "score": 0.400521,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00337",
+    "score": 0.400515,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00247",
+    "score": 0.400509,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00166",
+    "score": 0.400508,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00113",
+    "score": 0.400507,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00245",
+    "score": 0.400505,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00083",
+    "score": 0.400503,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00142",
+    "score": 0.400493,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00476",
+    "score": 0.400492,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00411",
+    "score": 0.400487,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00285",
+    "score": 0.400481,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00143",
+    "score": 0.40048,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00314",
+    "score": 0.400477,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00397",
+    "score": 0.400471,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00334",
+    "score": 0.40047,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00255",
+    "score": 0.400467,
+    "role": "vecino",
+    "corridors": [
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00161",
+    "score": 0.400466,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00301",
+    "score": 0.400455,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00277",
+    "score": 0.400447,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00473",
+    "score": 0.400441,
+    "role": "despachador",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00159",
+    "score": 0.400429,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00322",
+    "score": 0.400429,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00405",
+    "score": 0.400415,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00429",
+    "score": 0.400415,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00331",
+    "score": 0.4004,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00428",
+    "score": 0.400398,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00408",
+    "score": 0.400393,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00399",
+    "score": 0.400392,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00002",
+    "score": 0.400388,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00237",
+    "score": 0.400386,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00179",
+    "score": 0.400385,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00141",
+    "score": 0.400376,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00257",
+    "score": 0.400376,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00350",
+    "score": 0.400375,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00016",
+    "score": 0.400373,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00421",
+    "score": 0.400369,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00220",
+    "score": 0.400366,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00326",
+    "score": 0.400363,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00413",
+    "score": 0.400362,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00367",
+    "score": 0.400359,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00415",
+    "score": 0.400358,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00041",
+    "score": 0.400357,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00377",
+    "score": 0.400355,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00087",
+    "score": 0.400351,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00022",
+    "score": 0.40035,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00281",
+    "score": 0.40035,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00339",
+    "score": 0.400348,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00477",
+    "score": 0.400344,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00297",
+    "score": 0.400342,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00132",
+    "score": 0.400339,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00444",
+    "score": 0.400338,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00219",
+    "score": 0.400336,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00133",
+    "score": 0.400332,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00078",
+    "score": 0.400327,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00489",
+    "score": 0.400326,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00163",
+    "score": 0.400321,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00201",
+    "score": 0.400319,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00020",
+    "score": 0.400317,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00008",
+    "score": 0.400316,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00187",
+    "score": 0.400316,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00221",
+    "score": 0.400316,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00278",
+    "score": 0.400316,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00268",
+    "score": 0.400313,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00229",
+    "score": 0.400306,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00181",
+    "score": 0.400304,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00294",
+    "score": 0.400304,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00127",
+    "score": 0.400301,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00484",
+    "score": 0.400299,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00311",
+    "score": 0.400298,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00412",
+    "score": 0.400296,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00026",
+    "score": 0.400295,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00276",
+    "score": 0.400295,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00375",
+    "score": 0.400291,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00490",
+    "score": 0.400291,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00431",
+    "score": 0.400289,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00197",
+    "score": 0.400287,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00202",
+    "score": 0.400281,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00198",
+    "score": 0.400278,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00401",
+    "score": 0.400278,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00233",
+    "score": 0.400277,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00366",
+    "score": 0.400277,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00392",
+    "score": 0.400274,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00418",
+    "score": 0.400272,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00432",
+    "score": 0.400271,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00097",
+    "score": 0.400269,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00474",
+    "score": 0.400268,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00069",
+    "score": 0.400266,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00365",
+    "score": 0.400265,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00028",
+    "score": 0.400264,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00073",
+    "score": 0.400264,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00458",
+    "score": 0.400264,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00387",
+    "score": 0.40026,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00362",
+    "score": 0.400259,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00380",
+    "score": 0.400257,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00234",
+    "score": 0.400256,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00273",
+    "score": 0.40025,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00402",
+    "score": 0.40025,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00325",
+    "score": 0.400248,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00173",
+    "score": 0.400247,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00293",
+    "score": 0.400247,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00315",
+    "score": 0.400247,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00478",
+    "score": 0.400247,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00207",
+    "score": 0.400243,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00468",
+    "score": 0.400242,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00111",
+    "score": 0.400241,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00137",
+    "score": 0.40024,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00151",
+    "score": 0.400239,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00327",
+    "score": 0.400235,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00443",
+    "score": 0.400233,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00239",
+    "score": 0.400229,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00272",
+    "score": 0.400223,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00290",
+    "score": 0.400222,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00371",
+    "score": 0.400221,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00345",
+    "score": 0.40022,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00271",
+    "score": 0.400218,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00360",
+    "score": 0.400218,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00067",
+    "score": 0.400217,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00122",
+    "score": 0.400217,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00356",
+    "score": 0.400217,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00192",
+    "score": 0.400216,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00453",
+    "score": 0.400215,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00152",
+    "score": 0.40021,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00406",
+    "score": 0.40021,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00498",
+    "score": 0.40021,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00248",
+    "score": 0.400209,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00053",
+    "score": 0.400206,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00439",
+    "score": 0.400205,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00009",
+    "score": 0.400204,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00012",
+    "score": 0.400198,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00382",
+    "score": 0.400197,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00398",
+    "score": 0.400197,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00055",
+    "score": 0.400194,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada",
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00486",
+    "score": 0.400193,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00289",
+    "score": 0.400192,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00130",
+    "score": 0.400191,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00383",
+    "score": 0.40019,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00059",
+    "score": 0.400189,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00209",
+    "score": 0.400189,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00330",
+    "score": 0.400189,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00388",
+    "score": 0.400189,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00348",
+    "score": 0.400188,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00036",
+    "score": 0.400187,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00390",
+    "score": 0.400187,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00074",
+    "score": 0.400186,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00305",
+    "score": 0.400184,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00254",
+    "score": 0.400173,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00459",
+    "score": 0.400173,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00252",
+    "score": 0.400169,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00226",
+    "score": 0.400168,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00134",
+    "score": 0.400167,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00497",
+    "score": 0.400167,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00407",
+    "score": 0.400161,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00460",
+    "score": 0.400158,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00369",
+    "score": 0.400157,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00164",
+    "score": 0.400148,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00085",
+    "score": 0.400145,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00403",
+    "score": 0.400145,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00066",
+    "score": 0.400144,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00267",
+    "score": 0.400144,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00058",
+    "score": 0.400143,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00249",
+    "score": 0.40014,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00467",
+    "score": 0.40014,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00359",
+    "score": 0.400139,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00446",
+    "score": 0.400139,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00024",
+    "score": 0.400138,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00400",
+    "score": 0.400137,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00099",
+    "score": 0.400135,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00236",
+    "score": 0.400133,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00168",
+    "score": 0.400131,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00114",
+    "score": 0.400127,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00018",
+    "score": 0.400126,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00050",
+    "score": 0.400124,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00051",
+    "score": 0.400124,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00155",
+    "score": 0.400123,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00368",
+    "score": 0.400121,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00153",
+    "score": 0.40012,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00300",
+    "score": 0.400119,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00374",
+    "score": 0.400116,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00279",
+    "score": 0.400114,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00145",
+    "score": 0.400113,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00082",
+    "score": 0.400107,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00336",
+    "score": 0.400105,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00054",
+    "score": 0.400104,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00196",
+    "score": 0.400104,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00076",
+    "score": 0.4001,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00488",
+    "score": 0.4001,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00465",
+    "score": 0.400098,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00238",
+    "score": 0.400095,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00333",
+    "score": 0.400095,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00426",
+    "score": 0.400095,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00464",
+    "score": 0.400095,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00105",
+    "score": 0.400084,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00174",
+    "score": 0.400084,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00409",
+    "score": 0.400084,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00119",
+    "score": 0.400078,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00275",
+    "score": 0.400077,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00335",
+    "score": 0.400077,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00217",
+    "score": 0.400076,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00394",
+    "score": 0.400076,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00126",
+    "score": 0.400075,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00186",
+    "score": 0.400074,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00070",
+    "score": 0.400069,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00343",
+    "score": 0.400069,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00338",
+    "score": 0.400066,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00442",
+    "score": 0.400066,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00176",
+    "score": 0.400064,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00364",
+    "score": 0.400062,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00093",
+    "score": 0.400044,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00123",
+    "score": 0.400044,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00188",
+    "score": 0.400044,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00204",
+    "score": 0.400044,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00280",
+    "score": 0.400044,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00098",
+    "score": 0.40003,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00341",
+    "score": 0.40003,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "seed_005",
+    "score": 0.400019,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "seed_002",
+    "score": 0.4,
+    "role": "despachador",
+    "corridors": [
+      "carrera_11_norte",
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00162",
+    "score": 0.398349,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00310",
+    "score": 0.398318,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00057",
+    "score": 0.398074,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00228",
+    "score": 0.398056,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00261",
+    "score": 0.39804,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00266",
+    "score": 0.398019,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00312",
+    "score": 0.398018,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00096",
+    "score": 0.397987,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00140",
+    "score": 0.397972,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00309",
+    "score": 0.39796,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00232",
+    "score": 0.396429,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00393",
+    "score": 0.396373,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00061",
+    "score": 0.396086,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00344",
+    "score": 0.393914,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00213",
+    "score": 0.392048,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00193",
+    "score": 0.392042,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00225",
+    "score": 0.391997,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00358",
+    "score": 0.39183,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00461",
+    "score": 0.391732,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00475",
+    "score": 0.391652,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00313",
+    "score": 0.391619,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00373",
+    "score": 0.391427,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00378",
+    "score": 0.390313,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00414",
+    "score": 0.389778,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00038",
+    "score": 0.389763,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00353",
+    "score": 0.389593,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00115",
+    "score": 0.389588,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00194",
+    "score": 0.389499,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00472",
+    "score": 0.389491,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00136",
+    "score": 0.389474,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00410",
+    "score": 0.385953,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00434",
+    "score": 0.385853,
+    "role": "vecino",
+    "corridors": [
+      "acceso_morca",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00045",
+    "score": 0.385356,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00131",
+    "score": 0.385352,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00090",
+    "score": 0.385347,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00256",
+    "score": 0.385322,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00185",
+    "score": 0.385146,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00427",
+    "score": 0.385093,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00120",
+    "score": 0.385085,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00258",
+    "score": 0.384118,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00384",
+    "score": 0.383579,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00165",
+    "score": 0.381062,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00246",
+    "score": 0.378804,
+    "role": "lider_barrio",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00125",
+    "score": 0.376559,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00385",
+    "score": 0.372879,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00391",
+    "score": 0.372777,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00138",
+    "score": 0.372613,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00283",
+    "score": 0.372464,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00469",
+    "score": 0.372424,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00106",
+    "score": 0.372359,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00199",
+    "score": 0.372328,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00483",
+    "score": 0.370174,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00230",
+    "score": 0.369129,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00494",
+    "score": 0.364016,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00423",
+    "score": 0.361879,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00496",
+    "score": 0.361735,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00001",
+    "score": 0.361644,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00299",
+    "score": 0.359652,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00355",
+    "score": 0.357513,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00157",
+    "score": 0.357486,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00116",
+    "score": 0.357475,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00052",
+    "score": 0.357464,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00068",
+    "score": 0.353183,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00222",
+    "score": 0.348913,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00480",
+    "score": 0.345499,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "acceso_morca",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00308",
+    "score": 0.344871,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00492",
+    "score": 0.338313,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00241",
+    "score": 0.337321,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00274",
+    "score": 0.336222,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00103",
+    "score": 0.336217,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00321",
+    "score": 0.336135,
+    "role": "lider_barrio",
+    "corridors": [
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00466",
+    "score": 0.336105,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00158",
+    "score": 0.336094,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00121",
+    "score": 0.336079,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00287",
+    "score": 0.336074,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00457",
+    "score": 0.336073,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00102",
+    "score": 0.336067,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte",
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00030",
+    "score": 0.336053,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00033",
+    "score": 0.33603,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00298",
+    "score": 0.335984,
+    "role": "vecino",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00171",
+    "score": 0.335911,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00177",
+    "score": 0.335909,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00291",
+    "score": 0.335871,
+    "role": "conductor",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00270",
+    "score": 0.335843,
+    "role": "conductor",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00451",
+    "score": 0.330005,
+    "role": "lider_barrio",
+    "corridors": [
+      "acceso_morca",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00302",
+    "score": 0.329756,
+    "role": "lider_barrio",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00342",
+    "score": 0.329641,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00110",
+    "score": 0.329519,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00160",
+    "score": 0.329496,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00223",
+    "score": 0.327576,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00260",
+    "score": 0.327575,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00306",
+    "score": 0.327448,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00288",
+    "score": 0.327409,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00259",
+    "score": 0.327404,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00317",
+    "score": 0.327381,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00075",
+    "score": 0.327357,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00112",
+    "score": 0.32522,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00433",
+    "score": 0.323325,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00462",
+    "score": 0.323268,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00332",
+    "score": 0.323108,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00235",
+    "score": 0.323091,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00463",
+    "score": 0.323065,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00357",
+    "score": 0.323047,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00491",
+    "score": 0.321191,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00243",
+    "score": 0.321014,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00128",
+    "score": 0.320955,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00215",
+    "score": 0.312373,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00170",
+    "score": 0.310375,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00211",
+    "score": 0.304778,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00100",
+    "score": 0.304525,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00346",
+    "score": 0.303913,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00448",
+    "score": 0.303885,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00206",
+    "score": 0.303862,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00144",
+    "score": 0.303852,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00324",
+    "score": 0.303851,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00175",
+    "score": 0.303848,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00095",
+    "score": 0.303825,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00089",
+    "score": 0.303806,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00471",
+    "score": 0.303795,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00086",
+    "score": 0.303794,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00425",
+    "score": 0.30378,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00250",
+    "score": 0.299498,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00135",
+    "score": 0.297906,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00323",
+    "score": 0.297566,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00282",
+    "score": 0.297541,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00178",
+    "score": 0.297455,
+    "role": "conductor",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00107",
+    "score": 0.297381,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00104",
+    "score": 0.29527,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00404",
+    "score": 0.291139,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00077",
+    "score": 0.285052,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00084",
+    "score": 0.284576,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00286",
+    "score": 0.282582,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00372",
+    "score": 0.282378,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00422",
+    "score": 0.280332,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00146",
+    "score": 0.28024,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00340",
+    "score": 0.278157,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00091",
+    "score": 0.278137,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00203",
+    "score": 0.261198,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00216",
+    "score": 0.254715,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00450",
+    "score": 0.252729,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00487",
+    "score": 0.248381,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00370",
+    "score": 0.244233,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00208",
+    "score": 0.243976,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00441",
+    "score": 0.243927,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00445",
+    "score": 0.243902,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00318",
+    "score": 0.237675,
+    "role": "vecino",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00420",
+    "score": 0.237597,
+    "role": "vecino",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00081",
+    "score": 0.237578,
+    "role": "vecino",
+    "corridors": [
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00071",
+    "score": 0.237459,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "seed_001",
+    "score": 0.233325,
+    "role": "despachador",
+    "corridors": [
+      "av_castellana_entrada",
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00240",
+    "score": 0.229047,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00452",
+    "score": 0.22893,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida",
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00319",
+    "score": 0.222489,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "seed_004",
+    "score": 0.220709,
+    "role": "conductor",
+    "corridors": [
+      "acceso_morca",
+      "calle_14_centro_historico"
+    ]
+  },
+  {
+    "user_id": "sim_00395",
+    "score": 0.220393,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00479",
+    "score": 0.218252,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00454",
+    "score": 0.211943,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00424",
+    "score": 0.209791,
+    "role": "conductor",
+    "corridors": [
+      "acceso_morca",
+      "carrera_11_norte"
+    ]
+  },
+  {
+    "user_id": "sim_00172",
+    "score": 0.20978,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00447",
+    "score": 0.207834,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00436",
+    "score": 0.207671,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00191",
+    "score": 0.186296,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00167",
+    "score": 0.18624,
+    "role": "vecino",
+    "corridors": [
+      "carrera_11_sur"
+    ]
+  },
+  {
+    "user_id": "sim_00079",
+    "score": 0.158349,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_entrada"
+    ]
+  },
+  {
+    "user_id": "sim_00065",
+    "score": 0.143349,
+    "role": "conductor",
+    "corridors": [
+      "carrera_11_sur",
+      "acceso_morca"
+    ]
+  },
+  {
+    "user_id": "sim_00389",
+    "score": 0.119791,
+    "role": "conductor",
+    "corridors": [
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00088",
+    "score": 0.102806,
+    "role": "vecino",
+    "corridors": [
+      "av_castellana_salida"
+    ]
+  },
+  {
+    "user_id": "sim_00435",
+    "score": 0.053482,
+    "role": "lider_barrio",
+    "corridors": [
+      "acceso_morca"
+    ]
+  }
+]

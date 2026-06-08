@@ -1,0 +1,128 @@
+{
+  "cycle_id": "demo_0006_coliseo_event",
+  "timestamp": "2026-06-08T18:13:47.117378+00:00",
+  "decisions": [
+    {
+      "intersection_id": "carrera_11_norte",
+      "severity": "critica",
+      "congestion_level": 0.91,
+      "traffic_light_command": {
+        "green_extension_seconds": 42,
+        "priority_direction": "norte_sur",
+        "cycle_adjustment_percent": 20
+      },
+      "active_routes": [
+        "Avenida Industrial"
+      ],
+      "citizen_alert": "Congestión crítica por evento en Coliseo. Evite Carrera 11.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "calle_14_centro_historico",
+      "severity": "alta",
+      "congestion_level": 0.84,
+      "traffic_light_command": {
+        "green_extension_seconds": 32,
+        "priority_direction": "este_oeste",
+        "cycle_adjustment_percent": 17
+      },
+      "active_routes": [
+        "Carrera 9",
+        "Calle 16"
+      ],
+      "citizen_alert": "Alto tráfico en Calle 14 por evento masivo.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "carrera_11_sur",
+      "severity": "media",
+      "congestion_level": 0.62,
+      "traffic_light_command": {
+        "green_extension_seconds": 15,
+        "priority_direction": "sur_norte",
+        "cycle_adjustment_percent": 8
+      },
+      "active_routes": [
+        "Calle 16"
+      ],
+      "citizen_alert": "Tráfico moderado en Carrera 11 Sur por dispersión del evento.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_entrada",
+      "severity": "media",
+      "congestion_level": 0.5,
+      "traffic_light_command": {
+        "green_extension_seconds": 10,
+        "priority_direction": "este_oeste",
+        "cycle_adjustment_percent": 5
+      },
+      "active_routes": [],
+      "citizen_alert": "Algo de congestión en Av. Castellana por tráfico del evento.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_salida",
+      "severity": "baja",
+      "congestion_level": 0.28,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Av. Castellana salida.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "acceso_morca",
+      "severity": "baja",
+      "congestion_level": 0.15,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Sin novedades en Acceso Morca.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 29.3,
+  "monitor_report": {
+    "agents_healthy": 7,
+    "anomalies_detected": 0,
+    "cycle_duration_ms": 831
+  }
+}

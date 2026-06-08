@@ -1,0 +1,59 @@
+{
+  "cycle_id": "demo_0009_coliseo_event",
+  "timestamp": "2026-06-08T17:23:10.891881+00:00",
+  "decisions": [
+    {
+      "intersection_id": "carrera_11_norte",
+      "severity": "critica",
+      "congestion_level": 0.91,
+      "traffic_light_command": {
+        "green_extension_seconds": 42,
+        "priority_direction": "norte_sur",
+        "cycle_adjustment_percent": 20
+      },
+      "active_routes": [
+        "Avenida Industrial"
+      ],
+      "citizen_alert": "Congestión crítica por evento en Coliseo. Evite Carrera 11.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "calle_14_centro_historico",
+      "severity": "alta",
+      "congestion_level": 0.84,
+      "traffic_light_command": {
+        "green_extension_seconds": 32,
+        "priority_direction": "este_oeste",
+        "cycle_adjustment_percent": 17
+      },
+      "active_routes": [
+        "Carrera 9",
+        "Calle 16"
+      ],
+      "citizen_alert": "Alto tráfico en Calle 14 por evento masivo.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 37.8,
+  "monitor_report": {
+    "agents_healthy": 7,
+    "anomalies_detected": 0,
+    "cycle_duration_ms": 2181
+  }
+}

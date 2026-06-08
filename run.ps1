@@ -125,6 +125,17 @@ if (-not $ServicesOnly -and -not $SkipPipeline) {
     Write-Host "`n========================================" -ForegroundColor Green
     Write-Host "  Todos los pipelines ejecutados con exito" -ForegroundColor Green
     Write-Host "========================================" -ForegroundColor Green
+
+    Write-Step "Generando grafo social inicial (Ingesta masiva)..."
+    $env:PYTHONIOENCODING="utf-8"
+    $sw_ingest = [System.Diagnostics.Stopwatch]::StartNew()
+    & "..\.venv\Scripts\python.exe" scripts/ingest_massive_data.py --users 500 --queries 1500 --scenario market --export-graph
+    $sw_ingest.Stop()
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warn "La ingesta masiva tuvo errores. El dashboard puede mostrar datos incompletos."
+    } else {
+        Write-Ok "Grafo social exportado en $([math]::Round($sw_ingest.Elapsed.TotalSeconds, 1))s"
+    }
 }
 
 if ($PipelineOnly) {

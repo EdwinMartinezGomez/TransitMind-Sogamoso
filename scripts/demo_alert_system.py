@@ -62,6 +62,58 @@ DEMO_DECISIONS_BY_SCENARIO = {
                 "traffic_coordinator", "monitor",
             ],
         },
+        {
+            "intersection_id": "carrera_11_sur",
+            "severity": "media",
+            "congestion_level": 0.55,
+            "traffic_light_command": {
+                "green_extension_seconds": 10,
+                "priority_direction": "sur_norte",
+                "cycle_adjustment_percent": 5,
+            },
+            "active_routes": ["Calle 16"],
+            "citizen_alert": "Tráfico moderado en Carrera 11 Sur.",
+            "agent_trace": ["sensor", "predictor", "monitor"],
+        },
+        {
+            "intersection_id": "av_castellana_entrada",
+            "severity": "media",
+            "congestion_level": 0.48,
+            "traffic_light_command": {
+                "green_extension_seconds": 8,
+                "priority_direction": "este_oeste",
+                "cycle_adjustment_percent": 4,
+            },
+            "active_routes": [],
+            "citizen_alert": "Flujo normal con algo de carga en Av. Castellana entrada.",
+            "agent_trace": ["sensor", "predictor", "monitor"],
+        },
+        {
+            "intersection_id": "av_castellana_salida",
+            "severity": "baja",
+            "congestion_level": 0.22,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Tráfico normal en Av. Castellana salida.",
+            "agent_trace": ["sensor", "monitor"],
+        },
+        {
+            "intersection_id": "acceso_morca",
+            "severity": "baja",
+            "congestion_level": 0.18,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Sin congestión en Acceso Morca.",
+            "agent_trace": ["sensor", "monitor"],
+        },
     ],
     "morning_fog": [
         {
@@ -82,6 +134,71 @@ DEMO_DECISIONS_BY_SCENARIO = {
                 "causal_analyst", "route_planner",
                 "traffic_coordinator", "monitor",
             ],
+        },
+        {
+            "intersection_id": "av_castellana_entrada",
+            "severity": "media",
+            "congestion_level": 0.52,
+            "traffic_light_command": {
+                "green_extension_seconds": 12,
+                "priority_direction": "este_oeste",
+                "cycle_adjustment_percent": 6,
+            },
+            "active_routes": ["Calle 14"],
+            "citizen_alert": "Reducción de velocidad por niebla en Av. Castellana.",
+            "agent_trace": ["sensor", "predictor", "traffic_coordinator", "monitor"],
+        },
+        {
+            "intersection_id": "carrera_11_norte",
+            "severity": "baja",
+            "congestion_level": 0.25,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Tráfico normal en Carrera 11 Norte.",
+            "agent_trace": ["sensor", "monitor"],
+        },
+        {
+            "intersection_id": "carrera_11_sur",
+            "severity": "baja",
+            "congestion_level": 0.20,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Sin novedades en Carrera 11 Sur.",
+            "agent_trace": ["sensor", "monitor"],
+        },
+        {
+            "intersection_id": "av_castellana_salida",
+            "severity": "baja",
+            "congestion_level": 0.15,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Flujo libre en Av. Castellana salida.",
+            "agent_trace": ["sensor", "monitor"],
+        },
+        {
+            "intersection_id": "calle_14_centro_historico",
+            "severity": "baja",
+            "congestion_level": 0.19,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Todo tranquilo en Calle 14 Centro.",
+            "agent_trace": ["sensor", "monitor"],
         },
     ],
     "coliseo_event": [
@@ -118,6 +235,58 @@ DEMO_DECISIONS_BY_SCENARIO = {
                 "causal_analyst", "route_planner",
                 "traffic_coordinator", "monitor",
             ],
+        },
+        {
+            "intersection_id": "carrera_11_sur",
+            "severity": "media",
+            "congestion_level": 0.62,
+            "traffic_light_command": {
+                "green_extension_seconds": 15,
+                "priority_direction": "sur_norte",
+                "cycle_adjustment_percent": 8,
+            },
+            "active_routes": ["Calle 16"],
+            "citizen_alert": "Tráfico moderado en Carrera 11 Sur por dispersión del evento.",
+            "agent_trace": ["sensor", "predictor", "traffic_coordinator", "monitor"],
+        },
+        {
+            "intersection_id": "av_castellana_entrada",
+            "severity": "media",
+            "congestion_level": 0.50,
+            "traffic_light_command": {
+                "green_extension_seconds": 10,
+                "priority_direction": "este_oeste",
+                "cycle_adjustment_percent": 5,
+            },
+            "active_routes": [],
+            "citizen_alert": "Algo de congestión en Av. Castellana por tráfico del evento.",
+            "agent_trace": ["sensor", "predictor", "monitor"],
+        },
+        {
+            "intersection_id": "av_castellana_salida",
+            "severity": "baja",
+            "congestion_level": 0.28,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Tráfico normal en Av. Castellana salida.",
+            "agent_trace": ["sensor", "monitor"],
+        },
+        {
+            "intersection_id": "acceso_morca",
+            "severity": "baja",
+            "congestion_level": 0.15,
+            "traffic_light_command": {
+                "green_extension_seconds": 0,
+                "priority_direction": "",
+                "cycle_adjustment_percent": 0,
+            },
+            "active_routes": [],
+            "citizen_alert": "Sin novedades en Acceso Morca.",
+            "agent_trace": ["sensor", "monitor"],
         },
     ],
 }
@@ -229,27 +398,36 @@ async def run_demo_cycle(
 async def main_async(args):
     config = load_yaml_config("layer4_config.yaml")
 
-    # Disable real sending in demo mode
+    # Keep TG/WA disabled locally — we'll trigger via the running Layer 4 API instead
     config["telegram"]["enabled"] = False
     config["whatsapp"]["enabled"] = False
 
     engine = AlertEngine(config)
     sg = engine.graph
 
+    layer4_url = config.get("layer4_api", {}).get("base_url", "http://localhost:8003")
+    # Fallback: build from host/port
+    if layer4_url == "http://localhost:8003":
+        port = config.get("layer4_api", {}).get("port", 8003)
+        layer4_url = f"http://localhost:{port}"
+
     scenarios = ["market_day", "morning_fog", "coliseo_event"]
     rng = random.Random(args.seed)
 
     print(f"\n{'=' * 60}")
-    print(f"  🚀 TransitMind Sogamoso — Demo de Alertas en Tiempo Real")
-    print(f"  Ciclos: {args.cycles} | Usuarios registrados: {sg._graph.number_of_nodes()}")
-    print(f"  ⚠️  Envío real deshabilitado (modo demo)")
-    print(f"  Las alertas se guardan en data/layer4_outputs/alerts_sent/")
+    print(f"  TransitMind Sogamoso -- Demo de Alertas en Tiempo Real")
+    print(f"  Ciclos: {args.cycles} | Usuarios en grafo: {sg._graph.number_of_nodes()}")
+    print(f"  Alertas se envian via Layer 4 API -> Telegram bot")
+    print(f"  Layer 4: {layer4_url}")
     print(f"{'=' * 60}\n")
+
+    import httpx
 
     for cycle_num in range(1, args.cycles + 1):
         scenario = scenarios[(cycle_num - 1) % len(scenarios)]
-        print(f"\n--- Ciclo {cycle_num}/{args.cycles} — Escenario: {scenario} ---")
+        print(f"\n--- Ciclo {cycle_num}/{args.cycles} -- Escenario: {scenario} ---")
 
+        # 1. Build + save decision file (dashboard reads from disk)
         result = await run_demo_cycle(engine, scenario, cycle_num)
 
         for alert in result.get("alerts_to_send", []):
@@ -257,26 +435,43 @@ async def main_async(args):
             sev = alert.get("severity", "")
             n_fw = len(alert.get("first_wave_users", []))
             n_bc = len(alert.get("broadcast_users", []))
-            msg_wa = alert.get("messages", {}).get("whatsapp", "")
+            msg_tg = alert.get("messages", {}).get("telegram_citizen", "")
 
-            print(f"  🔔 {iid} [{sev.upper()}]")
-            print(f"     Primera ola: {n_fw} propagadores")
-            bd = alert.get("broadcast_delay_minutes", 2)
-            print(f"     Broadcast (+{bd}min): {n_bc} usuarios")
-            print(f"     Mensaje WhatsApp: {msg_wa[:80]}...")
+            # Safe print for Windows console
+            def safe_print(text):
+                print(str(text).encode(sys.stdout.encoding, errors='replace').decode(sys.stdout.encoding))
+                
+            safe_print(f"  [ALERTA] {iid} [{sev.upper()}]")
+            safe_print(f"     1ra ola: {n_fw} propagadores | Broadcast: {n_bc}")
+            safe_print(f"     TG: {msg_tg[:80]}...")
 
         skipped = result.get("skipped", 0)
         if skipped > 0:
-            print(f"  ⏭️  {skipped} intersecciones omitidas (baja severidad)")
+            print(f"  [SKIP] {skipped} intersecciones omitidas (baja severidad)")
+
+        # 2. POST to Layer 4 API -> triggers real TG dispatch
+        try:
+            async with httpx.AsyncClient(timeout=15) as client:
+                resp = await client.post(
+                    f"{layer4_url}/alert/trigger",
+                    json={"dry_run": False},
+                )
+                if resp.status_code == 200:
+                    api_result = resp.json()
+                    n_api = len(api_result.get("plan", {}).get("alerts_to_send", []))
+                    print(f"  [API] Layer 4 dispatch OK -> {n_api} alertas procesadas")
+                else:
+                    print(f"  [API] HTTP {resp.status_code}: {resp.text[:100]}")
+        except Exception as e:
+            print(f"  [API] No se pudo conectar a Layer 4: {str(e)[:80]}")
 
         if cycle_num < args.cycles:
             delay = rng.uniform(3, 8)
-            print(f"\n  ⏱️  Próximo ciclo en {delay:.1f}s...")
+            print(f"\n  Proximo ciclo en {delay:.1f}s...")
             await asyncio.sleep(delay)
 
     print(f"\n{'=' * 60}")
-    print(f"  ✅ Demo completado. Revisa el dashboard para ver los logs.")
-    print(f"  streamlit run src/layer4_bots/dashboard.py")
+    print(f"  Demo completado. Revisa Telegram y el dashboard.")
     print(f"{'=' * 60}\n")
 
 
@@ -286,7 +481,7 @@ def main():
     )
     parser.add_argument(
         "--cycles", type=int, default=5,
-        help="Número de ciclos de demo (default: 5)",
+        help="Numero de ciclos de demo (default: 5)",
     )
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -295,3 +490,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

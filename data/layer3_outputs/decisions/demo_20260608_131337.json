@@ -1,0 +1,120 @@
+{
+  "cycle_id": "demo_0005_morning_fog",
+  "timestamp": "2026-06-08T18:13:37.854049+00:00",
+  "decisions": [
+    {
+      "intersection_id": "acceso_morca",
+      "severity": "alta",
+      "congestion_level": 0.79,
+      "traffic_light_command": {
+        "green_extension_seconds": 28,
+        "priority_direction": "norte_sur",
+        "cycle_adjustment_percent": 15
+      },
+      "active_routes": [
+        "Variante Sogamoso-Duitama",
+        "Carretera alterna"
+      ],
+      "citizen_alert": "Niebla densa en acceso Morca. Visibilidad reducida.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_entrada",
+      "severity": "media",
+      "congestion_level": 0.52,
+      "traffic_light_command": {
+        "green_extension_seconds": 12,
+        "priority_direction": "este_oeste",
+        "cycle_adjustment_percent": 6
+      },
+      "active_routes": [
+        "Calle 14"
+      ],
+      "citizen_alert": "Reducción de velocidad por niebla en Av. Castellana.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "carrera_11_norte",
+      "severity": "baja",
+      "congestion_level": 0.25,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Carrera 11 Norte.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "carrera_11_sur",
+      "severity": "baja",
+      "congestion_level": 0.2,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Sin novedades en Carrera 11 Sur.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_salida",
+      "severity": "baja",
+      "congestion_level": 0.15,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Flujo libre en Av. Castellana salida.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "calle_14_centro_historico",
+      "severity": "baja",
+      "congestion_level": 0.19,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Todo tranquilo en Calle 14 Centro.",
+      "agent_trace": [
+        "sensor",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 15,
+  "monitor_report": {
+    "agents_healthy": 7,
+    "anomalies_detected": 0,
+    "cycle_duration_ms": 1904
+  }
+}

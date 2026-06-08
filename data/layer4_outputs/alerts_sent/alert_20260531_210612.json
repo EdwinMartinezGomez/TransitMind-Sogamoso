@@ -1,0 +1,35 @@
+{
+  "cycle_id": "b9622f29-82de-4c0d-bd67-2c2e16326c09",
+  "alerts_to_send": [
+    {
+      "intersection_id": "acceso_morca",
+      "severity": "media",
+      "messages": {
+        "whatsapp": "🟡 Algo de tráfico en Acceso Morca. Calcule ~7 min extra.",
+        "telegram_citizen": "🟡 *Acceso Morca — Algo de tráfico*\nCalcule 5-10 minutos extra.\nRutas alternativas: Avenida Industrial.\n⏱ Demora estimada: ~7 minutos.",
+        "dashboard": "🟡 MEDIA — Acceso Morca\nNivel de congestión: 45% | Demora: ~7 min\nSemáforos: Fase verde extendida 10s hacia rotacional\nRutas alternativas: Avenida Industrial\nÚltima actualización: 09:06 pm"
+      },
+      "first_wave_users": [
+        "seed_004"
+      ],
+      "broadcast_users": [
+        "seed_001",
+        "seed_002",
+        "seed_003",
+        "seed_005"
+      ],
+      "broadcast_delay_minutes": 2,
+      "expected_coverage_pct": 86.7,
+      "graph_stats": {
+        "total_nodes": 5,
+        "active_nodes": 5,
+        "edges": 5,
+        "avg_degree": 2.0
+      },
+      "first_wave_count": 1,
+      "broadcast_count": 4
+    }
+  ],
+  "skipped": 5,
+  "timestamp": "2026-06-01T02:06:12.910295+00:00"
+}

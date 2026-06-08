@@ -44,7 +44,7 @@ social_graph:
   edge_threshold: 0.30          # θW: mínimo para crear arista
   alpha: 0.6                    # α: peso betweenness vs k-shell
   first_wave_k: 5               # Propagadores de primera ola
-  broadcast_delay_minutes: 2    # Delay antes del broadcast general
+  broadcast_delay_minutes: 0    # Delay antes del broadcast general
   sir_simulations: 500          # Simulaciones Monte Carlo EoN
   sir_beta: 0.3                 # Tasa de transmisión SIR
   sir_gamma: 0.1                # Tasa de recuperación SIR
@@ -57,8 +57,8 @@ social_graph:
 
 alert:
   min_severity_to_alert: "media"  # No alertar por severidad "baja"
-  max_alerts_per_hour: 10
-  dedup_window_minutes: 15      # No repetir misma intersección en 15 min
+  max_alerts_per_hour: 100
+  dedup_window_minutes: 0      # No repetir misma intersección en 15 min
   operator_always_notified: true # Operadores reciben TODO, sin filtro
 
 message:

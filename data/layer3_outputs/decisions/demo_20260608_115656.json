@@ -1,0 +1,36 @@
+{
+  "cycle_id": "demo_0005_morning_fog",
+  "timestamp": "2026-06-08T16:56:56.583880+00:00",
+  "decisions": [
+    {
+      "intersection_id": "acceso_morca",
+      "severity": "alta",
+      "congestion_level": 0.79,
+      "traffic_light_command": {
+        "green_extension_seconds": 28,
+        "priority_direction": "norte_sur",
+        "cycle_adjustment_percent": 15
+      },
+      "active_routes": [
+        "Variante Sogamoso-Duitama",
+        "Carretera alterna"
+      ],
+      "citizen_alert": "Niebla densa en acceso Morca. Visibilidad reducida.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 35.2,
+  "monitor_report": {
+    "agents_healthy": 7,
+    "anomalies_detected": 0,
+    "cycle_duration_ms": 838
+  }
+}

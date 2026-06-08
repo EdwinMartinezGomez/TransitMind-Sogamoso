@@ -26,7 +26,6 @@ from src.layer4_bots.social_graph import SocialGraphModule
 # Helper Functions
 # ============================================
 
-@st.cache_data(ttl=25)
 def fetch_latest_decision(layer3_url: str):
     """Fetch GET /latest-decision from Layer 3."""
     try:
@@ -98,26 +97,47 @@ def render_intersection_card(decision: dict, message: str, config: dict):
 
 
 def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dict):
-    """Expanded Social Graph section with visualization tabs."""
+    """Expanded Social Graph section with interactive Plotly visualization."""
     from src.layer4_bots.graph_visualizer import (
-        build_graphviz_dot,
+        build_plotly_graph,
         build_edge_explanation_table,
         build_propagator_explanation_table,
-        build_community_subgraph_dot,
+        build_community_plotly,
     )
 
-    st.subheader("🕸️ Grafo Social — Red de Propagadores de Alertas")
+    st.markdown(
+        "<div style='background: linear-gradient(135deg, #0a192f 0%, #112240 100%); "
+        "padding: 1.5rem 2rem; border-radius: 16px; border: 1px solid rgba(100,255,218,0.15); "
+        "margin-bottom: 1.5rem;'>"
+        "<h2 style='margin:0; color:#ccd6f6;'>🕸️ Grafo Social</h2>"
+        "<p style='margin:0.3rem 0 0; color:#64ffda; font-size:0.95rem;'>"
+        "Red de Propagadores de Alertas — Modelo G=(V,E,W)</p></div>",
+        unsafe_allow_html=True,
+    )
 
-    # --- Metrics ---
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("👥 Usuarios", graph_summary.get("total_users", 0))
-    col2.metric("🔗 Conexiones", graph_summary.get("edges", 0))
-    col3.metric("🏘️ Comunidades", graph_summary.get("communities_detected", 0))
-    col4.metric("⚡ Activos 24h", graph_summary.get("active_last_24h", 0))
+    # --- Metrics with styled cards ---
+    cols = st.columns(4)
+    metrics = [
+        ("👥", "Usuarios", graph_summary.get("total_users", 0), "#4ecdc4"),
+        ("🔗", "Conexiones", graph_summary.get("edges", 0), "#ff6b6b"),
+        ("🏘️", "Comunidades", graph_summary.get("communities_detected", 0), "#ffe66d"),
+        ("⚡", "Activos 24h", graph_summary.get("active_last_24h", 0), "#a29bfe"),
+    ]
+    for col, (icon, label, val, accent) in zip(cols, metrics):
+        col.markdown(
+            f"<div style='background:#112240; border-radius:12px; padding:1rem; "
+            f"text-align:center; border:1px solid {accent}33;'>"
+            f"<span style='font-size:1.8rem;'>{icon}</span><br>"
+            f"<span style='font-size:1.6rem; font-weight:700; color:{accent};'>{val}</span><br>"
+            f"<span style='font-size:0.8rem; color:#8892b0;'>{label}</span></div>",
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("<div style='height:1rem;'></div>", unsafe_allow_html=True)
 
     # --- Tabs ---
     tab_viz, tab_edges, tab_props, tab_comm = st.tabs([
-        "🔵 Visualización",
+        "🔵 Visualización Interactiva",
         "🔗 Por qué están conectados",
         "🏆 Por qué son propagadores",
         "🏘️ Comunidades de movilidad",
@@ -125,27 +145,35 @@ def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dic
 
     with tab_viz:
         st.markdown(
-            "**¿Qué muestra este grafo?**\n"
-            "Cada nodo es un usuario del bot. Las conexiones representan "
-            "similitud en corredores de movilidad, horarios de consulta "
-            "y co-consultas frecuentes. Los nodos más grandes tienen mayor "
-            "score como propagadores de alertas.\n\n"
-            "🔴 Despachadores · 🔵 Conductores · 🟢 Líderes de barrio · ⚫ Vecinos"
+            "<div style='background:#112240; padding:1rem 1.2rem; border-radius:10px; "
+            "border-left:3px solid #64ffda; margin-bottom:1rem; font-size:0.9rem; color:#8892b0;'>"
+            "Cada <b style='color:#4ecdc4;'>nodo</b> es un usuario del bot. "
+            "Las conexiones representan similitud en corredores, horarios y co-consultas. "
+            "Los nodos más grandes = mayor score propagador. "
+            "<b style='color:#ff6b6b;'>Hover</b> para ver detalles.</div>",
+            unsafe_allow_html=True,
         )
-        n_nodes = st.slider(
-            "Nodos a visualizar", 10, 60, 30, step=5,
-            help="Muestra los N usuarios con mayor score de propagador",
-        )
-        show_labels = st.checkbox(
-            "Mostrar razón de conexión en aristas", value=False,
-            help="Si hay muchas aristas puede saturar el grafo",
-        )
-        dot_code = build_graphviz_dot(
+        col_ctrl1, col_ctrl2 = st.columns([3, 1])
+        with col_ctrl1:
+            n_nodes = st.slider(
+                "Nodos a visualizar", 10, 60, 30, step=5,
+                help="Muestra los N usuarios con mayor score de propagador",
+            )
+        with col_ctrl2:
+            show_labels = st.checkbox(
+                "Hover aristas", value=True,
+                help="Muestra peso y razón de conexión al pasar el mouse",
+            )
+        fig = build_plotly_graph(
             sg._graph, sg._propagator_ranking,
             top_n_nodes=n_nodes, show_edge_labels=show_labels,
         )
-        if dot_code:
-            st.graphviz_chart(dot_code, use_container_width=True)
+        if fig:
+            st.plotly_chart(fig, use_container_width=True, config={
+                "displayModeBar": True,
+                "modeBarButtonsToRemove": ["lasso2d", "select2d"],
+                "displaylogo": False,
+            })
         else:
             st.info(
                 "El grafo aún no tiene suficientes nodos para visualizar. "
@@ -180,7 +208,7 @@ def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dic
             st.dataframe(edge_df, use_container_width=True, hide_index=True)
             if not edge_df.empty and "Razón principal" in edge_df.columns:
                 reason_counts = edge_df["Razón principal"].value_counts()
-                st.bar_chart(reason_counts, color="#3b82f6", use_container_width=True)
+                st.bar_chart(reason_counts, color="#4ecdc4", use_container_width=True)
                 st.caption("Distribución de razones de conexión entre usuarios")
         else:
             st.info("Sin aristas aún. Registra más usuarios o ejecuta el script de ingesta.")
@@ -191,7 +219,7 @@ def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dic
             "Un buen propagador tiene alta *centralidad de intermediación* "
             "(es puente entre grupos) o está en capas *k-shell* altas "
             "(rodeado de vecinos densamente conectados).\n\n"
-            "score(v) = 0.6 × BC_norm(v) + 0.4 × ks_norm(v)"
+            "`score(v) = 0.6 × BC_norm(v) + 0.4 × ks_norm(v)`"
         )
         if sg._propagator_ranking:
             prop_df = build_propagator_explanation_table(
@@ -213,9 +241,11 @@ def render_graph_section(graph_summary: dict, sg: SocialGraphModule, config: dic
             "corredores y horarios similares. Alertar a un nodo "
             "de alta centralidad en cada comunidad maximiza la cobertura."
         )
-        comm_dot = build_community_subgraph_dot(sg._graph, sg._propagator_ranking)
-        if comm_dot:
-            st.graphviz_chart(comm_dot, use_container_width=True)
+        comm_fig = build_community_plotly(sg._graph, sg._propagator_ranking)
+        if comm_fig:
+            st.plotly_chart(comm_fig, use_container_width=True, config={
+                "displayModeBar": True, "displaylogo": False,
+            })
         else:
             st.info(
                 "Instala python-louvain para detección de comunidades: "

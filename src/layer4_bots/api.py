@@ -167,7 +167,8 @@ async def startup_event():
         if _tg_bot and _tg_bot._enabled:
             for alert in plan.get("alerts_to_send", []):
                 try:
-                    await _tg_bot.send_alert(alert)
+                    # Create a task to avoid blocking the engine loop with the 2 min broadcast delay
+                    asyncio.create_task(_tg_bot.send_alert(alert))
                 except Exception as e:
                     logger.warning("telegram_alert_forward_failed", error=str(e))
 
@@ -210,8 +211,13 @@ async def trigger_alert(request: AlertTriggerRequest):
     """
     Force alert emission from latest Layer 3 cycle.
     If dry_run=True: return the alert plan without sending.
+    Resets cycle dedup so demo files are always processed.
     """
     engine = _get_engine()
+
+    # Reset cycle dedup so manual trigger always works
+    engine._last_cycle_id = None
+
     plan = await engine.process_cycle()
 
     if not plan.get("alerts_to_send"):
@@ -220,8 +226,16 @@ async def trigger_alert(request: AlertTriggerRequest):
     if request.dry_run:
         return {"message": "Dry run — alerts not sent", "plan": plan}
 
-    # In non-dry-run, the plan was already processed and logged
-    return {"message": f"Alert plan processed: {len(plan['alerts_to_send'])} alerts", "plan": plan}
+    # Actually dispatch to Telegram
+    if _tg_bot and _tg_bot._enabled:
+        for alert in plan.get("alerts_to_send", []):
+            try:
+                asyncio.create_task(_tg_bot.send_alert(alert))
+            except Exception as e:
+                logger.warning("trigger_telegram_failed", error=str(e))
+
+    return {"message": f"Alert plan processed and dispatched: {len(plan['alerts_to_send'])} alerts", "plan": plan}
+
 
 
 @app.get("/alert/latest")

@@ -1,0 +1,142 @@
+{
+  "cycle_id": "b9622f29-82de-4c0d-bd67-2c2e16326c09",
+  "timestamp": "2026-06-01T02:05:45.014136+00:00",
+  "intersections_analyzed": 6,
+  "decisions": [
+    {
+      "intersection_id": "carrera_11_norte",
+      "severity": "baja",
+      "congestion_level": 0.2897,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Carrera 11 Norte.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "carrera_11_sur",
+      "severity": "baja",
+      "congestion_level": 0.339,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Carrera 11 Sur.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_entrada",
+      "severity": "baja",
+      "congestion_level": 0.2147,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Av Castellana Entrada.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "av_castellana_salida",
+      "severity": "baja",
+      "congestion_level": 0.3398,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Av Castellana Salida.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "calle_14_centro_historico",
+      "severity": "baja",
+      "congestion_level": 0.3645,
+      "traffic_light_command": {
+        "green_extension_seconds": 0,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 0
+      },
+      "active_routes": [],
+      "citizen_alert": "Tráfico normal en Calle 14 Centro Historico.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    },
+    {
+      "intersection_id": "acceso_morca",
+      "severity": "media",
+      "congestion_level": 0.4535,
+      "traffic_light_command": {
+        "green_extension_seconds": 10,
+        "priority_direction": "rotacional",
+        "cycle_adjustment_percent": 11
+      },
+      "active_routes": [
+        "Avenida Industrial"
+      ],
+      "citizen_alert": "Tráfico normal en Acceso Morca.",
+      "agent_trace": [
+        "sensor",
+        "predictor",
+        "gan_simulator",
+        "causal_analyst",
+        "route_planner",
+        "traffic_coordinator",
+        "monitor"
+      ]
+    }
+  ],
+  "global_tmc_reduction_percent": 6.22,
+  "monitor_report": {
+    "anomalies_detected": 0,
+    "hallucinations_blocked": 0,
+    "cycle_duration_ms": 2489,
+    "agents_healthy": 7
+  }
+}
